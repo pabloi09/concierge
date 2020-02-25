@@ -8,15 +8,17 @@ To avoid issues from the beginning I sugest to use the same versions:
 ```
 git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
-git checkout -b <your_name>
+git checkout -b <your_branch_name>
+npm install
 ```
 
-** Wanna upload for the first time ? ** Use:
-´´´
+**Wanna upload for the first time ?** 
+*Use:*
+```
 git add <the_files>
 git commit -m "Description of the new version"
-git push --set-upstream origin pablo
-´´´
+git push --set-upstream origin <your_branch_name>
+```
 ## Files
 The drive shared directory is: 
 https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
@@ -33,6 +35,7 @@ ana.delucas.lopez@alumnos.upm.es
 
 ## Supervisor
 * juancarlos.yelmo@upm.es
+
 ## Helpful docs in not a specific order
 * Restful API with spring: https://spring.io/guides/gs/rest-service/
 * Forms with Formik and Yup: https://dev.to/finallynero/react-form-using-formik-material-ui-and-yup-2e8h
