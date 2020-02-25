@@ -23,3 +23,4 @@ ana.delucas.lopez@alumnos.upm.es
 * React Router: https://reacttraining.com/react-router
 * Redux: https://es.redux.js.org/
 * JavaScript: https://developer.mozilla.org/es/docs/Web/JavaScript
+* Material Icons: https://material-ui.com/components/icons/#font-icons
