@@ -8,10 +8,10 @@ alvaro.gomezm@alumnos.upm.es
 ### Scrum master
 ana.delucas.lopez@alumnos.upm.es
 ### Developers
-p.centenera@alumnos.upm.es
-diego.devegaf@alumnos.upm.es
-c.garcia-maurino@alumnos.upm.es
-pablo.martin.redondo@alumnos.upm.es
+* p.centenera@alumnos.upm.es
+* diego.devegaf@alumnos.upm.es
+* c.garcia-maurino@alumnos.upm.es
+* pablo.martin.redondo@alumnos.upm.es
 ## Helpful docs in not a specific order
 * Restful API with spring: https://spring.io/guides/gs/rest-service/
 * Forms with Formik and Yup: https://dev.to/finallynero/react-form-using-formik-material-ui-and-yup-2e8h
