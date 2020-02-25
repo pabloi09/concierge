@@ -10,7 +10,9 @@ git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
 git checkout -b <your_branch_name>
 npm install
+npm start
 ```
+You will be ready to develop :tada:
 
 **Wanna upload for the first time ?** 
 *Use:*
