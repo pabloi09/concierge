@@ -4,12 +4,19 @@ To avoid issues from the beginning I sugest to use the same versions:
 * node v12.15.0
 * npm 6.13.4
 
-## Installation
+## Installation and workflow
 ```
 git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
 git checkout -b <your_name>
 ```
+
+** Wanna upload for the first time ? ** Use:
+´´´
+git add <the_files>
+git commit -m "Description of the new version"
+git push --set-upstream origin pablo
+´´´
 ## Files
 The drive shared directory is: 
 https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
