@@ -8,7 +8,7 @@ To avoid issues from the beginning I sugest to use the same versions:
 ```
 git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
-
+git checkout -b <your_name>
 ```
 ## Files
 The drive shared directory is: 
