@@ -3,8 +3,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";
+import LoginUserPage from "./LoginUserPage"
 
 class UserApp extends Component {
     render() {
@@ -18,6 +18,7 @@ class UserApp extends Component {
                         
                     </Route>
                     <Route path="/">
+                        <LoginUserPage />
                         
                     </Route>
                 </Switch>
