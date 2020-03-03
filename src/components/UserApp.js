@@ -17,7 +17,7 @@ class UserApp extends Component {
                     <Route path="/transport">
                         
                     </Route>
-                    <Route path="/">
+                    <Route path="/login">
                         <LoginUserPage />
                         
                     </Route>
