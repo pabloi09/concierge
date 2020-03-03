@@ -2,28 +2,33 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
   } from "react-router-dom";
+import MenuCard from "./MenuCard" 
+import NavigationBar from "./NavigationBar"
 
 class UserApp extends Component {
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route path="/profile">
+            <div>
+                <NavigationBar logged/>
+                    <Router>
+                        <Switch>
+                            <Route path="/profile">
 
-                    </Route>
-                    <Route path="/transport">
-                        
-                    </Route>
-                    <Route path="/">
-                        
-                    </Route>
-                </Switch>
-            </Router>
+                            </Route>
+                            <Route path="/transport">
+                                
+                            </Route>
+                            <Route path="/">
+
+                            </Route>
+                        </Switch>
+                    </Router>
+            </div>
         );
     }
+    
 }
 
 export default UserApp;
