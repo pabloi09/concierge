@@ -14,7 +14,7 @@ npm start
 ```
 You will be ready to develop :tada:
 
-**Wanna upload for the first time ?** 
+**Wanna upload for the first time ?**
 *Use:*
 ```
 git add <the_files>
@@ -22,7 +22,7 @@ git commit -m "Description of the new version"
 git push --set-upstream origin <your_branch_name>
 ```
 ## Files
-The drive shared directory is: 
+The drive shared directory is:
 https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
 ## Contact
 ### Product owner
@@ -48,3 +48,4 @@ ana.delucas.lopez@alumnos.upm.es
 * JavaScript: https://developer.mozilla.org/es/docs/Web/JavaScript
 * Material Icons: https://material-ui.com/components/icons/#font-icons
 * Formik docs: https://jaredpalmer.com/formik/docs/overview
+* Material-UI palette: https://material-ui.com/customization/palette/

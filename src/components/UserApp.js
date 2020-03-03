@@ -4,25 +4,29 @@ import {
     Switch,
     Route,
   } from "react-router-dom";
+import {ThemeProvider} from '@material-ui/core/styles';
+import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 
 class UserApp extends Component {
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route path="/profile">
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <Switch>
+                        <Route path="/profile">
 
-                    </Route>
-                    <Route path="/transport">
-                        
-                    </Route>
-                    <Route path="/login">
-                        <LoginUserPage />
-                        
-                    </Route>
-                </Switch>
-            </Router>
+                        </Route>
+                        <Route path="/transport">
+                            
+                        </Route>
+                        <Route path="/login">
+                            <LoginUserPage />
+                            
+                        </Route>
+                    </Switch>
+                </Router>
+            </ThemeProvider>
         );
     }
 }
