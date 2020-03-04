@@ -9,6 +9,7 @@ import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
 import GridComponent from "./GridComponent"
+import Transport from "./Transport"
 import {services} from "../constants/services"
 import LeisurePage from "./LeisurePage"
 
@@ -24,7 +25,7 @@ class UserApp extends Component {
 
                                 </Route>
                                 <Route path="/transport">
-                                
+                                    <Transport />
                                 </Route>
                                 <Route path="/login">
                                     <LoginUserPage />
