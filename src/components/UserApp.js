@@ -13,6 +13,7 @@ import {services} from "../constants/services"
 import Transport from "./Transport"
 import RoomService from "./RoomService"
 import LeisurePage from "./LeisurePage"
+import Profile from "./Profile"
 
 class UserApp extends Component {
     render() {
@@ -26,7 +27,7 @@ class UserApp extends Component {
                                     <LoginUserPage />
                                 </Route>
                                 <Route path="/perfil">
-
+                                    <Profile />
                                 </Route>
                                 <Route path="/estancia">
 
@@ -35,7 +36,7 @@ class UserApp extends Component {
                                     <RoomService />
                                 </Route>
                                 <Route path="/ocio">
-
+                                    <LeisurePage/>
                                 </Route>
                                 <Route path="/transporte">
                                     <Transport />
@@ -43,10 +44,6 @@ class UserApp extends Component {
                                 <Route path="/personalizada">
 
                                 </Route>
-                                <Route path="/ocio">
-                                    <LeisurePage/>
-                                </Route>
-
                                 <Route path="/">
                                     <GridComponent data={services}/>
                                 </Route>
