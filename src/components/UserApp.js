@@ -10,6 +10,7 @@ import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
 import GridComponent from "./GridComponent"
 import {services} from "../constants/services"
+import LeisurePage from "./LeisurePage"
 
 class UserApp extends Component {
     render() {
@@ -29,6 +30,11 @@ class UserApp extends Component {
                                     <LoginUserPage />
 
                                 </Route>
+
+                                <Route path="/ocio">
+                                    <LeisurePage/>
+                                </Route>
+
                                 <Route path="/">
                                     <GridComponent data={services}/>
                                 </Route>
