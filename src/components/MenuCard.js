@@ -6,7 +6,7 @@ import 'typeface-roboto'
 const useStyles = {
     card: {
         display: "block",
-        width: "30%",
+        width: "100%",
         borderRadius:25           
     },
     media: {
@@ -16,7 +16,7 @@ const useStyles = {
     },
     mask: {
         height: "100%",
-        opacity:0.2,
+        opacity:0.3,
         borderRadius:25
     },
     actionArea: {
