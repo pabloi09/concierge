@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { CardActionArea,CardMedia, Typography, Card, Box } from '@material-ui/core';
-import { withStyles} from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import 'typeface-roboto'
 
 const useStyles = {
-    image: {
-        width: 345,
-        height: 140,
+    card: {
+        display: "block",
+        width: "30%",
         borderRadius:25           
     },
     media: {
-        height: 140,
-        width: 345,
+        height: "100%",
+        width: "100%",
         borderRadius:25
     },
     mask: {
-        height: 140,
-        opacity:0.15,
+        height: "100%",
+        opacity:0.2,
         borderRadius:25
     },
     actionArea: {
-        height: 140,
-        width: 345,
+        height: "100%",
+        width: "100%",
         borderRadius:25,
         display: "flex",
         flexDirection:"column",
@@ -29,8 +29,8 @@ const useStyles = {
         justifyContent:"center",
     },
     box: {
-        height: 140,
-        width: 345,
+        height: "100%",
+        width: "100%",
         position: "absolute",
         top: 0,
         left: 0,
@@ -44,11 +44,16 @@ const useStyles = {
 
 class MenuCard extends Component {
 
+    constructor(props){
+        super(props)
+        this.state = {height:100}
+    }
+
     render() {
         const {classes} = this.props
 
         return (
-                <Card className = {classes.image}>
+            <Card ref={this.refCallback} className = {classes.card} style={{height: this.state.height}}>
                 <CardActionArea onClick={this.props.action} className = {classes.actionArea}>
                     <Box className={classes.box}>                                                                                                                                                         
                         <CardMedia className = {classes.media}
@@ -63,8 +68,24 @@ class MenuCard extends Component {
                     </Typography>
                     </CardActionArea>                
             </Card>
+
         );
     }
+
+    componentDidMount(){
+        window.addEventListener('resize', this.handleResize.bind(this))
+    }
+
+    handleResize(){
+        this.setState({height: this.elementRef.getBoundingClientRect().width  / 1.618})
+    }
+    refCallback = element => {
+        if (element) {
+          this.elementRef = element
+          this.handleResize()
+        }
+      };
+
 }
 
 export default withStyles(useStyles)(MenuCard)
