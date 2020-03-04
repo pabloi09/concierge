@@ -14,6 +14,7 @@ import Transport from "./Transport"
 import RoomService from "./RoomService"
 import LeisurePage from "./LeisurePage"
 import Profile from "./Profile"
+import Stay from "./Stay"
 
 class UserApp extends Component {
     render() {
@@ -30,7 +31,7 @@ class UserApp extends Component {
                                     <Profile />
                                 </Route>
                                 <Route path="/estancia">
-
+                                    <Stay />
                                 </Route>
                                 <Route path="/servicio-habitaciones">
                                     <RoomService />

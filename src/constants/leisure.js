@@ -22,6 +22,6 @@ export const leisure = [
         "alt": "Página de compras",
         "src": "assets/ocio/compras.jpg",
         "path": "/ocio/compras"                         
-    }, 
+    }
 
 ]
