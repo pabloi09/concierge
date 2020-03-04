@@ -8,6 +8,8 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
+import GridComponent from "./GridComponent"
+import {services} from "../constants/services"
 
 class UserApp extends Component {
     render() {
@@ -28,7 +30,7 @@ class UserApp extends Component {
 
                                 </Route>
                                 <Route path="/">
-
+                                    <GridComponent data={services}/>
                                 </Route>
                             </Switch>
                         </Router>
