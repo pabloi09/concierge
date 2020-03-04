@@ -9,8 +9,9 @@ import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
 import GridComponent from "./GridComponent"
-import Transport from "./Transport"
 import {services} from "../constants/services"
+import Transport from "./Transport"
+import RoomService from "./RoomService"
 
 class UserApp extends Component {
     render() {
@@ -20,14 +21,25 @@ class UserApp extends Component {
                     <NavigationBar logged/>
                         <Router>
                             <Switch>
-                                <Route path="/profile">
-
-                                </Route>
-                                <Route path="/transport">
-                                    <Transport />
-                                </Route>
                                 <Route path="/login">
                                     <LoginUserPage />
+                                </Route>
+                                <Route path="/perfil">
+
+                                </Route>
+                                <Route path="/estancia">
+
+                                </Route>
+                                <Route path="/servicio-habitaciones">
+                                    <RoomService />
+                                </Route>
+                                <Route path="/ocio">
+
+                                </Route>
+                                <Route path="/transporte">
+                                    <Transport />
+                                </Route>
+                                <Route path="/personalizada">
 
                                 </Route>
                                 <Route path="/">
