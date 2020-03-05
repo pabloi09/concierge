@@ -8,10 +8,12 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
-import GridComponent from "./GridComponent"
-import Transport from "./Transport"
-import {services} from "../constants/services"
+import MainPage from "./MainPage"
+import TransportPage from "./TransportPage"
+import RoomServicePage from "./RoomServicePage"
 import LeisurePage from "./LeisurePage"
+import ProfilePage from "./ProfilePage"
+import StayPage from "./StayPage"
 
 class UserApp extends Component {
     render() {
@@ -21,23 +23,29 @@ class UserApp extends Component {
                     <NavigationBar logged/>
                         <Router>
                             <Switch>
-                                <Route path="/profile">
-
-                                </Route>
-                                <Route path="/transport">
-                                    <Transport />
-                                </Route>
                                 <Route path="/login">
                                     <LoginUserPage />
-
                                 </Route>
-
+                                <Route path="/perfil">
+                                    <ProfilePage />
+                                </Route>
+                                <Route path="/estancia">
+                                    <StayPage />
+                                </Route>
+                                <Route path="/servicio-habitaciones">
+                                    <RoomServicePage />
+                                </Route>
                                 <Route path="/ocio">
                                     <LeisurePage/>
                                 </Route>
+                                <Route path="/transporte">
+                                    <TransportPage />
+                                </Route>
+                                <Route path="/personalizada">
 
+                                </Route>
                                 <Route path="/">
-                                    <GridComponent data={services}/>
+                                    <MainPage />
                                 </Route>
                             </Switch>
                         </Router>

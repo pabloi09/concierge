@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GridComponent from './GridComponent';
 import {transports} from '../constants/transports'
 
-class Transport extends Component {
+class TransportPage extends Component {
 
     render() {
         return (
@@ -11,4 +11,4 @@ class Transport extends Component {
     }
 }
 
-export default Transport;
+export default TransportPage;

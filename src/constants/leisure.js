@@ -3,25 +3,25 @@ export const leisure = [
         "title": "Restaurantes",
         "alt": "Página de restaurantes",
         "src": "assets/ocio/restaurantes.jpg",
-        "path": "/restaurantes"                         
+        "path": "/ocio/restaurantes"                         
     }, 
     {
         "title": "Entradas",
         "alt": "Página de entradas",
         "src": "assets/ocio/entradas.jpg",
-        "path": "/entradas"                         
+        "path": "/ocio/entradas"                         
     },
     {
         "title": "Turismo",
         "alt": "Página de turismo",
         "src": "assets/ocio/turismo.jpg",
-        "path": "/turismo"                         
+        "path": "/ocio/turismo"                         
     }, 
     {
         "title": "Compras",
         "alt": "Página de compras",
         "src": "assets/ocio/compras.jpg",
-        "path": "/compras"                         
-    }, 
+        "path": "/ocio/compras"                         
+    }
 
 ]
