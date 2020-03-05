@@ -34,11 +34,14 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    login
   } = props;
-
+  console.log(login)
   return (
     <div className={classes.container}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(...args) => {
+        handleSubmit(...args)
+        login()}}>
         <Card className={classes.card}>
           <CardContent>
             <TextField
@@ -81,7 +84,7 @@ const form = props => {
 const LoginForm = withFormik({
   mapPropsToValues: ({
     dni,
-    password,
+    password
   }) => {
     return {
       dni: dni || "",
@@ -98,7 +101,7 @@ const LoginForm = withFormik({
       .required("Introduzca su contraseña")
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { setSubmitting } ) => {
     setTimeout(() => {
       // submit to the server
       alert(JSON.stringify(values, null, 2));

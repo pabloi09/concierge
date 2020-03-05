@@ -5,7 +5,7 @@ import {leisure} from "../constants/leisure"
 class LeisurePage extends Component {
     render() {
         return (
-            <GridComponent data={leisure}/>
+            <GridComponent data={leisure} logged={this.props.logged}/>
         );
     }
 }

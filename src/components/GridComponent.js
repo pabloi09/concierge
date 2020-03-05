@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MenuCard from './MenuCard';
+import { withRouter } from "react-router-dom"
 
 class GridComponent extends Component {
 
-    createGrid = () => {
+    createGrid = (history) => {
         let grid = []
         let children = [];
         let data = this.props.data;
@@ -16,7 +17,7 @@ class GridComponent extends Component {
                         title={data[i]["title"]} 
                         src={data[i]["src"]} 
                         alt={data[i]["data"]} 
-                        action={()=>console.log(data[i]["path"])} key={i.toString()}/>
+                        action={()=>history.push(data[i]["path"])}/>
                 </div>
             </Grid>);
         }
@@ -28,8 +29,11 @@ class GridComponent extends Component {
     }
 
     render() {
-        return this.createGrid();
+        if(! this.props.logged){
+            this.props.history.replace("/login")
+        }
+        return this.createGrid(this.props.history);
     }
 }
 
-export default GridComponent;
+export default withRouter(GridComponent);

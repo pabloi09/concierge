@@ -15,22 +15,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
-import HotelIcon from '@material-ui/icons/Hotel';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
-import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
-import CreateIcon from '@material-ui/icons/Create';
-import DonutLargeIcon from '@material-ui/icons/DonutLarge';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { withRouter } from "react-router-dom"
+import {navbar} from "../constants/navbar"
 
-
-
-
-
-
-const drawerTextList = [["Perfil", "Estancia", "S. Habitaciones","Transporte", "Ocio", "Personalizado"],["Solicitudes"],["Log out"]]
-const drawerIconList = [[<PermIdentityIcon/>,<HotelIcon/>,<FastfoodIcon/>,<LocalTaxiIcon/>,<ConfirmationNumberIcon/>,<CreateIcon/>],[<DonutLargeIcon/>],[<ExitToAppIcon/>]]
 
 const drawerWidth = 240;
 const useStyles = theme => ({
@@ -113,7 +100,16 @@ class NavigationBar extends Component {
     this.setOpen = this.setOpen.bind(this)
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this)
     this.handleDrawerClose = this.handleDrawerClose.bind(this)
+    this.handleClick = this.handleClick.bind(this)
     this.state = { open: false }
+  }
+
+  handleClick(path){
+    this.setOpen(false)
+    if (path === "/login"){
+      this.props.logout()
+    }
+    this.props.history.push(path)
   }
 
 
@@ -140,11 +136,9 @@ class NavigationBar extends Component {
             >
               <MenuIcon />
             </IconButton>:<div/>}
-            
-
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" noWrap onClick = {()=>this.props.history.push("/")}>
               Concierge
-          </Typography>
+            </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -162,13 +156,13 @@ class NavigationBar extends Component {
             </IconButton>
           </div>
           <Divider />
-          {drawerTextList.map((array,index)=>{
+          {navbar.map((array,index)=>{
             return (<div key={index}>
             <List>
-              {array.map((text,subindex)=>{
-                return (<ListItem button key={text}>
-                  <ListItemIcon>{drawerIconList[index][subindex]}</ListItemIcon>
-                  <ListItemText primary={text} />
+              {array.map((element,subindex)=>{
+                return (<ListItem button key={String(index)+String(subindex)} onClick = {()=>this.handleClick(element["path"])}>
+                  <ListItemIcon>{element["icon"]}</ListItemIcon>
+                  <ListItemText primary={element["title"]} />
                 </ListItem>)
               })}
             </List>
@@ -187,7 +181,7 @@ class NavigationBar extends Component {
 
 
 
-export default withTheme(withStyles(useStyles)(NavigationBar));
+export default withRouter(withTheme(withStyles(useStyles)(NavigationBar)));
 
 
 

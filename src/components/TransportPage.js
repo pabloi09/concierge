@@ -6,7 +6,7 @@ class TransportPage extends Component {
 
     render() {
         return (
-            <GridComponent data={transports}/>
+            <GridComponent data={transports} logged={this.props.logged}/>
         );
     }
 }

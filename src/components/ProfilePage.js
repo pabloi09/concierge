@@ -5,7 +5,7 @@ import {profile} from "../constants/profile"
 class ProfilePage extends Component {
     render() {
         return (
-            <GridComponent data={profile}/>
+            <GridComponent data={profile} logged={this.props.logged}/>
         );
     }
 }
