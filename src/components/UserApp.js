@@ -8,13 +8,12 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "../theme/theme"
 import LoginUserPage from "./LoginUserPage"
 import NavigationBar from "./NavigationBar"
-import GridComponent from "./GridComponent"
-import {services} from "../constants/services"
-import Transport from "./Transport"
-import RoomService from "./RoomService"
+import MainPage from "./MainPage"
+import TransportPage from "./TransportPage"
+import RoomServicePage from "./RoomServicePage"
 import LeisurePage from "./LeisurePage"
-import Profile from "./Profile"
-import Stay from "./Stay"
+import ProfilePage from "./ProfilePage"
+import StayPage from "./StayPage"
 
 class UserApp extends Component {
     render() {
@@ -28,25 +27,25 @@ class UserApp extends Component {
                                     <LoginUserPage />
                                 </Route>
                                 <Route path="/perfil">
-                                    <Profile />
+                                    <ProfilePage />
                                 </Route>
                                 <Route path="/estancia">
-                                    <Stay />
+                                    <StayPage />
                                 </Route>
                                 <Route path="/servicio-habitaciones">
-                                    <RoomService />
+                                    <RoomServicePage />
                                 </Route>
                                 <Route path="/ocio">
                                     <LeisurePage/>
                                 </Route>
                                 <Route path="/transporte">
-                                    <Transport />
+                                    <TransportPage />
                                 </Route>
                                 <Route path="/personalizada">
 
                                 </Route>
                                 <Route path="/">
-                                    <GridComponent data={services}/>
+                                    <MainPage />
                                 </Route>
                             </Switch>
                         </Router>

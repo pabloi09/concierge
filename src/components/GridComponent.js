@@ -10,7 +10,7 @@ class GridComponent extends Component {
         let data = this.props.data;
         for (let i = 0; i < this.props.data.length; i++) { 
             children.push(
-            <Grid item xs={4}>
+            <Grid item xs={4} key={i}>
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
                     <MenuCard 
                         title={data[i]["title"]} 
@@ -21,7 +21,7 @@ class GridComponent extends Component {
             </Grid>);
         }
         grid.push(
-            <Grid container style={{padding: "5%", paddingTop: "2%"}} spacing={3}>
+            <Grid container style={{padding: "5%", paddingTop: "2%"}} spacing={3} key={0}>
                 {children}
             </Grid>);
         return grid;

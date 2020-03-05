@@ -163,7 +163,7 @@ class NavigationBar extends Component {
           </div>
           <Divider />
           {drawerTextList.map((array,index)=>{
-            return (<>
+            return (<div key={index}>
             <List>
               {array.map((text,subindex)=>{
                 return (<ListItem button key={text}>
@@ -173,7 +173,7 @@ class NavigationBar extends Component {
               })}
             </List>
             <Divider/>
-            </>)
+            </div>)
 
           })}
 

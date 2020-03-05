@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GridComponent from "./GridComponent"
 import {profile} from "../constants/profile"
 
-class Profile extends Component {
+class ProfilePage extends Component {
     render() {
         return (
             <GridComponent data={profile}/>
@@ -10,4 +10,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default ProfilePage;

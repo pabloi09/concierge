@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GridComponent from './GridComponent';
 import {roomservices} from '../constants/roomservices'
 
-class RoomService extends Component {
+class RoomServicePage extends Component {
     render() {
         return (
             <GridComponent data={roomservices}/>
@@ -10,4 +10,4 @@ class RoomService extends Component {
     }
 }
 
-export default RoomService;
+export default RoomServicePage;
