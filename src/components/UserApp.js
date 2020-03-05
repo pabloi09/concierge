@@ -14,46 +14,63 @@ import RoomServicePage from "./RoomServicePage"
 import LeisurePage from "./LeisurePage"
 import ProfilePage from "./ProfilePage"
 import StayPage from "./StayPage"
+import {login, logout} from "../redux/user/actions"
+import { connect } from "react-redux"
 
 class UserApp extends Component {
     render() {
         return (
             <div>
                 <ThemeProvider theme={theme}>
-                    <NavigationBar logged/>
-                        <Router>
-                            <Switch>
-                                <Route path="/login">
-                                    <LoginUserPage />
-                                </Route>
-                                <Route path="/perfil">
-                                    <ProfilePage />
-                                </Route>
-                                <Route path="/estancia">
-                                    <StayPage />
-                                </Route>
-                                <Route path="/servicio-habitaciones">
-                                    <RoomServicePage />
-                                </Route>
-                                <Route path="/ocio">
-                                    <LeisurePage/>
-                                </Route>
-                                <Route path="/transporte">
-                                    <TransportPage />
-                                </Route>
-                                <Route path="/personalizada">
-
-                                </Route>
-                                <Route path="/">
-                                    <MainPage />
-                                </Route>
-                            </Switch>
-                        </Router>
+                    <Router>
+                        <NavigationBar logged={this.props.loggedIn} logout = {this.props.logout}/>
+                        <Switch>
+                            <Route path="/login">
+                                <LoginUserPage login={this.props.login}/>
+                            </Route>
+                            <Route path="/perfil">
+                                <ProfilePage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/estancia">
+                                <StayPage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/servicio-habitaciones">
+                                <RoomServicePage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/ocio">
+                                <LeisurePage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/transporte">
+                                <TransportPage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/">
+                                <MainPage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/personalizada">
+                            </Route>
+                        </Switch>
+                    </Router>
                 </ThemeProvider>
             </div>
         );
     }
+
     
 }
 
-export default UserApp;
+const mapStateToProps = function (state) {
+    return {
+      ...state
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+
+    return {
+      login: () => dispatch(login()),
+      logout: () => dispatch(logout()),
+    }
+}
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserApp);
