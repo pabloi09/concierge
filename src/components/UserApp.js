@@ -14,6 +14,7 @@ import RoomServicePage from "./RoomServicePage"
 import LeisurePage from "./LeisurePage"
 import ProfilePage from "./ProfilePage"
 import StayPage from "./StayPage"
+import OrderStatusCard from "./OrderStatusCard"
 
 class UserApp extends Component {
     render() {
@@ -43,6 +44,9 @@ class UserApp extends Component {
                                 </Route>
                                 <Route path="/personalizada">
 
+                                </Route>
+                                <Route path="/solicitudes">
+                                    <OrderStatusCard />
                                 </Route>
                                 <Route path="/">
                                     <MainPage />
