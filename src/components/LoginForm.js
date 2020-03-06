@@ -34,13 +34,28 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    login
   } = props;
-
+  console.log(login)
   return (
     <div className={classes.container}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(...args) => {
+        handleSubmit(...args)
+        login()}}>
         <Card className={classes.card}>
           <CardContent>
+            <TextField
+              id="roomNumber"
+              label="Número de habitación"
+              value={values.roomNumber}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.roomNumber ? errors.roomNumber : ""}
+              error={touched.roomNumber && Boolean(errors.roomNumber)}
+              margin="dense"
+              variant="outlined"
+              fullWidth
+            />
             <TextField
               id="dni"
               label="DNI/NIE"
@@ -49,19 +64,6 @@ const form = props => {
               onBlur={handleBlur}
               helperText={touched.dni ? errors.dni : ""}
               error={touched.dni && Boolean(errors.dni)}
-              margin="dense"
-              variant="outlined"
-              fullWidth
-            />
-            <TextField
-              id="password"
-              label="Contraseña"
-              type="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.password ? errors.password : ""}
-              error={touched.password && Boolean(errors.password)}
               margin="dense"
               variant="outlined"
               fullWidth
@@ -81,11 +83,11 @@ const form = props => {
 const LoginForm = withFormik({
   mapPropsToValues: ({
     dni,
-    password,
+    roomNumber,
   }) => {
     return {
       dni: dni || "",
-      password: password || "",
+      roomNumber: roomNumber || "",
     };
   },
 
@@ -94,11 +96,14 @@ const LoginForm = withFormik({
       .required("Introduzca su DNI/NIE")
       .trim()
       .matches(/^((\d{8})([A-Z])|[XYZ]\d{7,8}[A-Z])$/ , "Introduzca un DNI/NIE válido"),
-    password: Yup.string()
-      .required("Introduzca su contraseña")
+    roomNumber: Yup.number().typeError("Introduzca un número de habitación válido")
+      .required("Introduzca su número de habitación")
+      .positive("Introduzca un número de habitación válido")
+      .integer("Introduzca un número de habitación válido")
+      .max(999, "Introduzca un número de habitación válido")
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { setSubmitting } ) => {
     setTimeout(() => {
       // submit to the server
       alert(JSON.stringify(values, null, 2));

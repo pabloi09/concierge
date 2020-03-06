@@ -5,7 +5,7 @@ import {roomservices} from '../constants/roomservices'
 class RoomServicePage extends Component {
     render() {
         return (
-            <GridComponent data={roomservices}/>
+            <GridComponent data={roomservices} logged={this.props.logged}/>
         );
     }
 }

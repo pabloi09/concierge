@@ -13,7 +13,7 @@ export const services = [
         "title": "S. Habitaciones",
         "alt": "Página de servicio de habitaciones",
         "src": "assets/sHabitaciones.jpg",
-        "path": "/sHabitaciones"                         
+        "path": "/servicio-habitaciones"                         
     },  {
         "title": "Ocio",
         "alt": "Página de actividades de ocio",
