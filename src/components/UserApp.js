@@ -46,7 +46,9 @@ class UserApp extends Component {
 
                                 </Route>
                                 <Route path="/solicitudes">
-                                    <OrderStatusCard />
+                                    <OrderStatusCard title="Taxi" card="enviada" info="Su solicitud ha sido enviada y nuestro personal procederá a tramitarla lo ants posible. Le agradecemos la espera."/>
+                                    <OrderStatusCard title="Compras" card="enproceso" info="Su solicitud está siendo procesada por nuestro personal. Si tiene algún problema, puede llamar a recepción en el 001 a través del teléfono de su habitación."/>
+                                    <OrderStatusCard title="Espectáculos" card="rechazada" info="Su solicitud ha sido rechazada. Puede deberse a falta de disponibilidad, para más información llame a recepción en el 001 a través del teléfono de su habitación."/>
                                 </Route>
                                 <Route path="/">
                                     <MainPage />
