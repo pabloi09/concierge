@@ -4,7 +4,7 @@ export const leisure = [
         "alt": "Página de restaurantes",
         "src": "assets/ocio/restaurantes.jpg",
         "path": "/ocio/restaurantes"                         
-    }, 
+    }/*, 
     {
         "title": "Entradas",
         "alt": "Página de entradas",
@@ -22,6 +22,6 @@ export const leisure = [
         "alt": "Página de compras",
         "src": "assets/ocio/compras.jpg",
         "path": "/ocio/compras"                         
-    }
+    }*/
 
 ]
