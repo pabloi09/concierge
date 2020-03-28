@@ -17,6 +17,7 @@ import StayPage from "./StayPage"
 import OrderStatusCard from "./OrderStatusCard"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
+import DialogComponent from "./DialogComponent"
 
 
 class UserApp extends Component {
@@ -29,6 +30,15 @@ class UserApp extends Component {
                         <Switch>
                             <Route path="/login">
                                 <LoginUserPage login={this.props.login}/>
+                                <DialogComponent 
+                                    submitAction={()=>{console.log("Formulario enviado")}}
+                                    textButton="Enviar" 
+                                    title="Hola" 
+                                    text="Su solicitud se ha procesado correctamente" 
+                                    action1name="Ver solicitudes" 
+                                    action1={()=>{console.log("1-ver solicitudes")}}
+                                    action2name="Volver al inicio"
+                                    action2={()=>{console.log("2-volver al inicio")}} />
                             </Route>
                             <Route path="/perfil">
                                 <ProfilePage logged={this.props.loggedIn}/>
