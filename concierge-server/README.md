@@ -1,51 +1,10 @@
-# Concierge
-## Versions
-To avoid issues from the beginning I sugest to use the same versions:
-* node v12.15.0
-* npm 6.13.4
+# Concierge Server
 
-## Installation and workflow
-```
-git clone https://git-concierge.duckdns.org/pabloi09/concierge
-cd concierge
-git checkout -b <your_branch_name>
-npm install
-npm start
-```
-You will be ready to develop :tada:
+## Before starting
+You guys need to read the comments of the src/hibernate-cfg.xml before doing anything. Modify it as said in the comments and then start the installation. 
 
-**Wanna upload for the first time ?**
-*Use:*
-```
-git add <the_files>
-git commit -m "Description of the new version"
-git push --set-upstream origin <your_branch_name>
-```
-## Files
-The drive shared directory is:
-https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
-## Contact
-### Product owner
-alvaro.gomezm@alumnos.upm.es
-### Scrum master
-ana.delucas.lopez@alumnos.upm.es
-### Developers
-* p.centenera@alumnos.upm.es
-* diego.devegaf@alumnos.upm.es
-* c.garcia-maurino@alumnos.upm.es
-* pablo.martin.redondo@alumnos.upm.es
+Once you have developed your part and you want to add files and make a merge request **do not add the hibernate-cfg.xml file to the changes** . This way, we will have a common cfg base file.
 
-## Supervisor
-* juancarlos.yelmo@upm.es
+## Installation
+Proceed like in the server installation of the TFG server app. Use the IDE you prefer. IntelliJ works fine.
 
-## Helpful docs in not a specific order
-* Restful API with spring: https://spring.io/guides/gs/rest-service/
-* Forms with Formik and Yup: https://dev.to/finallynero/react-form-using-formik-material-ui-and-yup-2e8h
-* Material-UI docs: https://material-ui.com/
-* React Docs: https://es.reactjs.org/
-* React Router: https://reacttraining.com/react-router
-* Redux: https://es.redux.js.org/
-* JavaScript: https://developer.mozilla.org/es/docs/Web/JavaScript
-* Material Icons: https://material-ui.com/components/icons/#font-icons
-* Formik docs: https://jaredpalmer.com/formik/docs/overview
-* Material-UI palette: https://material-ui.com/customization/palette/
