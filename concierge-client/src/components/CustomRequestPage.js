@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CustomRequestForm from "./CustomRequestForm"
 import { withRouter } from "react-router-dom"
 
-class LoginUserPage extends Component {
+class CustomRequestPage extends Component {
     render() {
         return (
             <CustomRequestForm sendForm={this.sendForm.bind(this)} />
@@ -15,4 +15,4 @@ class LoginUserPage extends Component {
     }
 }
 
-export default withRouter(LoginUserPage);
+export default withRouter(CustomRequestPage);
