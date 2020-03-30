@@ -7,7 +7,6 @@ import {
     CardContent,
     CardActions,
     TextareaAutosize,
-    TextField,
     Button
     } from '@material-ui/core';
 
