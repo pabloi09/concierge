@@ -65,11 +65,11 @@ class UserApp extends Component {
                                     </div>:
                                     <div/>}
                             </Route>
-                            <Route path="/">
-                                <MainPage logged={this.props.loggedIn}/>
-                            </Route>
                             <Route path="/personalizada">
                                 <CustomRequestPage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/">
+                                <MainPage logged={this.props.loggedIn}/>
                             </Route>
                         </Switch>
                     </Router>
