@@ -16,7 +16,11 @@ public class Mensaje implements Serializable {
 	private boolean emisorCliente;
 	private Timestamp timestamp;
 	private String cuerpo;
+	
+	@OneToOne
 	private Solicitud solicitud;
+	
+	
 	
 	public Mensaje () {
 		

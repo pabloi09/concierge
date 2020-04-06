@@ -11,6 +11,8 @@ public class Habitacion implements Serializable {
 	@Id
 	private int num;
 	
+	
+	
 	public Habitacion () {
 		
 	}

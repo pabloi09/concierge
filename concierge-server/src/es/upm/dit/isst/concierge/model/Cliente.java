@@ -16,6 +16,11 @@ public class Cliente implements Serializable {
 	private int puntos;
 	private String claseCliente;
 	
+	@OneToOne
+	private Habitacion habitacion;
+	
+	
+	
 	public Cliente () {
 		
 	}
@@ -39,6 +44,10 @@ public class Cliente implements Serializable {
 	public String getClaseCliente() {
 		return claseCliente;
 	}
+	
+	public Habitacion getHabitacion() {
+		return habitacion;
+	}
 
 	public void setDni(String dni) {
 		this.dni = dni;
@@ -58,6 +67,10 @@ public class Cliente implements Serializable {
 
 	public void setClaseCliente(String claseCliente) {
 		this.claseCliente = claseCliente;
+	}
+	
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 
 	@Override
@@ -88,7 +101,7 @@ public class Cliente implements Serializable {
 	@Override
 	public String toString() {
 		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", afiliado=" + afiliado + ", puntos=" + puntos
-				+ ", claseCliente=" + claseCliente + "]";
+				+ ", claseCliente=" + claseCliente + ", habitacion=" + habitacion + "]";
 	}
 	
 }

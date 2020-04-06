@@ -13,6 +13,8 @@ public class Empleado implements Serializable {
 	
 	private String name;
 	
+	
+	
 	public Empleado() {
 		
 	}

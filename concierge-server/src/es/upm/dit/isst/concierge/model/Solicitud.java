@@ -12,8 +12,14 @@ public class Solicitud implements Serializable {
 	private int id;
 	
 	private String estado;
+	
+	@OneToOne
 	private Cliente cliente;
+	
+	@OneToOne
 	private Empleado empleado;
+	
+	
 	
 	public Solicitud () {
 		
