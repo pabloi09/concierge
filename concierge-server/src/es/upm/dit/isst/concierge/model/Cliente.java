@@ -1,6 +1,7 @@
 package es.upm.dit.isst.concierge.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +19,9 @@ public class Cliente implements Serializable {
 	
 	@OneToOne
 	private Habitacion habitacion;
+
+	@OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
+	private List<Solicitud> solicitudes;
 	
 	
 	
@@ -81,27 +85,42 @@ public class Cliente implements Serializable {
 		return result;
 	}
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public List<Solicitud> getSolicitudes() {
+		return solicitudes;
+	}
+
+	public void setSolicitudes(List<Solicitud> solicitudes) {
+		this.solicitudes = solicitudes;
+	}
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		if (dni == null) {
-			if (other.dni != null)
-				return false;
-		} else if (!dni.equals(other.dni))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Cliente cliente = (Cliente) o;
+		return afiliado == cliente.afiliado &&
+				puntos == cliente.puntos &&
+				dni.equals(cliente.dni) &&
+				nombre.equals(cliente.nombre) &&
+				claseCliente.equals(cliente.claseCliente) &&
+				habitacion.equals(cliente.habitacion) &&
+				solicitudes.equals(cliente.solicitudes);
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", afiliado=" + afiliado + ", puntos=" + puntos
-				+ ", claseCliente=" + claseCliente + ", habitacion=" + habitacion + "]";
+		return "Cliente{" +
+				"dni='" + dni + '\'' +
+				", nombre='" + nombre + '\'' +
+				", afiliado=" + afiliado +
+				", puntos=" + puntos +
+				", claseCliente='" + claseCliente + '\'' +
+				", habitacion=" + habitacion +
+				", solicitudes=" + solicitudes +
+				'}';
 	}
-	
 }

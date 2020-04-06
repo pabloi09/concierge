@@ -17,7 +17,7 @@ public class Mensaje implements Serializable {
 	private Timestamp timestamp;
 	private String cuerpo;
 	
-	@OneToOne
+	@ManyToOne
 	private Solicitud solicitud;
 	
 	
@@ -65,6 +65,7 @@ public class Mensaje implements Serializable {
 	public void setSolicitud(Solicitud solicitud) {
 		this.solicitud = solicitud;
 	}
+
 
 	@Override
 	public int hashCode() {

@@ -1,6 +1,7 @@
 package es.upm.dit.isst.concierge.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -13,14 +14,16 @@ public class Solicitud implements Serializable {
 	
 	private String estado;
 	
-	@OneToOne
+	@ManyToOne
 	private Cliente cliente;
 	
-	@OneToOne
+	@ManyToOne
 	private Empleado empleado;
-	
-	
-	
+
+	@OneToMany(mappedBy = "solicitud",fetch = FetchType.EAGER)
+	private List<Mensaje> mensajes;
+
+
 	public Solicitud () {
 		
 	}
@@ -57,6 +60,18 @@ public class Solicitud implements Serializable {
 		this.empleado = empleado;
 	}
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,22 +81,25 @@ public class Solicitud implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Solicitud other = (Solicitud) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Solicitud solicitud = (Solicitud) o;
+		return id == solicitud.id &&
+				estado.equals(solicitud.estado) &&
+				cliente.equals(solicitud.cliente) &&
+				empleado.equals(solicitud.empleado) &&
+				mensajes.equals(solicitud.mensajes);
 	}
 
 	@Override
 	public String toString() {
-		return "Solicitud [id=" + id + ", estado=" + estado + ", cliente=" + cliente + ", empleado=" + empleado + "]";
+		return "Solicitud{" +
+				"id=" + id +
+				", estado='" + estado + '\'' +
+				", cliente=" + cliente +
+				", empleado=" + empleado +
+				", mensajes=" + mensajes +
+				'}';
 	}
-
 }

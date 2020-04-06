@@ -1,6 +1,7 @@
 package es.upm.dit.isst.concierge.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +13,9 @@ public class Empleado implements Serializable {
 	private String num;
 	
 	private String name;
-	
+
+	@OneToMany(mappedBy = "empleado",fetch = FetchType.EAGER)
+	private List<Solicitud> solicitudes;
 	
 	
 	public Empleado() {
@@ -35,6 +38,18 @@ public class Empleado implements Serializable {
 		this.name = name;
 	}
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public List<Solicitud> getSolicitudes() {
+		return solicitudes;
+	}
+
+	public void setSolicitudes(List<Solicitud> solicitudes) {
+		this.solicitudes = solicitudes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,25 +59,21 @@ public class Empleado implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empleado other = (Empleado) obj;
-		if (num == null) {
-			if (other.num != null)
-				return false;
-		} else if (!num.equals(other.num))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Empleado empleado = (Empleado) o;
+		return num.equals(empleado.num) &&
+				name.equals(empleado.name) &&
+				solicitudes.equals(empleado.solicitudes);
 	}
 
 	@Override
 	public String toString() {
-		return "Empleado [num=" + num + ", name=" + name + "]";
+		return "Empleado{" +
+				"num='" + num + '\'' +
+				", name='" + name + '\'' +
+				", solicitudes=" + solicitudes +
+				'}';
 	}
-	
 }
