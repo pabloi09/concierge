@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: s3cr3t
+      MYSQL_USER: concierge
+      MYSQL_PASSWORD: concierge
+      MYSQL_DATABASE: concierge
+
+  backend:
+    image: tomcat:9.0
+    volumes:
+      - "./concierge-server/target/ISST-20-CONCIERGE-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war:ro"
+    ports:
+      - 8080:8080
+
+  frontend:
+    image: node:12-alpine
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - "./concierge-client/:/home/node/app:ro"
+    ports:
+      - 3000:3000
+    command: "npm start"

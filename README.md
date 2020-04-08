@@ -21,6 +21,20 @@ git add <the_files>
 git commit -m "Description of the new version"
 git push --set-upstream origin <your_branch_name>
 ```
+
+### Docker-compose for development
+
+To launch the database, the backend and the frontend `docker-compose` can be
+used. We need to compile the sources first. From the root directory of this
+project run:
+
+```bash
+cd concierge-server; mvn package
+cd ..; docker-compose -f docker-compose.dev.yml up
+```
+
+The forntend will be accesible at <http://localhost:3000> and the backend at <http://localhost:8080>. From these containers, the database can be accesed with the following JDBC URL: `jdbc:mysql://db:3306/concierge`, with the credentials `concierge:concierge`.
+
 ## Files
 The drive shared directory is:
 https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
@@ -49,3 +63,5 @@ ana.delucas.lopez@alumnos.upm.es
 * Material Icons: https://material-ui.com/components/icons/#font-icons
 * Formik docs: https://jaredpalmer.com/formik/docs/overview
 * Material-UI palette: https://material-ui.com/customization/palette/
+* [MySQL :: MySQL Connector/J 8.0 Developer Guide :: 6.2 Connection URL Syntax](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-jdbc-url-format.html)
+* [docker-node/README.md at master · nodejs/docker-node · GitHub](https://github.com/nodejs/docker-node/blob/master/README.md#how-to-use-this-image)
