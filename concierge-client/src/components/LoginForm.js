@@ -9,7 +9,7 @@ import {
     TextField,
     Button
     } from '@material-ui/core';
-
+import Communication from "../Communication"
 const styles = () => ({
   card: {
     maxWidth: 420,
@@ -36,12 +36,12 @@ const form = props => {
     handleSubmit,
     login
   } = props;
-  console.log(login)
   return (
     <div className={classes.container}>
       <form onSubmit={(...args) => {
         handleSubmit(...args)
-        login()}}>
+        login()
+      }}>
         <Card className={classes.card}>
           <CardContent>
             <TextField
@@ -106,7 +106,10 @@ const LoginForm = withFormik({
   handleSubmit: (values, { setSubmitting } ) => {
     setTimeout(() => {
       // submit to the server
-      alert(JSON.stringify(values, null, 2));
+      var c = new Communication()
+      c.makePostRequest("/login",values)
+      .then((json)=>alert("Respuesta del servidor:\n" + JSON.stringify(json)))
+  
       setSubmitting(false);
     }, 1000);
   }
