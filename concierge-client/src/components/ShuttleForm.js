@@ -11,13 +11,16 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { ways, transformDate } from "../constants/shuttle"
+import { ways, getJson } from "../constants/shuttle"
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import esLocale from "date-fns/locale/es"
+import Communication from "../Communication"
+import { withRouter } from "react-router-dom"
+import DialogComponent from "./DialogComponent"
 const styles = () => ({
   card: {
     minWidth: 746,
@@ -145,7 +148,7 @@ const getDateMax = () =>{
   return date
 }
 
-const ShuttleForm = withFormik({
+const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
     way,
     hour,
@@ -180,14 +183,66 @@ const ShuttleForm = withFormik({
       .max(getDateMax(), "No se puede reservar con mas de un mes de antelación")
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { setSubmitting, props })  => {
     setTimeout(() => {
       // submit to the server
-      values.hour = transformDate(values.hour)
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
+      var c = new Communication()
+      console.log(getJson(values))
+      c.makePostRequest("/solicitud",getJson(values))
+      .then((json)=>{
+        if(json["code"]==200){
+           props.setSuccess()
+        }else{
+          props.setError()
+        }
+        setSubmitting(false);
+       });
     }, 1000);
   }
-})(form);
+})(form));
 
-export default withStyles(styles)(ShuttleForm);
+class ShuttleForm extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {open:false}
+    this.setOpen.bind(this)
+  }
+  setOpen(o){
+    this.setState({open:o})
+  }
+  setSuccess(){
+    this.setState({open:true,
+      title: "Solicitud enviada con éxito",
+      text:"Puede revisar sus solicitudes en el apartado de Solitudes",
+      action1name:"OK",
+      action1:()=>{
+        this.setOpen(false)
+        this.props.history.goBack()
+    }})
+  }
+  setError(){
+    this.setState({open:true,
+      title: "Error" ,
+      text:"No está autenticado en el servidor. Vuelva a entrar a la web e inténtelo de nuevo" ,
+      action1name:"OK",
+      action1:()=>{
+        this.setOpen(false)
+    }})
+  }
+  render(){
+    return(<div>
+      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+      <DialogComponent 
+        open = {this.state.open}
+        title={this.state.title}
+        text={this.state.text}
+        action1name={this.state.action1name}
+        action1={this.state.action1}/>
+    </div>)
+  }
+
+
+}
+
+
+export default withRouter(ShuttleForm);

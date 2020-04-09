@@ -1,11 +1,11 @@
 const header = "Como cliente solicito "
 export const ways = [
     {
-        value: header + "un viaje al aeropuerto desde el hotel el",
+        value: header + "un viaje al aeropuerto desde el hotel el ",
         label: "Hotel ➡️➡️ Aeropuerto"
     },
     {
-        value: header + "un viaje hotel desde el aeropuerto el",
+        value: header + "un viaje hotel desde el aeropuerto el ",
         label: "Aeropuerto ➡️➡️ Hotel"
     },
 
@@ -16,3 +16,7 @@ export const transformDate = (date) =>{
     return date.toLocaleDateString("es-ES",options)
 }
 
+export const getJson = (values)=>{
+    return {mensaje: values.way + transformDate(values.hour) + ".\n" + values.comment} 
+
+}

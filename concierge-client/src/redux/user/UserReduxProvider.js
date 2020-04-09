@@ -9,7 +9,18 @@ class UserReduxProvider extends Component {
     constructor(props){
         super(props);
         this.initialState = { 
-            loggedIn: false
+            loggedIn: false,
+            client: {
+                dni: "",
+                nombre: "",
+                afiliado:false,
+                puntos:-1,
+                claseCliente:"",
+                habitacion:{
+                    num:-1
+                },
+                solicitudes:[]
+            }
          };
         this.store = this.configureStore()
     }
