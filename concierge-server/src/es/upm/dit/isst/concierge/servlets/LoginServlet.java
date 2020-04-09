@@ -35,15 +35,16 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        req.getSession().setAttribute("logged",true);
         if(c!=null && Integer.parseInt(jsonObject.getString("roomNumber")) == c.getHabitacion().getNum()) {
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(c);
             jsonObject = Json.createObjectBuilder()
-                        .add("code",400)
+                        .add("code",200)
                         .add("cliente",json)
                         .build();
             out.print(jsonObject.toString());
+            req.getSession().setAttribute("loggedin",true);
+            req.getSession().setAttribute("client", c);
         }else{
             jsonObject = Json.createObjectBuilder()
                     .add("code",404)
