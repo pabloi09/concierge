@@ -6,13 +6,14 @@ import {
     Card,
     CardContent,
     CardActions,
-    TextareaAutosize,
-    Button
+    TextField,
+    Button,
+    Typography,
     } from '@material-ui/core';
 
 const styles = () => ({
   card: {
-    maxWidth: 420,
+    minWidth: 746,
     marginTop: 50
   },
   container: {
@@ -21,7 +22,10 @@ const styles = () => ({
   },
   actions: {
     float: "right"
-  }
+  },
+  title: {
+    fontSize: 21,
+  },
 });
 
 const form = props => {
@@ -44,9 +48,11 @@ const form = props => {
         sendForm()}}>
         <Card className={classes.card}>
           <CardContent>
-            <TextareaAutosize
+            <Typography className={classes.title} color="textPrimary" gutterBottom>
+              Solicitud personalizada
+            </Typography>
+            <TextField
               aria-label="minimum height"
-              rowsMin={3}
               placeholder="Escriba aquí su solicitud personalizada"
               id="customRequest"
               label="Solicitud personalizada"
@@ -57,6 +63,8 @@ const form = props => {
               error={touched.customRequest && Boolean(errors.customRequest)}
               margin="dense"
               variant="outlined"
+              multiline
+              rows="5"
               fullWidth
             />
           </CardContent>
@@ -83,6 +91,7 @@ const LoginForm = withFormik({
   validationSchema: Yup.object().shape({
     customRequest: Yup.string()
       .required("Introduzca su solicitud")
+      .max(2000, "La solicitud no puede exceder 2000 caracteres")
   }),
 
   handleSubmit: (values, { setSubmitting } ) => {
