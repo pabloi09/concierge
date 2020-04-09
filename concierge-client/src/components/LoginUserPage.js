@@ -10,8 +10,8 @@ class LoginUserPage extends Component {
 
     }
 
-    login(){
-        this.props.login()
+    login(json){
+        this.props.login(json)
         this.props.history.push("/")
     }
 }

@@ -10,6 +10,7 @@ import {
     Button
     } from '@material-ui/core';
 import Communication from "../Communication"
+import DialogComponent from "./DialogComponent"
 const styles = () => ({
   card: {
     maxWidth: 420,
@@ -24,6 +25,9 @@ const styles = () => ({
   }
 });
 
+
+
+
 const form = props => {
   const {
     classes,
@@ -34,14 +38,12 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
-    login
   } = props;
+  
   return (
     <div className={classes.container}>
-      <form onSubmit={(...args) => {
-        handleSubmit(...args)
-        login()
-      }}>
+  
+      <form onSubmit={handleSubmit}>
         <Card className={classes.card}>
           <CardContent>
             <TextField
@@ -80,7 +82,7 @@ const form = props => {
   );
 };
 
-const LoginForm = withFormik({
+const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
     dni,
     roomNumber,
@@ -103,16 +105,45 @@ const LoginForm = withFormik({
       .max(999, "Introduzca un número de habitación válido")
   }),
 
-  handleSubmit: (values, { setSubmitting } ) => {
+  handleSubmit: (values, { setSubmitting, props }) => {
     setTimeout(() => {
       // submit to the server
       var c = new Communication()
       c.makePostRequest("/login",values)
-      .then((json)=>alert("Respuesta del servidor:\n" + JSON.stringify(json)))
-  
-      setSubmitting(false);
-    }, 1000);
-  }
-})(form);
+      .then((json)=>{
+        if(json["code"]==200){
+           json["cliente"] = JSON.parse(json["cliente"])
+           props.login(json)
+        }else{
+          props.setOpen(true)
+          setSubmitting(false);
+        }
+       })
 
-export default withStyles(styles)(LoginForm);
+    }, 100);
+  },
+})(form));
+
+class LoginForm extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {open:false}
+    this.setOpen.bind(this)
+  }
+  setOpen(o){
+    this.setState({open:o})
+  }
+  render(){
+    return(<div>
+      <Form setOpen ={(v)=>this.setOpen(v)} login={this.props.login}/>
+      <DialogComponent 
+        open = {this.state.open}
+        title="Error" 
+        text="Los datos no corresponden a ningún cliente" 
+        action1name="OK" 
+        action1={()=>this.setOpen(false)}/>
+    </div>)
+  }
+}
+
+export default LoginForm;

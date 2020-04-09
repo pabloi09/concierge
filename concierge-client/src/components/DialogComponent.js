@@ -8,38 +8,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 export default function DialogComponent(props) {
-
-    const [open, setOpen] = React.useState(false);
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-      //Acción submit
-      props.submitAction();
-    };
-  
-    const handleClose1 = () => {
-      setOpen(false);
-      //Acción close 1
-      props.action1();
-    };
-  
-    const handleClose2 = () => {
-      setOpen(false);
-      //Acción close 2
-      props.action2();
-    };
   
     return (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>{props.textButton}</Button>
-            <Dialog open={open} onClose={handleClose2} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" >
+            {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>{props.textButton}</Button> */}
+            <Dialog open={props.open} onClose={props.action1} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" >
             <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">{props.text}</DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose1} color="primary">{props.action1name}</Button>
-                <Button onClick={handleClose2} color="primary" autoFocus>{props.action2name}</Button>
+                <Button onClick={props.action1} color="primary">{props.action1name}</Button>
+                {props.action2 ? (props.action2name?  <Button onClick={props.action2} color="primary" autoFocus>{props.action2name}</Button>:<></>):<></>}
             </DialogActions>
             </Dialog>
         </div>

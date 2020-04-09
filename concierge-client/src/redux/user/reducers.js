@@ -17,11 +17,21 @@ const loggedIn = (state = [], action) => {
     }
 }
 
+const client = (state = [],action) =>{
+    switch(action.type){
+        case "LOGIN":
+            return action.json["cliente"]
+        default:
+            return state
+    }
+}
+
 // const appData = combineReducers({
 //     reducerName,
 //     otherReducer,
 // })
 const appData = combineReducers({
-    loggedIn
+    loggedIn,
+    client
 })
 export default appData
