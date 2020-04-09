@@ -18,6 +18,7 @@ import OrderStatusCard from "./OrderStatusCard"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
 import DialogComponent from "./DialogComponent"
+import CheckoutPage from "./CheckoutPage"
 
 
 class UserApp extends Component {
@@ -33,6 +34,9 @@ class UserApp extends Component {
                             </Route>
                             <Route path="/perfil">
                                 <ProfilePage logged={this.props.loggedIn}/>
+                            </Route>
+                            <Route path="/estancia/check-out">
+                                <CheckoutPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/estancia">
                                 <StayPage logged={this.props.loggedIn}/>
