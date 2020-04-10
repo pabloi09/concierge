@@ -16,6 +16,7 @@ services:
     image: tomcat:9.0
     volumes:
       - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT:/usr/local/tomcat/webapps/ROOT:ro"
+      - "./concierge-server/web.xml:/usr/local/tomcat/conf/web.xml:ro"
     ports:
       - 8080:8080
 
