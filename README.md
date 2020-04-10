@@ -29,8 +29,9 @@ used. We need to compile the sources first. From the root directory of this
 project run:
 
 ```bash
-cd concierge-server; mvn package
-cd ..; docker-compose -f docker-compose.dev.yml up
+cd concierge-server; mvn clean package
+cd ..; docker-compose -f docker-compose.dev.yml build
+docker-compose -f docker-compose.dev.yml up
 ```
 
 The forntend will be accesible at <http://localhost:3000> and the backend at <http://localhost:8080>. From these containers, the database can be accesed with the following JDBC URL: `jdbc:mysql://db:3306/concierge`, with the credentials `concierge:concierge`.

@@ -2,17 +2,19 @@ version: '3'
 
 services:
   db:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: s3cr3t
-      MYSQL_USER: concierge
-      MYSQL_PASSWORD: concierge
-      MYSQL_DATABASE: concierge
+    image: local/h2database:latest
+    build:
+      context: ./docker/h2database
+    volumes:
+      - "./concierge-server/database.mv.db:/root/concierge/concierge-server/database.mv.db"
+    ports:
+      - 9092:9092
+      - 8082:8082
 
   backend:
     image: tomcat:9.0
     volumes:
-      - "./concierge-server/target/ISST-20-CONCIERGE-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war:ro"
+      - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT:/usr/local/tomcat/webapps/ROOT:ro"
     ports:
       - 8080:8080
 
