@@ -2,17 +2,19 @@ import React from "react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core";
-import { comfort } from "../constants/comfort";
-
+import { comfort, getJson } from "../constants/comfort";
+import { withRouter } from "react-router-dom"
 import {
     Card,
     CardContent,
     CardActions,
     TextField,
     Button,
-    MenuItem
+    MenuItem,
+    Typography
 } from '@material-ui/core';
-
+import DialogComponent from "./DialogComponent"
+import Communication from "../Communication"
 const styles = () => ({
     card: {
         minWidth: 600,
@@ -25,6 +27,9 @@ const styles = () => ({
     actions: {
         float: "right"
     },
+    title: {
+        fontSize: 21,
+      },
 });
 
 const form = props => {
@@ -39,23 +44,21 @@ const form = props => {
         handleSubmit
     } = props;
 
-    const handleSelect = (event, ...args)=>{
-        values.element = event.target.value
-        handleChange(event,args)
-
-    }
     return (
         <div className={classes.container}>
             <form onSubmit={handleSubmit}>
                 <Card className={classes.card}>
                     <CardContent>
+                    <Typography className={classes.title} color="textPrimary" gutterBottom>
+                        Solicitud de elementos de confort
+                    </Typography>
                         <TextField
                             id="element"
                             name="element"
                             label="Elemento de confort"
                             select
                             value={values.element}
-                            onChange={handleSelect}
+                            onChange={handleChange}
                             onBlur={handleBlur}
                             helperText={touched.element ? errors.element : ""}
                             error={touched.element && Boolean(errors.element)}
@@ -96,7 +99,7 @@ const form = props => {
     );
 };
 
-const ComfortForm = withFormik({
+const Form = withStyles(styles)(withFormik({
     mapPropsToValues: ({
         element,
         comment,
@@ -120,13 +123,65 @@ const ComfortForm = withFormik({
             
         }),
 
-    handleSubmit: (values, { setSubmitting }) => {
+    handleSubmit: (values, { setSubmitting, props }) => {
         setTimeout(() => {
             // submit to the server
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
+            var c = new Communication()
+            c.makePostRequest("/solicitud",getJson(values))
+            .then((json)=>{
+              if(json["code"]==200){
+                 props.setSuccess()
+              }else{
+                props.setError()
+              }
+              setSubmitting(false);
+        })    
         }, 1000);
     }
-})(form);
+})(form));
 
-export default withStyles(styles)(ComfortForm);
+class ComfortForm extends React.Component{
+    constructor(props){
+      super(props)
+      this.state = {open:false}
+      this.setOpen.bind(this)
+    }
+    setOpen(o){
+      this.setState({open:o})
+    }
+    setSuccess(){
+      this.setState({open:true,
+        title: "Solicitud enviada con éxito",
+        text:"Puede revisar sus solicitudes en el apartado de Solitudes",
+        action1name:"OK",
+        action1:()=>{
+          this.setOpen(false)
+          this.props.history.goBack()
+      }})
+    }
+    setError(){
+      this.setState({open:true,
+        title: "Error" ,
+        text:"No está autenticado en el servidor. Vuelva a entrar a la web e inténtelo de nuevo" ,
+        action1name:"OK",
+        action1:()=>{
+          this.setOpen(false)
+      }})
+    }
+    render(){
+      return(<div>
+        <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+        <DialogComponent 
+          open = {this.state.open}
+          title={this.state.title}
+          text={this.state.text}
+          action1name={this.state.action1name}
+          action1={this.state.action1}/>
+      </div>)
+    }
+  
+  
+  }
+
+
+export default withRouter(ComfortForm);
