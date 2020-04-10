@@ -1,6 +1,6 @@
 export default class Communication {
     constructor(){
-        this.base_url = "http://localhost:8080/concierge_server_war_exploded/"
+        this.base_url = "http://localhost:8080"
     }
 
     createGetUrl(servlet,params){

@@ -1,5 +1,7 @@
 package es.upm.dit.isst.concierge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -11,12 +13,14 @@ public class Mensaje implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
 	private int id;
 	
 	private boolean emisorCliente;
 	private Timestamp timestamp;
 	private String cuerpo;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Solicitud solicitud;
 	

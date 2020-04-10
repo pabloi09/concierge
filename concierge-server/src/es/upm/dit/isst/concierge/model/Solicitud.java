@@ -1,5 +1,7 @@
 package es.upm.dit.isst.concierge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -10,10 +12,12 @@ public class Solicitud implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
 	private int id;
 	
 	private String estado;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Cliente cliente;
 	
