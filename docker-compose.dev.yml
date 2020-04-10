@@ -6,6 +6,7 @@ services:
     build:
       context: ./docker/h2database
     volumes:
+      - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT/WEB-INF/lib/h2-1.4.197.jar:/h2/bin/h2.jar:ro"
       - "./concierge-server/database.mv.db:/root/concierge/concierge-server/database.mv.db"
     ports:
       - 9092:9092
