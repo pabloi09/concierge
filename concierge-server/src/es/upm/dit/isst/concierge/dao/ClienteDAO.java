@@ -10,5 +10,6 @@ public interface ClienteDAO {
 	public void update(Cliente cliente);
 	public void delete(Cliente cliente);
 	public Collection<Cliente> readAll();
+	public Cliente login(String dni);
 	
 }

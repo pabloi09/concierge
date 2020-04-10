@@ -2,8 +2,11 @@ package es.upm.dit.isst.concierge.dao;
 
 import java.util.Collection;
 import java.util.List;
+
+import es.upm.dit.isst.concierge.model.Habitacion;
 import org.hibernate.Session;
 import es.upm.dit.isst.concierge.model.Cliente;
+import org.hibernate.query.Query;
 
 public class ClienteDAOImplementation implements ClienteDAO {
 	
@@ -69,6 +72,22 @@ public class ClienteDAOImplementation implements ClienteDAO {
 		session.getTransaction().commit();
 		session.close();
 		return clientes;
+	}
+
+	@Override
+	public Cliente login(String dni) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+
+		Query q = session.createQuery("select c from Cliente c where c.dni = :dni");
+		q.setParameter("dni",dni);
+		List <Cliente> cs = q.getResultList();
+		Cliente c = null;
+		if(cs.size() > 0)
+			c = cs.get(0);
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 
 }
