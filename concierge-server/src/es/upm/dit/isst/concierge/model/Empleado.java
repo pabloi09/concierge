@@ -2,6 +2,7 @@ package es.upm.dit.isst.concierge.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +11,8 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String num;
+	@GeneratedValue
+	private int num;
 	
 	private String name;
 
@@ -22,7 +24,7 @@ public class Empleado implements Serializable {
 		
 	}
 
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
 
@@ -30,7 +32,7 @@ public class Empleado implements Serializable {
 		return name;
 	}
 
-	public void setNum(String num) {
+	public void setNum(int num) {
 		this.num = num;
 	}
 
@@ -51,27 +53,24 @@ public class Empleado implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((num == null) ? 0 : num.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Empleado empleado = (Empleado) o;
-		return num.equals(empleado.num) &&
+		return num == empleado.num &&
 				name.equals(empleado.name) &&
-				solicitudes.equals(empleado.solicitudes);
+				Objects.equals(solicitudes, empleado.solicitudes);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(num, name, solicitudes);
 	}
 
 	@Override
 	public String toString() {
 		return "Empleado{" +
-				"num='" + num + '\'' +
+				"num=" + num +
 				", name='" + name + '\'' +
 				", solicitudes=" + solicitudes +
 				'}';
