@@ -2,8 +2,8 @@
 // export function <theFunction>(...args){
 //     return {type: "TYPE", ...args}
 // }
-export function login(){
-    return {type: "LOGIN"}
+export function login(json){
+    return {type: "LOGIN", json}
 }
 
 export function logout(){

@@ -15,7 +15,7 @@ class OrderStatusCard extends Component {
                         aria-controls="panel1a-content">
                         <div style={{display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "10%"}}>
                             <h2>Su solicitud de {this.props.title}</h2>
-                            <img src={"assets/requests/"+this.props.card+".png"} style={{width: "90%"}}/>
+                            <img src={"assets/requests/"+this.props.card+".png"} alt="Estado" style={{width: "90%"}}/>
                         </div> 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
