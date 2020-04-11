@@ -111,7 +111,7 @@ const Form = withStyles(styles)(withFormik({
       var c = new Communication()
       c.makePostRequest("/login",values)
       .then((json)=>{
-        if(json["code"]==200){
+        if(json["code"]===200){
            json["cliente"] = JSON.parse(json["cliente"])
            props.login(json)
         }else{

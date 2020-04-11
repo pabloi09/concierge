@@ -190,11 +190,12 @@ const Form = withStyles(styles)(withFormik({
       console.log(getJson(values))
       c.makePostRequest("/solicitud",getJson(values))
       .then((json)=>{
-        if(json["code"]==200){
+        if(json["code"]===200){
            props.setSuccess()
         }else{
           props.setError()
         }
+        console.log(json);
         setSubmitting(false);
        });
     }, 1000);

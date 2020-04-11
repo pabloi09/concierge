@@ -17,9 +17,6 @@ import StayPage from "./StayPage"
 import OrderStatusCard from "./OrderStatusCard"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
-import DialogComponent from "./DialogComponent"
-import CheckoutPage from "./CheckoutPage"
-
 
 class UserApp extends Component {
     render() {
@@ -35,9 +32,6 @@ class UserApp extends Component {
                             <Route path="/perfil">
                                 <ProfilePage logged={this.props.loggedIn}/>
                             </Route>
-                            <Route path="/estancia/check-out">
-                                <CheckoutPage logged={this.props.loggedIn}/>
-                            </Route>
                             <Route path="/estancia">
                                 <StayPage logged={this.props.loggedIn}/>
                             </Route>
@@ -50,6 +44,9 @@ class UserApp extends Component {
                             <Route path="/transporte">
                                 <TransportPage logged={this.props.loggedIn}/>
                             </Route>
+                            <Route path="/personalizada">
+                                
+                            </Route>
                             <Route path="/solicitudes">
                             {this.props.loggedIn?
                                     <div>
@@ -61,8 +58,6 @@ class UserApp extends Component {
                             </Route>
                             <Route path="/">
                                 <MainPage logged={this.props.loggedIn}/>
-                            </Route>
-                            <Route path="/personalizada">
                             </Route>
                         </Switch>
                     </Router>
