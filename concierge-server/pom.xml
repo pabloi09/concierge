@@ -6,9 +6,17 @@
 	<groupId>Concierge</groupId>
 	<artifactId>Concierge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<build>
-		<sourceDirectory>src</sourceDirectory>
+    <packaging>war</packaging>
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

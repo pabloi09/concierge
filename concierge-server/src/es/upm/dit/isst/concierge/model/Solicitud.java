@@ -21,6 +21,7 @@ public class Solicitud implements Serializable {
 	@ManyToOne
 	private Cliente cliente;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Empleado empleado;
 
