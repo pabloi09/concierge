@@ -6,7 +6,7 @@
 	<session-factory>
 		<property name="connection.driver_class">org.h2.Driver</property>
 		<!--Aqui tienes que poner la ruta del proyecto, asi podemos mantener la misma bbdd todos-->
-		<property name="connection.url">jdbc:h2:tcp://db/~/concierge/concierge-server/database</property>
+		<property name="connection.url">jdbc:h2:tcp://localhost/~/concierge/concierge-server/database</property>
 		<property name="connection.username">concierge</property>
 		<property name="connection.password">concierge</property>
 		<property name="connection.pool_size">5</property>
