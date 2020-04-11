@@ -171,11 +171,7 @@ const form = props => {
             <Button type="submit" color="primary" disabled={isSubmitting} onClick={() => {submitted=true;}}>
               Generar factura
             </Button>
-            <a href={invoiceURL} target="_blank" style={{"textDecoration": "none"}} disabled={!submitted} rel="noopener noreferrer">
-                <Button id="overview_button" color="primary" disabled={!submitted}>
-                    Ver factura
-                </Button>
-            </a>
+            
           </CardActions>
         </Card>
 
@@ -233,15 +229,11 @@ const Form = withStyles(styles)(withFormik({
     setTimeout(() => {
         // submit to the server
         var c = new Communication()
-        console.log("Petición: ")
-        console.log(getJson(values))
         c.makePostRequest("/checkout", getJson(values))
         .then((json)=>{
           if(json["code"]===200){
-             props.setSuccess();
              invoiceURL = json["url"];
-             console.log("Respuesta: ");
-             console.log(json);
+             props.setSuccess(invoiceURL);
           }else{
             props.setError();
             console.log("Error: ");
@@ -263,14 +255,22 @@ class CheckoutForm extends React.Component{
     setOpen(o){
       this.setState({open:o})
     }
-    setSuccess(){
+    setSuccess(invoiceURL){
+      console.log(invoiceURL)
       this.setState({open:true,
         title: "Factura generada correctamente",
         text:"Usted ha realizado el check-out correctamente. Le hemos enviado la factura al correo electrónico proporcionado y puede encontrarla a continuación.",
-        action1name:"OK",
+        action1name:"Cerrar",
         action1:()=>{
           this.setOpen(false)
-      }})
+          this.props.history.goBack()
+        },
+        action2name:"Ver factura",
+        action2:()=>{
+          window.open(invoiceURL, '_blank').focus()
+        },
+      
+      })
     }
     setError(){
       this.setState({open:true,
@@ -289,7 +289,9 @@ class CheckoutForm extends React.Component{
           title={this.state.title}
           text={this.state.text}
           action1name={this.state.action1name}
-          action1={this.state.action1}/>
+          action1={this.state.action1}
+          action2 = {this.state.action2}
+          action2name = {this.state.action2name}/>
       </div>)
     }
   }
