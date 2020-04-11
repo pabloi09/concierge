@@ -34,7 +34,7 @@ public class EmpleadoDAOImplementation implements EmpleadoDAO {
 	}
 
 	@Override
-	public Empleado read(String num) {
+	public Empleado read(int num) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
 		Empleado empleado = session.load(Empleado.class, num);

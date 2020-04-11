@@ -55,7 +55,7 @@ public class SolicitudServlet extends HttpServlet {
                 List<Empleado> empleados = (List<Empleado>) EmpleadoDAOImplementation.getInstance().readAll();
                 Random random = new Random();
                 int randomInt = random.nextInt(empleados.size());
-                Empleado e = EmpleadoDAOImplementation.getInstance().read(""+randomInt);
+                Empleado e = EmpleadoDAOImplementation.getInstance().read(randomInt);
                 
                 // Create request
                 Solicitud s = new Solicitud();
@@ -84,6 +84,7 @@ public class SolicitudServlet extends HttpServlet {
                 out.print(jsonObject.toString());
             }
         }catch (Exception e){
+            System.out.println(e);
             jsonObject = Json.createObjectBuilder()
                     .add("code",401)
                     .build();

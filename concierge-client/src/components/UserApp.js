@@ -17,6 +17,10 @@ import StayPage from "./StayPage"
 import OrderStatusCard from "./OrderStatusCard"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
+import DialogComponent from "./DialogComponent"
+import CustomRequestPage from "./CustomRequestPage"
+import CheckoutPage from "./CheckoutPage"
+
 
 class UserApp extends Component {
     render() {
@@ -55,6 +59,9 @@ class UserApp extends Component {
                                     <OrderStatusCard title="Espectáculos" card="rechazada" info="Su solicitud ha sido rechazada. Puede deberse a falta de disponibilidad, para más información llame a recepción en el 001 a través del teléfono de su habitación."/>
                                     </div>:
                                     <div/>}
+                            </Route>
+                            <Route path="/personalizada">
+                                <CustomRequestPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/">
                                 <MainPage logged={this.props.loggedIn}/>

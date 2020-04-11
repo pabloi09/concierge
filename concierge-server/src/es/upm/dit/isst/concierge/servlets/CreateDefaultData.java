@@ -55,7 +55,6 @@ public class CreateDefaultData  extends HttpServlet{
         for (int i = 0; i < names.size(); i++) {
             Empleado e = new Empleado();
             e.setName(names.get(i));
-            e.setNum(""+i);
             EmpleadoDAOImplementation.getInstance().create(e);
             e = null;
         }
