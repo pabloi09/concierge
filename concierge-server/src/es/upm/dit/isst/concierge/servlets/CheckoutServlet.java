@@ -81,7 +81,8 @@ public class CheckoutServlet extends HttpServlet {
 				addressParams.put("line1", jsonObject.get("address"));
 				addressParams.put("city", jsonObject.get("city"));
 				addressParams.put("postal_code", jsonObject.get("postalCode"));
-			
+			    
+			    clientParams.put("address", addressParams);
 				
 				Customer cust = Customer.create(clientParams);
 				 
