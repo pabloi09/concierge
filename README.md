@@ -49,3 +49,4 @@ ana.delucas.lopez@alumnos.upm.es
 * Material Icons: https://material-ui.com/components/icons/#font-icons
 * Formik docs: https://jaredpalmer.com/formik/docs/overview
 * Material-UI palette: https://material-ui.com/customization/palette/
+* Stripe API: https://stripe.com/docs/api/
