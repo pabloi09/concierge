@@ -10,7 +10,10 @@ import {
     Button,
     Typography,
     } from '@material-ui/core';
-
+import { getJson } from "../constants/customrequest"
+import Communication from "../Communication"
+import { withRouter } from "react-router-dom"
+import DialogComponent from "./DialogComponent"
 const styles = () => ({
   card: {
     minWidth: 746,
@@ -38,14 +41,10 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
-    sendForm
   } = props;
-  console.log("sendForm")
   return (
     <div className={classes.container}>
-      <form onSubmit={(...args) => {
-        handleSubmit(...args)
-        sendForm()}}>
+      <form onSubmit={handleSubmit}>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textPrimary" gutterBottom>
@@ -79,7 +78,7 @@ const form = props => {
   );
 };
 
-const LoginForm = withFormik({
+const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
     customRequest,
   }) => {
@@ -94,13 +93,66 @@ const LoginForm = withFormik({
       .max(2000, "La solicitud no puede exceder 2000 caracteres")
   }),
 
-  handleSubmit: (values, { setSubmitting } ) => {
+  handleSubmit: (values, { setSubmitting, props })  => {
     setTimeout(() => {
       // submit to the server
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
+      var c = new Communication()
+      console.log(getJson(values))
+      c.makePostRequest("/solicitud",getJson(values))
+      .then((json)=>{
+        if(json["code"] === 200){
+           props.setSuccess()
+        }else{
+          props.setError()
+        }
+        setSubmitting(false);
+       });
     }, 1000);
   }
-})(form);
+})(form));
 
-export default withStyles(styles)(LoginForm);
+class CustomRequestForm extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {open:false}
+    this.setOpen.bind(this)
+  }
+  setOpen(o){
+    this.setState({open:o})
+  }
+  setSuccess(){
+    this.setState({open:true,
+      title: "Solicitud enviada con éxito",
+      text:"Puede revisar sus solicitudes en el apartado de Solitudes",
+      action1name:"OK",
+      action1:()=>{
+        this.setOpen(false)
+        this.props.history.goBack()
+    }})
+  }
+  setError(){
+    this.setState({open:true,
+      title: "Error" ,
+      text:"No está autenticado en el servidor. Vuelva a entrar a la web e inténtelo de nuevo" ,
+      action1name:"OK",
+      action1:()=>{
+        this.setOpen(false)
+    }})
+  }
+  render(){
+    return(<div>
+      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+      <DialogComponent 
+        open = {this.state.open}
+        title={this.state.title}
+        text={this.state.text}
+        action1name={this.state.action1name}
+        action1={this.state.action1}/>
+    </div>)
+  }
+
+
+}
+
+
+export default withRouter(CustomRequestForm);
