@@ -18,6 +18,7 @@ import OrderStatusCard from "./OrderStatusCard"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
 import DialogComponent from "./DialogComponent"
+import CustomRequestPage from "./CustomRequestPage"
 import CheckoutPage from "./CheckoutPage"
 
 
@@ -59,10 +60,11 @@ class UserApp extends Component {
                                     </div>:
                                     <div/>}
                             </Route>
+                            <Route path="/personalizada">
+                                <CustomRequestPage logged={this.props.loggedIn}/>
+                            </Route>
                             <Route path="/">
                                 <MainPage logged={this.props.loggedIn}/>
-                            </Route>
-                            <Route path="/personalizada">
                             </Route>
                         </Switch>
                     </Router>
