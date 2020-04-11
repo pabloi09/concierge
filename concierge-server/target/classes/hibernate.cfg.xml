@@ -6,20 +6,25 @@
 	<session-factory>
 		<property name="connection.driver_class">org.h2.Driver</property>
 		<!--Aqui tienes que poner la ruta del proyecto, asi podemos mantener la misma bbdd todos-->
-		<property name="connection.url">jdbc:h2:tcp://localhost/~/Desktop/concierge-server/database</property>
+		<property name="connection.url">jdbc:h2:tcp://db/~/concierge/concierge-server/database</property>
 		<property name="connection.username">concierge</property>
 		<property name="connection.password">concierge</property>
 		<property name="connection.pool_size">5</property>
 		<property name="dialect">org.hibernate.dialect.H2Dialect</property>
-		<!-- Si estás en eclipse decomenta esta linea y comenta la siguiente
+		<!-- Si estás en eclipse decomenta esta linea y comenta la siguiente-->
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-		-->
-		<property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
+		
+		<!-- <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>-->
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-		<!-- Aqui hay que meter las clases del modelo de datos
-		<mapping class="es.upm.dit.isst.concierge.model.TFG" />
-		-->
+		<!-- Aqui hay que meter las clases del modelo de datos -->
+		<mapping class="es.upm.dit.isst.concierge.model.Cliente" />
+		<mapping class="es.upm.dit.isst.concierge.model.Empleado" />
+		<mapping class="es.upm.dit.isst.concierge.model.Habitacion" />
+		<mapping class="es.upm.dit.isst.concierge.model.Hotel" />
+		<mapping class="es.upm.dit.isst.concierge.model.Mensaje" />
+		<mapping class="es.upm.dit.isst.concierge.model.Solicitud" />
+		
 	</session-factory>
 </hibernate-configuration>

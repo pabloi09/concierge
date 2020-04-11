@@ -5,13 +5,13 @@ import { withRouter } from "react-router-dom"
 class LoginUserPage extends Component {
     render() {
         return (
-            <LoginForm login={this.login.bind(this)} />
+                <LoginForm login={this.login.bind(this)} />
         );
 
     }
 
-    login(){
-        this.props.login()
+    login(json){
+        this.props.login(json)
         this.props.history.push("/")
     }
 }

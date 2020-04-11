@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: local/h2database:latest
+    build:
+      context: ./docker/h2database
+    volumes:
+      - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT/WEB-INF/lib/h2-1.4.197.jar:/h2/bin/h2.jar:ro"
+      - "./concierge-server/database.mv.db:/root/concierge/concierge-server/database.mv.db"
+    ports:
+      - 9092:9092
+      - 8082:8082
+
+  backend:
+    image: tomcat:9.0
+    volumes:
+      - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT:/usr/local/tomcat/webapps/ROOT:ro"
+      - "./concierge-server/web.xml:/usr/local/tomcat/conf/web.xml:ro"
+    ports:
+      - 8080:8080
+
+  frontend:
+    image: node:12-alpine
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - "./concierge-client/:/home/node/app:ro"
+    ports:
+      - 3000:3000
+    command: "npm start"
