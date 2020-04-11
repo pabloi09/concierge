@@ -65,5 +65,6 @@ ana.delucas.lopez@alumnos.upm.es
 * Material Icons: https://material-ui.com/components/icons/#font-icons
 * Formik docs: https://jaredpalmer.com/formik/docs/overview
 * Material-UI palette: https://material-ui.com/customization/palette/
+* Stripe API: https://stripe.com/docs/api/
 * [MySQL :: MySQL Connector/J 8.0 Developer Guide :: 6.2 Connection URL Syntax](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-jdbc-url-format.html)
 * [docker-node/README.md at master · nodejs/docker-node · GitHub](https://github.com/nodejs/docker-node/blob/master/README.md#how-to-use-this-image)
