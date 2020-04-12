@@ -8,6 +8,7 @@ services:
     volumes:
       - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT/WEB-INF/lib/h2-1.4.197.jar:/h2/bin/h2.jar:ro"
       - "./concierge-server/database.mv.db:/root/concierge/concierge-server/database.mv.db"
+    network_mode: host
     ports:
       - 9092:9092
       - 8082:8082
@@ -17,6 +18,7 @@ services:
     volumes:
       - "./concierge-server/target/Concierge-0.0.1-SNAPSHOT:/usr/local/tomcat/webapps/ROOT:ro"
       - "./concierge-server/web.xml:/usr/local/tomcat/conf/web.xml:ro"
+    network_mode: host
     ports:
       - 8080:8080
 
@@ -26,6 +28,7 @@ services:
     working_dir: /home/node/app
     volumes:
       - "./concierge-client/:/home/node/app:ro"
+    network_mode: host
     ports:
       - 3000:3000
     command: "npm start"
