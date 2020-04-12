@@ -26,6 +26,9 @@ import java.util.Random;
 
 @WebServlet("/solicitud")
 public class SolicitudServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean loggedin = req.getSession().getAttribute("loggedin") != null &&

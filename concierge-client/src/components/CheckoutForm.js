@@ -14,8 +14,6 @@ import Communication from "../Communication"
 import { withRouter } from "react-router-dom"
 import DialogComponent from "./DialogComponent"
 
-let submitted = false;
-
 var invoiceURL = "http://localhost:3000";
 
 const getJson = (values)=>{
@@ -168,7 +166,7 @@ const form = props => {
           </CardContent>
           <CardActions className={classes.actions}>
 
-            <Button type="submit" color="primary" disabled={isSubmitting} onClick={() => {submitted=true;}}>
+            <Button type="submit" color="primary" disabled={isSubmitting}>
               Generar factura
             </Button>
             

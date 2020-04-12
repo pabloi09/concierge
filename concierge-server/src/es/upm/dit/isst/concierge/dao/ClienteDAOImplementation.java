@@ -2,11 +2,9 @@ package es.upm.dit.isst.concierge.dao;
 
 import java.util.Collection;
 import java.util.List;
-
-import es.upm.dit.isst.concierge.model.Habitacion;
 import org.hibernate.Session;
 import es.upm.dit.isst.concierge.model.Cliente;
-import org.hibernate.query.Query;
+import javax.persistence.Query;
 
 public class ClienteDAOImplementation implements ClienteDAO {
 	
@@ -74,6 +72,7 @@ public class ClienteDAOImplementation implements ClienteDAO {
 		return clientes;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Cliente login(String dni) {
 		Session session = SessionFactoryService.get().openSession();

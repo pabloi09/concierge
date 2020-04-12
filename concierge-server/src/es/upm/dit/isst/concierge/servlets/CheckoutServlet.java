@@ -1,40 +1,31 @@
 package es.upm.dit.isst.concierge.servlets;
 
 import es.upm.dit.isst.concierge.dao.ClienteDAOImplementation;
-import es.upm.dit.isst.concierge.dao.EmpleadoDAOImplementation;
-import es.upm.dit.isst.concierge.dao.MensajeDAOImplementation;
-import es.upm.dit.isst.concierge.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.concierge.model.Cliente;
-import es.upm.dit.isst.concierge.model.Empleado;
-import es.upm.dit.isst.concierge.model.Mensaje;
-import es.upm.dit.isst.concierge.model.Solicitud;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonValue;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.stripe.Stripe;
 import com.stripe.model.Customer;
 import com.stripe.model.Invoice;
 import com.stripe.model.InvoiceItem;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	
@@ -63,7 +54,6 @@ public class CheckoutServlet extends HttpServlet {
                 
                 // Genero factura
                 
-                JsonObject input = jsonObject;
                 
              	// Conecto con mi cuenta
 				Stripe.apiKey = "sk_live_i7YplZDzLLdTjltAJGHPs16t00Q0hwz8TS";

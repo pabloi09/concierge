@@ -129,7 +129,7 @@ const Form = withStyles(styles)(withFormik({
             var c = new Communication()
             c.makePostRequest("/solicitud",getJson(values))
             .then((json)=>{
-              if(json["code"]==200){
+              if(json["code"]===200){
                  props.setSuccess()
               }else{
                 props.setError()
