@@ -118,6 +118,7 @@ const Form = withStyles(styles)(withFormik({
           props.setOpen(true)
           setSubmitting(false);
         }
+        console.log(json);
        })
 
     }, 100);

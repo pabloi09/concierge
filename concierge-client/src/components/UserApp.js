@@ -38,16 +38,16 @@ class UserApp extends Component {
                                 <StayPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/servicio-habitaciones">
-                                <RoomServicePage logged={this.props.loggedIn}/>
+                                <RoomServicePage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/ocio">
-                                <LeisurePage logged={this.props.loggedIn}/>
+                                <LeisurePage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/transporte">
-                                <TransportPage logged={this.props.loggedIn}/>
+                                <TransportPage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/personalizada">
-                                <CustomRequestPage logged={this.props.loggedIn}/>
+                                <CustomRequestPage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/solicitudes">
                                 <OrdersPage logged={this.props.loggedIn} client={this.props.client}/>

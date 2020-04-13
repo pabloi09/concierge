@@ -1,5 +1,6 @@
 package es.upm.dit.isst.concierge.servlets;
 
+import es.upm.dit.isst.concierge.dao.ClienteDAOImplementation;
 import es.upm.dit.isst.concierge.dao.EmpleadoDAOImplementation;
 import es.upm.dit.isst.concierge.dao.MensajeDAOImplementation;
 import es.upm.dit.isst.concierge.dao.SolicitudDAOImplementation;
@@ -16,6 +17,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +62,7 @@ public class SolicitudServlet extends HttpServlet {
                 
                 List<Empleado> empleados = (List<Empleado>) EmpleadoDAOImplementation.getInstance().readAll();
                 Random random = new Random();
-                int randomInt = random.nextInt(empleados.size());
+                int randomInt = random.nextInt(empleados.size())+1;
                 Empleado e = EmpleadoDAOImplementation.getInstance().read(randomInt);
                 
                 // Create request
@@ -76,11 +81,18 @@ public class SolicitudServlet extends HttpServlet {
                 m.setTimestamp( new Timestamp(System.currentTimeMillis()));
                 MensajeDAOImplementation.getInstance().create(m);
                 
+                Cliente actualizado = ClienteDAOImplementation.getInstance().read(c.getDni());
+                                
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+                String json = mapper.writeValueAsString(actualizado);
                 
                 jsonObject = Json.createObjectBuilder()
                         .add("code",200)
+                        .add("cliente", json)
                         .build();
                 out.print(jsonObject.toString());
+                req.getSession().setAttribute("client", actualizado);
             } else {
                 jsonObject = Json.createObjectBuilder()
                         .add("code",401)
@@ -91,6 +103,7 @@ public class SolicitudServlet extends HttpServlet {
             System.out.println(e);
             jsonObject = Json.createObjectBuilder()
                     .add("code",401)
+                    .add("excepcion", e.toString())
                     .build();
             out.print(jsonObject.toString());
         }

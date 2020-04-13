@@ -5,9 +5,13 @@ import { withRouter } from "react-router-dom"
 class CustomRequestPage extends Component {
     render() {
         return (
-            <CustomRequestForm sendForm={this.sendForm.bind(this)} />
+            <CustomRequestForm sendForm={this.sendForm.bind(this)} login={this.login.bind(this)} />
         );
 
+    }
+
+    login(json){
+        this.props.login(json)
     }
 
     sendForm(){

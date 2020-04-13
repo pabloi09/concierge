@@ -101,9 +101,12 @@ const Form = withStyles(styles)(withFormik({
       c.makePostRequest("/solicitud",getJson(values))
       .then((json)=>{
         if(json["code"] === 200){
-           props.setSuccess()
+           props.setSuccess();
+           json["cliente"] = JSON.parse(json["cliente"]);
+           console.log(json);
+           props.login(json);
         }else{
-          props.setError()
+          props.setError();
         }
         setSubmitting(false);
        });
@@ -141,7 +144,7 @@ class CustomRequestForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}
