@@ -76,8 +76,6 @@ class UserApp extends Component {
     
 }
 
-
-
 const mapStateToProps = function (state) {
     return {
       ...state
