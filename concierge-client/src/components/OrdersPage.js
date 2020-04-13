@@ -1,43 +1,14 @@
 import React, { Component } from 'react';
 import OrderStatusCard from './OrderStatusCard';
 
-// empleado undefined
-// hacerlo en el server para tener el nombre del empleado
-
 class OrdersPage extends Component  {
+
     render () {
 
         const items = [];
 
-        var estado = "";
-
         for(const [i, s] of this.props.client.solicitudes.entries()) {
-            estado = s.estado+"";
-            if (estado === "Pendiente") {
-                items.push(<OrderStatusCard key={i} 
-                    title="Solicitud" 
-                    card={s.estado} 
-                    info={"Su solicitud ha sido enviada y nuestro empleado "+s.empleado+" procederá a tramitarla lo antes posible. Le agradecemos la espera."}
-                />);    
-            } else if (estado === "En Proceso") {
-                items.push(<OrderStatusCard key={i} 
-                    title="Solicitud" 
-                    card={s.estado} 
-                    info={"Su solicitud está siendo procesada. "+s.empleado+" sigue trabajando en ella."}
-                />);
-            } else if (estado === "Completada") {
-                items.push(<OrderStatusCard key={i} 
-                    title="Solicitud" 
-                    card={s.estado} 
-                    info={"Su solicitud ha sido completada. Esperamos que "+s.empleado+" le haya prestado un buen servicio."}
-                />); 
-            } else { // Rechazada
-                items.push(<OrderStatusCard key={i} 
-                    title="Solicitud" 
-                    card={s.estado} 
-                    info={"Lo sentimos. Su solicitud ha sido rechazada. Llame a la recepción del hotel para hablar con "+s.empleado+"."}
-                />);
-            }       
+            items.push(<OrderStatusCard key={i} title={s.titulo} card={s.estado} info={s.mensajes} />);
         }
 
         return (
@@ -49,3 +20,24 @@ class OrdersPage extends Component  {
 }
 
 export default OrdersPage;
+
+/*
+
+code: 200
+cliente:
+dni: "05452329H"
+nombre: "Prueba"
+afiliado: true
+puntos: 0
+claseCliente: "VIP"
+habitacion: {num: 158}
+solicitudes: Array(4)
+0:
+id: 15
+titulo: "Shuttle"
+estado: "Pendiente"
+empleado: {num: 5, name: "Ana"}
+mensajes: Array(1)
+0: {id: 16, emisorCliente: true, timestamp: 1586767421668, cuerpo: "Como cliente solicito un viaje al aeropuerto desde el hotel el jueves, 23 de abril de 2020 10:00.↵"}
+
+*/

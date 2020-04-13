@@ -28,6 +28,7 @@ import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @WebServlet("/solicitud")
 public class SolicitudServlet extends HttpServlet {
@@ -73,13 +74,22 @@ public class SolicitudServlet extends HttpServlet {
                 s.setEstado("Pendiente");
                 SolicitudDAOImplementation.getInstance().create(s);
                 
-                //Create first message
+               // Create first message from client
                 Mensaje m = new Mensaje();
                 m.setEmisorCliente(true);
                 m.setSolicitud(s);
                 m.setCuerpo(jsonObject.getString("mensaje"));
                 m.setTimestamp( new Timestamp(System.currentTimeMillis()));
                 MensajeDAOImplementation.getInstance().create(m);
+                
+                // Create first message from staff member
+                TimeUnit.MINUTES.sleep(1);
+                Mensaje m2 = new Mensaje();
+                m2.setEmisorCliente(false);
+                m2.setSolicitud(s);
+                m2.setCuerpo("Estimado/a "+c.getNombre()+", "+e.getName()+" se encargara de procesar esta solicitud. Le agradecemos su espera.");
+                m2.setTimestamp( new Timestamp(System.currentTimeMillis()));
+                MensajeDAOImplementation.getInstance().create(m2);
                 
                 Cliente actualizado = ClienteDAOImplementation.getInstance().read(c.getDni());
                                 
