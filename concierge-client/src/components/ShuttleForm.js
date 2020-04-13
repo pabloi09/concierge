@@ -194,7 +194,6 @@ const Form = withStyles(styles)(withFormik({
            props.setSuccess()
            json["cliente"] = JSON.parse(json["cliente"])
            props.login(json);
-           console.log(json);
         }else{
           props.setError()
         }
