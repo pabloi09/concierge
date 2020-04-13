@@ -57,7 +57,7 @@ public class SolicitudServlet extends HttpServlet {
                 
                 List<Empleado> empleados = (List<Empleado>) EmpleadoDAOImplementation.getInstance().readAll();
                 Random random = new Random();
-                int randomInt = random.nextInt(empleados.size());
+                int randomInt = random.nextInt(empleados.size()) + 1;
                 Empleado e = EmpleadoDAOImplementation.getInstance().read(randomInt);
                 
                 // Create request
