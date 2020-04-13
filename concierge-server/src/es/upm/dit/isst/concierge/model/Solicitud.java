@@ -1,7 +1,6 @@
 package es.upm.dit.isst.concierge.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -15,6 +14,7 @@ public class Solicitud implements Serializable {
 	@GeneratedValue
 	private int id;
 	
+	private String titulo;
 	private String estado;
 
 	@JsonIgnore
@@ -37,6 +37,10 @@ public class Solicitud implements Serializable {
 		return id;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
+	
 	public String getEstado() {
 		return estado;
 	}
@@ -51,6 +55,10 @@ public class Solicitud implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public void setEstado(String estado) {
@@ -91,6 +99,7 @@ public class Solicitud implements Serializable {
 		if (o == null || getClass() != o.getClass()) return false;
 		Solicitud solicitud = (Solicitud) o;
 		return id == solicitud.id &&
+				titulo.equals(solicitud.titulo) &&
 				estado.equals(solicitud.estado) &&
 				cliente.equals(solicitud.cliente) &&
 				empleado.equals(solicitud.empleado) &&
@@ -102,6 +111,7 @@ public class Solicitud implements Serializable {
 		return "Solicitud{" +
 				"id=" + id +
 				", estado='" + estado + '\'' +
+				", titulo=" + titulo +
 				", cliente=" + cliente +
 				", empleado=" + empleado +
 				", mensajes=" + mensajes +

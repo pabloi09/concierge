@@ -62,6 +62,7 @@ public class SolicitudServlet extends HttpServlet {
                 
                 // Create request
                 Solicitud s = new Solicitud();
+                s.setTitulo(jsonObject.getString("titulo"));
                 s.setCliente(c);
                 s.setEmpleado(e);
                 s.setEstado("Pendiente");
