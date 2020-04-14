@@ -14,15 +14,19 @@ class LeisurePage extends Component {
             <Router>
             <Switch>
                 <Route path="/ocio/restaurantes">
-                    <MapComponent/>
+                    <MapComponent login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio">
-                <GridComponent data={leisure} logged={this.props.logged}/>
+                    <GridComponent data={leisure} logged={this.props.logged}/>
                 </Route>
             </Switch>
         </Router>
             
         );
+    }
+
+    login(json){
+        this.props.login(json)
     }
 }
 

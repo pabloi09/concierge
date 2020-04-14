@@ -19,9 +19,10 @@ import {
 import esLocale from "date-fns/locale/es"
 import DialogComponent from "./DialogComponent"
 import Communication from "../Communication"
+
 const styles = () => ({
   card: {
-    minWidth: 746,
+    minWidth: 546,
     minHeight:340,
     marginTop: 50
   },
@@ -121,7 +122,21 @@ const form = props => {
                variant="inline"
                format ="dd/MM/yyyy HH:mm"
                allowKeyboardControl
-               fullWidth/>
+               fullWidth
+            />
+            
+            <TextField
+                id="people"
+                name="people"
+                label="Número de personas"
+                type="number"
+                value={values.people}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={touched.people ? errors.people : ""}
+                error={touched.people && Boolean(errors.people)}
+                InputLabelProps={{shrink: true}}
+            />
 
             <TextField
               id="comment"
@@ -165,11 +180,13 @@ const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
     restaurant,
     hour,
+    people,
     comment
   }) => {
     return {
       restaurant: restaurant || "",
       hour: hour || new Date(),
+      people: people || 1,
       comment: comment || ""
     };
   },
@@ -181,7 +198,11 @@ const Form = withStyles(styles)(withFormik({
     hour: Yup.date()
       .required("Seleccione una día y una hora para continuar")
       .min(getDateMin(),"Se debe de reservar con almenos 3 horas de antelación")
-      .max(getDateMax(), "No se puede reservar con mas de dos meses de antelación")
+      .max(getDateMax(), "No se puede reservar con mas de dos meses de antelación"),
+    people: Yup.number()
+        .required("Debe seleccionar el número de comensales")
+        .min(1, "Debes seleccionar al menos una persona")
+        .max(10, "Contacta directamente con recepción para reservas de más de 10 comensales")
   }),
 
   handleSubmit: (values, { setSubmitting, props })  => {
@@ -193,6 +214,8 @@ const Form = withStyles(styles)(withFormik({
       .then((json)=>{
         if(json["code"]===200){
            props.setSuccess()
+           json["cliente"] = JSON.parse(json["cliente"]);
+           props.login(json);
         }else{
           props.setError()
         }
@@ -207,8 +230,8 @@ const transformDate = (date) =>{
 }
 const getJson = (values)=>{
   return {
-    titulo: "Solicitud de reserva en restaurante",
-    mensaje: "Como cliente solicito una reserva en " + values.restaurant.value + "(" +values.restaurant.object.vecinity+") el " + transformDate(values.hour) + + ".\n" + values.comment
+    titulo: "Reserva en restaurante",
+    mensaje: "Como cliente solicito una reserva en " + values.restaurant.value + "(" + values.restaurant.object.vicinity + ") para " + values.people + " persona/s el " + transformDate(values.hour) + ".\n" + values.comment
   }
 }
 
@@ -246,7 +269,8 @@ class RestaurantsForm extends React.Component{
         setSuccess ={this.setSuccess.bind(this)} 
         setError = {this.setError.bind(this)} 
         onRestaurantClick = {this.props.onMarkerClick}
-        restaurants={this.props.restaurants}/>
+        restaurants={this.props.restaurants}
+        login={this.props.login}/>
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}

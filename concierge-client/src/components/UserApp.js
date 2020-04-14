@@ -46,10 +46,10 @@ class UserApp extends Component {
                                 <LeisurePage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/transporte">
-                                <TransportPage logged={this.props.loggedIn}/>
+                                <TransportPage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/personalizada">
-                                
+                                <CustomRequestPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/solicitudes">
                             {this.props.loggedIn?
@@ -59,9 +59,6 @@ class UserApp extends Component {
                                     <OrderStatusCard title="Espectáculos" card="rechazada" info="Su solicitud ha sido rechazada. Puede deberse a falta de disponibilidad, para más información llame a recepción en el 001 a través del teléfono de su habitación."/>
                                     </div>:
                                     <div/>}
-                            </Route>
-                            <Route path="/personalizada">
-                                <CustomRequestPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/">
                                 <MainPage logged={this.props.loggedIn}/>
