@@ -22,8 +22,15 @@ export default class Communication {
         var response = await fetch(url,{
             method: 'GET',
             credentials: "include",
+            headers:{
+                'Content-Type': 'application/json; charset=UTF-8'
+
+            }
           })
-        response = await response.json()
+        var buffer = await response.arrayBuffer()
+        var dataView = new DataView(buffer)
+        var decoder = new TextDecoder("ISO-8859-1")
+        response = await JSON.parse(decoder.decode(dataView))
         return response
     }
 
@@ -41,7 +48,10 @@ export default class Communication {
                 'Content-Type': 'application/json'
             }
           })
-        response = await response.json()
+        var buffer = await response.arrayBuffer()
+        var dataView = new DataView(buffer)
+        var decoder = new TextDecoder("ISO-8859-1")
+        response = await JSON.parse(decoder.decode(dataView))
         return response
     }
 }
