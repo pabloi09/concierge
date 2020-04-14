@@ -8,6 +8,10 @@ class LeisurePage extends Component {
             <GridComponent data={leisure} logged={this.props.logged}/>
         );
     }
+
+    login(json){
+        this.props.login(json)
+    }
 }
 
 export default LeisurePage;

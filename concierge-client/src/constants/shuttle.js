@@ -17,6 +17,6 @@ export const transformDate = (date) =>{
 }
 
 export const getJson = (values)=>{
-    return {mensaje: values.way + transformDate(values.hour) + ".\n" + values.comment} 
+    return {mensaje: values.way + transformDate(values.hour) + ".\n" + values.comment, titulo: "Shuttle"} 
 
 }

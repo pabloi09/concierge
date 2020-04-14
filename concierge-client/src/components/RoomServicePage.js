@@ -14,7 +14,7 @@ class RoomServicePage extends Component {
             <Router>
                 <Switch>
                     <Route path="/servicio-habitaciones/confort">
-                        <ComfortForm/>
+                        <ComfortForm login={this.login.bind(this)}/>
                     </Route>
                     <Route path="/servicio-habitaciones">
                         <GridComponent data={roomservices} logged={this.props.logged}/>
@@ -22,6 +22,10 @@ class RoomServicePage extends Component {
                 </Switch>
             </Router>
         );
+    }
+
+    login(json){
+        this.props.login(json)
     }
 }
 

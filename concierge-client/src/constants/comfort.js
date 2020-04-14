@@ -47,5 +47,5 @@ export const comfort = [
 ]
 
 export const getJson = (values)=>{
-    return {mensaje: values.element + ".\n" + values.comment}
+    return {mensaje: values.element + ".\n" + values.comment, titulo: "Elementos de confort"}
 }

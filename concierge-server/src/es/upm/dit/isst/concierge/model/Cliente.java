@@ -20,7 +20,7 @@ public class Cliente implements Serializable {
 	@OneToOne
 	private Habitacion habitacion;
 
-	@OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY)
 	private List<Solicitud> solicitudes;
 	
 	

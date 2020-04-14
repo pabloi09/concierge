@@ -15,7 +15,7 @@ class TransportPage extends Component {
             <Router>
                 <Switch>
                     <Route path="/transporte/shuttle">
-                        <ShuttleForm/>
+                        <ShuttleForm login={this.login.bind(this)}/>
                     </Route>
                     <Route path ="/transporte/">
                         <GridComponent data={transports} logged={this.props.logged}/>
@@ -23,8 +23,11 @@ class TransportPage extends Component {
                 </Switch>
                 
             </Router>
-
         );
+    }
+
+    login(json){
+        this.props.login(json)
     }
 }
 
