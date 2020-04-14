@@ -83,20 +83,18 @@ public class SolicitudServlet extends HttpServlet {
                 MensajeDAOImplementation.getInstance().create(m);
                 
                 // Create first message from staff member
-                TimeUnit.MINUTES.sleep(1);
+                //TimeUnit.MINUTES.sleep(1);
                 Mensaje m2 = new Mensaje();
                 m2.setEmisorCliente(false);
                 m2.setSolicitud(s);
                 m2.setCuerpo("Estimado/a "+c.getNombre()+", "+e.getName()+" se encargara de procesar esta solicitud. Le agradecemos su espera.");
-                m2.setTimestamp( new Timestamp(System.currentTimeMillis()));
+                m2.setTimestamp( new Timestamp(System.currentTimeMillis() + 60 * 1000));
                 MensajeDAOImplementation.getInstance().create(m2);
                 
                 Cliente actualizado = ClienteDAOImplementation.getInstance().read(c.getDni());
-                                
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
                 String json = mapper.writeValueAsString(actualizado);
-                
                 jsonObject = Json.createObjectBuilder()
                         .add("code",200)
                         .add("cliente", json)
