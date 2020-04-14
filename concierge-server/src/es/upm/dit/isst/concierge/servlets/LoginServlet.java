@@ -3,7 +3,6 @@ package es.upm.dit.isst.concierge.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.upm.dit.isst.concierge.dao.ClienteDAOImplementation;
 import es.upm.dit.isst.concierge.model.Cliente;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -35,6 +34,7 @@ public class LoginServlet extends HttpServlet {
         JsonReader jsonReader = Json.createReader(new StringReader(data));
         JsonObject jsonObject = jsonReader.readObject();
         Cliente c = ClienteDAOImplementation.getInstance().login(jsonObject.getString("dni"));
+        
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
