@@ -63,7 +63,7 @@ public class CheckoutServlet extends HttpServlet {
 				
 				Map<String, Object> clientParams = new HashMap<String, Object>();
 				clientParams.put("name", jsonObject.get("companyName")+", "+jsonObject.get("NIF"));
-				clientParams.put("email", "hotel.concierge.madrid@gmail.com");
+				clientParams.put("email",  jsonObject.getString("email"));
 				clientParams.put("description", "Cliente "+c.getClaseCliente());
 				clientParams.put("phone", jsonObject.get("phone"));
 				

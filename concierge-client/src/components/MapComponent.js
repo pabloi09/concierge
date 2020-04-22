@@ -56,7 +56,8 @@ class MapComponent extends Component {
                 <div style ={{display:"Flex",flexDirection:"row", justifyContent:"space-around", height:"80vh",width:"100vh"}}>
                 <RestaurantsForm 
                     restaurants={this.state.restaurants} 
-                    onMarkerClick={this.onMarkerClick} 
+                    onMarkerClick={this.onMarkerClick}
+                    login={this.props.login} 
                     goBack={this.props.history.goBack}/>
                 <div >
                     <Map
