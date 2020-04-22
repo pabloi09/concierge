@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import GridComponent from './GridComponent';
-import {roomservices} from '../constants/roomservices'
+import GridComponent from '../common/GridComponent';
+import {roomservices} from '../../constants/roomservices'
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
   } from "react-router-dom";
+import { withRouter } from "react-router-dom"
 import ComfortForm from "./ComfortForm"
 
 class RoomServicePage extends Component {
     render() {
+        if(! this.props.logged){
+            this.props.history.replace("/login")
+        }
         return (
-            <Router>
                 <Switch>
                     <Route path="/servicio-habitaciones/confort">
                         <ComfortForm login={this.login.bind(this)}/>
@@ -20,13 +22,11 @@ class RoomServicePage extends Component {
                         <GridComponent data={roomservices} logged={this.props.logged}/>
                     </Route>
                 </Switch>
-            </Router>
         );
     }
-
     login(json){
         this.props.login(json)
     }
 }
 
-export default RoomServicePage;
+export default withRouter(RoomServicePage);

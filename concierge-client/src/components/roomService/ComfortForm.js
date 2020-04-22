@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core";
-import { comfort, getJson } from "../constants/comfort";
+import { comfort, getJson } from "../../constants/comfort";
 import { withRouter } from "react-router-dom"
 import {
     Card,
@@ -13,8 +13,8 @@ import {
     MenuItem,
     Typography
 } from '@material-ui/core';
-import DialogComponent from "./DialogComponent"
-import Communication from "../Communication"
+import DialogComponent from "../common/DialogComponent"
+import Communication from "../../Communication"
 const styles = () => ({
     card: {
         minWidth: 600,

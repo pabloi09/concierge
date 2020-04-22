@@ -9,8 +9,8 @@ import {
     TextField,
     Button
     } from '@material-ui/core';
-import Communication from "../Communication"
-import DialogComponent from "./DialogComponent"
+import Communication from "../../Communication"
+import DialogComponent from "../common/DialogComponent"
 const styles = () => ({
   card: {
     maxWidth: 420,

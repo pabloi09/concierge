@@ -6,18 +6,19 @@ import {
   } from "react-router-dom";
 import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "../theme/theme"
-import LoginUserPage from "./LoginUserPage"
+import LoginUserPage from "./login/LoginUserPage"
 import NavigationBar from "./NavigationBar"
 import MainPage from "./MainPage"
-import TransportPage from "./TransportPage"
-import RoomServicePage from "./RoomServicePage"
-import LeisurePage from "./LeisurePage"
-import ProfilePage from "./ProfilePage"
-import StayPage from "./StayPage"
+import TransportPage from "./transports/TransportPage"
+import RoomServicePage from "./roomService/RoomServicePage"
+import LeisurePage from "./leisure/LeisurePage"
+import ProfilePage from "./profile/ProfilePage"
+import StayPage from "./stay/StayPage"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
-import CustomRequestPage from "./CustomRequestPage"
-import OrdersPage from './OrdersPage';
+import CustomRequestPage from "./custom/CustomRequestPage"
+
+import OrdersPage from './orders/OrdersPage';
 
 class UserApp extends Component {
 

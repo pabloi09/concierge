@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GridComponent from "./GridComponent"
+import GridComponent from "./common/GridComponent"
 import {services} from "../constants/services"
 
 class MainPage extends Component {

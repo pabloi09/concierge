@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import GridComponent from "./GridComponent"
-import {leisure} from "../constants/leisure"
+import GridComponent from "../common/GridComponent"
+import {leisure} from "../../constants/leisure"
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
   } from "react-router-dom";
-  import MapComponent from "./MapComponent"
-
+  import MapComponent from "../common/MapComponent"
+  import { withRouter } from "react-router-dom"
 class LeisurePage extends Component {
     render() {
+        if(! this.props.logged){
+            this.props.history.replace("/login")
+        }
         return (
-            <Router>
             <Switch>
                 <Route path="/ocio/restaurantes">
                     <MapComponent login={this.login.bind(this)}/>
@@ -20,7 +21,6 @@ class LeisurePage extends Component {
                     <GridComponent data={leisure} logged={this.props.logged}/>
                 </Route>
             </Switch>
-        </Router>
             
         );
     }
@@ -30,4 +30,4 @@ class LeisurePage extends Component {
     }
 }
 
-export default LeisurePage;
+export default withRouter(LeisurePage);

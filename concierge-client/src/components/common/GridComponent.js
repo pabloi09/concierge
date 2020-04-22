@@ -29,9 +29,7 @@ class GridComponent extends Component {
     }
 
     render() {
-        if(! this.props.logged){
-            this.props.history.replace("/login")
-        }
+
         return this.createGrid(this.props.history);
     }
 }

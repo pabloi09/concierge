@@ -17,8 +17,8 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import esLocale from "date-fns/locale/es"
-import DialogComponent from "./DialogComponent"
-import Communication from "../Communication"
+import DialogComponent from "../common/DialogComponent"
+import Communication from "../../Communication"
 
 const styles = () => ({
   card: {
