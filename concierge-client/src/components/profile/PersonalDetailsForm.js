@@ -13,19 +13,25 @@ import DialogComponent from "../common/DialogComponent"
 const getJson = (values)=>{
 
     const jsonMessage = {
-        "name": values.name,
-        "DNI": values.DNI
+        "name": values.name
     };
     return jsonMessage;
 }
 
 const styles = () => ({
   container: {
-    display: "Flex",
-    justifyContent: "center"
-  },
+    display: "flex",
+    direction: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  }, 
   actions: {
-    float: "right"
+      width: "100%"
+  },
+  margin: {
+      marginLeft: "10px",
+      marginRight: "10px",
+      width: 200
   }
 });
 
@@ -41,11 +47,11 @@ const form = props => {
     handleSubmit,
   } = props;
   return (
-    <div className={classes.container}>
-      <form onSubmit={handleSubmit}>        
-        <div style={{display: "block", paddingTop: "10px"}}>
+    <form onSubmit={handleSubmit}>
+        <div className={classes.container}>      
             <TextField
             id="name"
+            className={classes.margin}
             name="name"
             label={"Nombre: "+props.client.nombre}
             onChange={handleChange}
@@ -54,54 +60,36 @@ const form = props => {
             helperText={touched.name ? errors.name : ""}
             error={touched.name && Boolean(errors.name)}
             margin="dense"
-            variant="outlined"
-            fullWidth
+            variant="outlined" 
+            size="small"
             ></TextField>
-            <TextField
-            id="DNI"
-            name="DNI"
-            label={"DNI/NIF: "+props.client.dni}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.DNI}
-            helperText={touched.DNI ? errors.DNI : ""}
-            error={touched.DNI && Boolean(errors.DNI)}
-            margin="dense"
-            variant="outlined"
-            fullWidth
-            ></TextField>
+            <Button type="submit" className={classes.margin} color="primary" disabled={isSubmitting}>
+                Actualizar datos
+            </Button>
         </div>
-        <Button type="submit" className={classes.actions} color="primary" disabled={isSubmitting}>
-            Actualizar datos
-        </Button>
-      </form>
-    </div>
+    </form>
   );
 };
 
 const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
-    name,
-    DNI
+    name
   }) => {
     return {
-      name: name || '',
-      DNI: DNI || ''
+      name: name || ''
     };
   },
 
   validationSchema: Yup.object().shape({
     name: Yup.string()
-        .max(20, 'Debe tener 20 caracteres como máximo'),
-    DNI: Yup.string()
-        .max(10, 'Debe tener 20 caracteres como máximo'),
+        .max(20, 'Debe tener 20 caracteres como máximo')
   }),
 
   handleSubmit: (values, { setSubmitting, props }) => {
     setTimeout(() => {
         // submit to the server
         var c = new Communication()
-        c.makePostRequest("/updatePersonalDetails", getJson(values))
+        c.makePostRequest("/updateProfile", getJson(values))
         .then((json)=>{
           if(json["code"]===200){
             props.setSuccess()
@@ -130,7 +118,7 @@ class PersonalDetailsForm extends React.Component{
     setSuccess(invoiceURL){
       console.log(invoiceURL)
       this.setState({open:true,
-        title: "Datos actualizados correctamente",
+        title: "Datos actualizados",
         text:"Usted ha realizado la actualización de los datos correctamente.",
         action1name:"Cerrar",
         action1:()=>{
@@ -152,11 +140,11 @@ class PersonalDetailsForm extends React.Component{
       return(<div>
         <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)} client={this.props.client}/>
         <DialogComponent 
-          open = {this.state.open}
-          title={this.state.title}
-          text={this.state.text}
-          action1name={this.state.action1name}
-          action1={this.state.action1}/>
+            open = {this.state.open}
+            title={this.state.title}
+            text={this.state.text}
+            action1name={this.state.action1name}
+            action1={this.state.action1}/>
       </div>)
     }
   }
