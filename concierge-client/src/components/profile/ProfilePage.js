@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import GridComponent from "./GridComponent"
-import {profile} from "../constants/profile"
+import GridComponent from "../common/GridComponent"
+import {profile} from "../../constants/profile"
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
   } from "react-router-dom";
 import PersonalDetailsPage from "./PersonalDetailsPage";
-
+import { withRouter } from "react-router-dom"
 class ProfilePage extends Component {
     render() {
+        if(! this.props.logged){
+            this.props.history.replace("/login")
+        }
         return (
-            <Router>
                 <Switch>
                     <Route path="/perfil/datos">
                         <PersonalDetailsPage client={this.props.client}/>
@@ -20,9 +21,8 @@ class ProfilePage extends Component {
                         <GridComponent data={profile} logged={this.props.logged} />
                     </Route>
                 </Switch>
-            </Router>
         );
     }
 }
 
-export default ProfilePage;
+export default withRouter(ProfilePage);

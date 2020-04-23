@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import GridComponent from './GridComponent';
-import {stay} from '../constants/stay'
+import GridComponent from '../common/GridComponent';
+import {stay} from '../../constants/stay'
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
   } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm"
-
+import { withRouter } from "react-router-dom"
 class StayPage extends Component {
 
     render() {
+        if(! this.props.logged){
+            this.props.history.replace("/login")
+        }
         return (
             
-            <Router>
                 <Switch>
                     <Route path="/estancia/checkout">
                         <CheckoutForm/>
@@ -22,11 +23,10 @@ class StayPage extends Component {
                         <GridComponent data={stay} logged={this.props.logged}/>
                     </Route>
                 </Switch>
-            </Router>
                     
 
         );
     }
 }
 
-export default StayPage;
+export default withRouter(StayPage);

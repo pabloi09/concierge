@@ -10,10 +10,10 @@ import {
     Button,
     Typography,
     } from '@material-ui/core';
-import { getJson } from "../constants/customrequest"
-import Communication from "../Communication"
+import { getJson } from "../../constants/customrequest"
+import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
-import DialogComponent from "./DialogComponent"
+import DialogComponent from "../common/DialogComponent"
 const styles = () => ({
   card: {
     minWidth: 746,

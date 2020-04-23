@@ -10,9 +10,9 @@ import {
   Button,
   Typography
 } from '@material-ui/core';
-import Communication from "../Communication"
+import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
-import DialogComponent from "./DialogComponent"
+import DialogComponent from "../common/DialogComponent"
 
 var invoiceURL = "http://localhost:3000";
 

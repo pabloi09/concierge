@@ -109,6 +109,8 @@ class NavigationBar extends Component {
     if (path === "/login"){
       this.props.logout()
     }
+    console.log(this.props.location)
+    console.log(path)
     this.props.history.push(path)
   }
 

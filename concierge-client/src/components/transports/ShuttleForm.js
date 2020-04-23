@@ -11,16 +11,17 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { ways, getJson } from "../constants/shuttle"
+import { ways, getJson } from "../../constants/shuttle"
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import esLocale from "date-fns/locale/es"
-import Communication from "../Communication"
+import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
-import DialogComponent from "./DialogComponent"
+import DialogComponent from "../common/DialogComponent"
+
 const styles = () => ({
   card: {
     minWidth: 746,
