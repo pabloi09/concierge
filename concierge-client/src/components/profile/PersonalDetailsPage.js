@@ -41,6 +41,10 @@ const PersonalDetailsPage = (props) => {
 
     const classes = styles();
 
+    const login = (json) => {
+        props.login(json)
+    };
+
     return (
         <div className={classes.container}>
             <Card className={classes.root}>
@@ -50,7 +54,7 @@ const PersonalDetailsPage = (props) => {
                     </Typography>
                     <Typography className={classes.text} color="textPrimary">A continuación, puede comprobar de qué datos suyos disponemos en el Hotel Concierge, así como modificar algunos de ellos.</Typography>                
                     <div style={{ paddingTop: "10px"}}>
-                        <PersonalDetailsForm client={props.client}/>
+                        <PersonalDetailsForm login={login.bind(this)} client={props.client}/>
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "center", paddingTop: "10px"}}>
                             <TextField className={classes.margin} disabled size="small" label={"DNI: "+props.client.dni} margin="dense" variant="filled" ></TextField>
                             <TextField className={classes.margin} disabled size="small" label={"Afiliado: "+((props.client.afiliado+'') === 'true' ? "Sí" : "No")} margin="dense" variant="filled" ></TextField>
@@ -81,15 +85,3 @@ const PersonalDetailsPage = (props) => {
     );
 }
 export default withRouter(PersonalDetailsPage);
-
-/*
-
-<div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-    <div style={{float: "left"}}>
-        <Typography className={classes.text} color="textPrimary"><b>Afiliado: </b>{(props.client.afiliado+'') === 'true' ? "Sí." : "No."}</Typography>
-        <Typography className={classes.text} color="textPrimary"><b>Puntos: </b>{props.client.puntos+"."}</Typography>
-        <Typography className={classes.text} color="textPrimary"><b>Habitación: </b>{(props.client.habitacion.num !== null ? props.client.habitacion.num : "Ninguna")+"."}</Typography>
-    </div>
-</div>
-
-*/

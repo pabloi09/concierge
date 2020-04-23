@@ -99,7 +99,6 @@ const Form = withStyles(styles)(withFormik({
             props.setError();
             console.log("Error: ");
           }
-          console.log(json);
           setSubmitting(false);
          });
       }, 1000);
@@ -116,7 +115,6 @@ class PersonalDetailsForm extends React.Component{
       this.setState({open:o})
     }
     setSuccess(invoiceURL){
-      console.log(invoiceURL)
       this.setState({open:true,
         title: "Datos actualizados",
         text:"Usted ha realizado la actualización de los datos correctamente.",
@@ -138,7 +136,7 @@ class PersonalDetailsForm extends React.Component{
     }
     render(){
       return(<div>
-        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)} client={this.props.client}/>
+        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)} client={this.props.client} login={this.props.login}/>
         <DialogComponent 
             open = {this.state.open}
             title={this.state.title}

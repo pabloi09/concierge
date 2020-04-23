@@ -8,7 +8,6 @@ import es.upm.dit.isst.concierge.model.Cliente;
 import es.upm.dit.isst.concierge.model.Empleado;
 import es.upm.dit.isst.concierge.model.Mensaje;
 import es.upm.dit.isst.concierge.model.Solicitud;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -17,10 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +25,6 @@ import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 @WebServlet("/solicitud")
 public class SolicitudServlet extends HttpServlet {

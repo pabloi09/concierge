@@ -33,7 +33,7 @@ class UserApp extends Component {
                                 <LoginUserPage login={this.props.login}/>
                             </Route>
                             <Route path="/perfil">
-                                <ProfilePage logged={this.props.loggedIn} client={this.props.client}/>
+                                <ProfilePage logged={this.props.loggedIn} login={this.props.login} client={this.props.client}/>
                             </Route>
                             <Route path="/estancia">
                                 <StayPage logged={this.props.loggedIn}/>
