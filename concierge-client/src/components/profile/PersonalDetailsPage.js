@@ -6,10 +6,12 @@ import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-  makeStyles
+  makeStyles,
+  TextField
 } from '@material-ui/core';
 import { withRouter } from "react-router-dom"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PersonalDetailsForm from './PersonalDetailsForm';
 
 const styles =  makeStyles({
     root: {
@@ -37,17 +39,18 @@ const PersonalDetailsPage = (props) => {
     return (
         <div className={classes.container}>
             <Card className={classes.root}>
-                <CardContent style={{padding: "10px"}}>
+                <CardContent style={{padding: "20px"}}>
                     <Typography className={classes.title} color="textPrimary" gutterBottom>
-                    Consulta de datos personales
+                    Actualización de datos personales
                     </Typography>
-                    <Typography className={classes.text} color="textPrimary">A continuación, puede comprobar de qué datos suyos disponemos en el Hotel Concierge.</Typography>                
+                    <Typography className={classes.text} color="textPrimary">A continuación, puede comprobar de qué datos suyos disponemos en el Hotel Concierge, así como modificar algunos de ellos.</Typography>                
                     <div style={{ paddingTop: "10px"}}>
-                        <Typography className={classes.text} color="textPrimary"><b>Nombre: </b>{props.client.nombre+"."}</Typography>
-                        <Typography className={classes.text} color="textPrimary"><b>DNI: </b>{props.client.dni+"."}</Typography>
-                        <Typography className={classes.text} color="textPrimary"><b>Afiliado: </b>{(props.client.afiliado+'') === 'true' ? "Sí." : "No."}</Typography>
-                        <Typography className={classes.text} color="textPrimary"><b>Puntos: </b>{props.client.puntos+"."}</Typography>
-                        <Typography className={classes.text} color="textPrimary"><b>Habitación: </b>{(props.client.habitacion.num !== null ? props.client.habitacion.num : "Ninguna")+"."}</Typography>
+                        <PersonalDetailsForm client={props.client}/>
+                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px"}}>
+                                <TextField disabled label={"Afiliado: "+((props.client.afiliado+'') === 'true' ? "Sí" : "No")} margin="dense" variant="filled" ></TextField>
+                                <TextField disabled label={"Puntos: "+props.client.puntos} margin="dense" variant="filled" ></TextField>
+                                <TextField disabled label={"Habitación: "+(props.client.habitacion.num !== null ? props.client.habitacion.num : "Ninguna")} margin="dense" variant="filled" ></TextField> 
+                        </div>
                         <div style={{width: "100%", paddingTop: "10px"}}>
                             <ExpansionPanel style={{backgroundColor: 'rgba(0, 0, 0, .03)', borderBottom: '1px solid rgba(0, 0, 0, .125)'}}>
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -72,3 +75,14 @@ const PersonalDetailsPage = (props) => {
 }
 export default withRouter(PersonalDetailsPage);
 
+/*
+
+<div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <div style={{float: "left"}}>
+        <Typography className={classes.text} color="textPrimary"><b>Afiliado: </b>{(props.client.afiliado+'') === 'true' ? "Sí." : "No."}</Typography>
+        <Typography className={classes.text} color="textPrimary"><b>Puntos: </b>{props.client.puntos+"."}</Typography>
+        <Typography className={classes.text} color="textPrimary"><b>Habitación: </b>{(props.client.habitacion.num !== null ? props.client.habitacion.num : "Ninguna")+"."}</Typography>
+    </div>
+</div>
+
+*/

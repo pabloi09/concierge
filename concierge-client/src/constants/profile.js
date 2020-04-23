@@ -1,6 +1,6 @@
 export const profile = [
     {
-        "title": "Consultar datos", //En un futuro sera actualizar
+        "title": "Actualizar datos",
         "alt": "Página de consulta y actualización de datos",
         "src": "assets/profile/datos.jpg",
         "path": "/perfil/datos"                         
