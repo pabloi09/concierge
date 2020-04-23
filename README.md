@@ -5,14 +5,23 @@ To avoid issues from the beginning I sugest to use the same versions:
 * npm 6.13.4
 
 ## Installation and workflow
+
+### Client side
 ```
 git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
 git checkout -b <your_branch_name>
+cd concierge-client
 npm install
 npm start
 ```
+### Server side
+
+Follow instructions in concierge-server/README.md
+
 You will be ready to develop :tada:
+
+### Upload files
 
 **Wanna upload for the first time ?**
 *Use:*
