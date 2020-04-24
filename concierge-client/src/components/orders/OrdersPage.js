@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import OrderStatusCard from './OrderStatusCard';
-
+import { withRouter } from "react-router-dom"
 class OrdersPage extends Component  {
 
     render () {
@@ -9,6 +9,9 @@ class OrdersPage extends Component  {
 
         for(const [i, s] of this.props.client.solicitudes.entries()) {
             items.push(<OrderStatusCard key={i} title={s.titulo} card={s.estado} info={s.mensajes} />);
+        }
+        if(! this.props.logged){
+            this.props.history.replace("/login")
         }
 
         return (
@@ -19,7 +22,7 @@ class OrdersPage extends Component  {
     }
 }
 
-export default OrdersPage;
+export default withRouter(OrdersPage);
 
 /*
 

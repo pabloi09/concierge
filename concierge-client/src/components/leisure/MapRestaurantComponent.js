@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import {api_key, location,radius} from "../../constants/conf"
-import RestaurantsForm from "../leisure/RestaurantsForm"
+import RestaurantsForm from "./RestaurantsForm"
 import Communication from "../../Communication"
 import {
     Typography
   } from '@material-ui/core';
 import { withRouter } from "react-router-dom"
-class MapComponent extends Component {
+class MapRestaurantComponent extends Component {
     constructor(props){
         super(props)
         this.state = {restaurants:[],showingInfoWindow: false,activeMarker: {},selectedPlace: {},}
@@ -110,4 +110,4 @@ class MapComponent extends Component {
     }
 }
 
-export default GoogleApiWrapper({apiKey :api_key})(withRouter(MapComponent));
+export default GoogleApiWrapper({apiKey :api_key})(withRouter(MapRestaurantComponent));

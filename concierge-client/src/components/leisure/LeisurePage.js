@@ -5,7 +5,7 @@ import {
     Switch,
     Route,
   } from "react-router-dom";
-  import MapComponent from "../common/MapComponent"
+  import MapRestaurantComponent from "./MapRestaurantComponent"
   import { withRouter } from "react-router-dom"
 class LeisurePage extends Component {
     render() {
@@ -15,7 +15,7 @@ class LeisurePage extends Component {
         return (
             <Switch>
                 <Route path="/ocio/restaurantes">
-                    <MapComponent login={this.login.bind(this)}/>
+                    <MapRestaurantComponent login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>
