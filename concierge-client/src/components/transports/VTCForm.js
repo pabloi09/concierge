@@ -28,7 +28,7 @@ import MapIcon from '@material-ui/icons/Map';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 const styles = () => ({
   card: {
-    width:735,
+    width:635,
     minWidth: 546,
     minHeight:340,
     marginTop: 50
