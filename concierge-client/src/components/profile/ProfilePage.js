@@ -6,7 +6,8 @@ import {
     Route,
   } from "react-router-dom";
 import PersonalDetailsPage from "./PersonalDetailsPage";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import LoyaltyProgramPage from './LoyaltyProgramPage';
 
 class ProfilePage extends Component {
     render() {
@@ -17,6 +18,9 @@ class ProfilePage extends Component {
                 <Switch>
                     <Route path="/perfil/datos">
                         <PersonalDetailsPage login={this.login.bind(this)} client={this.props.client}/>
+                    </Route>
+                    <Route path="/perfil/fidelizacion">
+                        <LoyaltyProgramPage login={this.login.bind(this)} client={this.props.client}/>
                     </Route>
                     <Route path ="/perfil">
                         <GridComponent data={profile} logged={this.props.logged} />
