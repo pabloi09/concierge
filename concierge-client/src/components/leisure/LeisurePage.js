@@ -5,8 +5,10 @@ import {
     Switch,
     Route,
   } from "react-router-dom";
-  import MapRestaurantComponent from "./MapRestaurantComponent"
-  import { withRouter } from "react-router-dom"
+import MapRestaurantComponent from "./MapRestaurantComponent"
+import RequestBuyItemPage from "./RequestBuyItemPage"
+import { withRouter } from "react-router-dom"
+
 class LeisurePage extends Component {
     render() {
         if(! this.props.logged){
@@ -16,6 +18,9 @@ class LeisurePage extends Component {
             <Switch>
                 <Route path="/ocio/restaurantes">
                     <MapRestaurantComponent login={this.login.bind(this)}/>
+                </Route>
+                <Route path="/ocio/compras">
+                    <RequestBuyItemPage logged={this.props.logged}/>
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>
