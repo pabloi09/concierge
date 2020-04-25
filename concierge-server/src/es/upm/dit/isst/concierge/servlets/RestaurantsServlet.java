@@ -22,9 +22,12 @@ import java.util.HashMap;
 
 @WebServlet("/restaurants")
 public class RestaurantsServlet extends HttpServlet {
-    private final HashMap<String,String> params = new HashMap<String,String>();
+    
+	private static final long serialVersionUID = 1L;
+	private final HashMap<String,String> params = new HashMap<String,String>();
     private final String base_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
     private final OkHttpClient httpClient = new OkHttpClient();
+    
     public RestaurantsServlet() {
         super();
         params.put("key", "AIzaSyDHlwhv3o9wdxfOC18pYAYlieoecGIB4NA");
