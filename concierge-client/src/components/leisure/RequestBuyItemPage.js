@@ -8,7 +8,10 @@ class RequestBuyItemPage extends Component {
             this.props.history.replace("/login")
         }
         return (
-            <RequestBuyItemForm sendForm={this.sendForm.bind(this)} />
+            <RequestBuyItemForm
+                sendForm={this.sendForm.bind(this)}
+                login={this.login.bind(this)}
+            />
         );
 
     }

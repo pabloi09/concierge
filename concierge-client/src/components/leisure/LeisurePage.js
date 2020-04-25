@@ -20,7 +20,10 @@ class LeisurePage extends Component {
                     <MapRestaurantComponent login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio/compras">
-                    <RequestBuyItemPage logged={this.props.logged}/>
+                    <RequestBuyItemPage
+                        login={this.props.login}
+                        logged={this.props.logged}
+                    />
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>

@@ -6,11 +6,12 @@ import {
     Card,
     CardContent,
     CardActions,
+    MenuItem,
     TextField,
     Button,
     Typography,
     } from '@material-ui/core';
-import { getJson } from "../../constants/requestbuyitem"
+import { getJson, available_products } from "../../constants/requestbuyitem"
 import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
 import DialogComponent from "../common/DialogComponent"
@@ -41,6 +42,7 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    available_products,
   } = props;
   return (
     <div className={classes.container}>
@@ -51,15 +53,35 @@ const form = props => {
               Solicitud de compra de artículos
             </Typography>
             <TextField
+              id="item"
+              name="item"
+              label="Seleccione un artículo"
+              select
+              value={values.item}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              helperText={touched.item ? errors.item : ""}
+              error={touched.item && Boolean(errors.item)}
+              margin="dense"
+              variant="outlined"
+              fullWidth
+            >
+              {available_products? available_products.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              )) : <></>}
+            </TextField>
+            <TextField
               aria-label="minimum height"
-              placeholder="Escriba aquí su solicitud personalizada"
-              id="customRequest"
-              label="Solicitud personalizada"
-              value={values.customRequest}
+              placeholder="Escriba aquí sus comentarios adicionales"
+              id="comment"
+              label="Comentarios"
+              value={values.comment}
               onChange={handleChange}
               onBlur={handleBlur}
-              helperText={touched.customRequest ? errors.customRequest : ""}
-              error={touched.customRequest && Boolean(errors.customRequest)}
+              helperText={touched.comment ? errors.comment : ""}
+              error={touched.comment && Boolean(errors.comment)}
               margin="dense"
               variant="outlined"
               multiline
@@ -80,17 +102,20 @@ const form = props => {
 
 const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
-    customRequest,
+    item,
+    comment,
   }) => {
     return {
-      customRequest: customRequest || "",
+      item: item || "",
+      comment: comment || "",
     };
   },
 
   validationSchema: Yup.object().shape({
-    customRequest: Yup.string()
-      .required("Introduzca su solicitud")
-      .max(2000, "La solicitud no puede exceder 2000 caracteres")
+    item: Yup.string()
+      .required("Por favor seleccione un artículo"),
+    comment: Yup.string()
+      .max(2000, "El comentario no puede exceder 2000 caracteres")
   }),
 
   handleSubmit: (values, { setSubmitting, props })  => {
@@ -143,7 +168,12 @@ class RequestBuyItemForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
+      <Form
+        setSuccess ={this.setSuccess.bind(this)}
+        setError = {this.setError.bind(this)}
+        login={this.props.login}
+        available_products={available_products}
+        />
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}
