@@ -14,7 +14,7 @@ import RoomServicePage from "./roomService/RoomServicePage"
 import LeisurePage from "./leisure/LeisurePage"
 import ProfilePage from "./profile/ProfilePage"
 import StayPage from "./stay/StayPage"
-import {login, logout} from "../redux/user/actions"
+import {login, logout, setResources} from "../redux/user/actions"
 import { connect } from "react-redux"
 import CustomRequestPage from "./custom/CustomRequestPage"
 
@@ -30,7 +30,7 @@ class UserApp extends Component {
                         <NavigationBar logged={this.props.loggedIn} logout={this.props.logout}/>
                         <Switch>
                             <Route path="/login">
-                                <LoginUserPage login={this.props.login}/>
+                                <LoginUserPage login={this.props.login} setResources={this.props.setResources}/>
                             </Route>
                             <Route path="/perfil">
                                 <ProfilePage logged={this.props.loggedIn} login={this.props.login} client={this.props.client}/>
@@ -77,6 +77,7 @@ const mapDispatchToProps = dispatch => {
     return {
       login: (json) => dispatch(login(json)),
       logout: () => dispatch(logout()),
+      setResources: (json) => dispatch(setResources(json))
     }
 }
 

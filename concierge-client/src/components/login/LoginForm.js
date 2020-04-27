@@ -113,6 +113,16 @@ const Form = withStyles(styles)(withFormik({
       .then((json)=>{
         if(json["code"]===200){
            json["cliente"] = JSON.parse(json["cliente"])
+           var queries = ["tours","hotels","meals"]
+           queries.forEach(e=>{
+             c.makeGetRequest("/pms",{"q":e})
+             .then((json)=>{
+               var response = {}
+               response[e] = JSON.parse(json["data"])
+               response[e] = e=="meals"?response[e][0]:response[e]
+               props.setResources(response)
+             })
+           })
            props.login(json)
         }else{
           props.setOpen(true)
@@ -135,7 +145,7 @@ class LoginForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setOpen ={(v)=>this.setOpen(v)} login={this.props.login}/>
+      <Form setOpen ={(v)=>this.setOpen(v)} login={this.props.login}  setResources = {this.props.setResources}/>
       <DialogComponent 
         open = {this.state.open}
         title="Error" 
