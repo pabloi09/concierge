@@ -26,12 +26,40 @@ const client = (state = [],action) =>{
     }
 }
 
+const tours = (state = [],action) =>{
+    switch(action.type){
+        case "RESOURCES":
+            return action.json["tours"] ?  action.json["tours"]:state
+        default:
+            return state
+    }
+}
+
+const hotels = (state = [],action) =>{
+    switch(action.type){
+        case "RESOURCES":
+            return action.json["hotels"] ? action.json["hotels"]:state
+        default:
+            return state
+    }
+}
+const meals = (state = [],action) =>{
+    switch(action.type){
+        case "RESOURCES":
+            return action.json["meals"] ?  action.json["meals"]:state
+        default:
+            return state
+    }
+}
+
 // const appData = combineReducers({
 //     reducerName,
 //     otherReducer,
 // })
 const appData = combineReducers({
     loggedIn,
-    client
+    client,
+    tours,
+    hotels,meals
 })
 export default appData
