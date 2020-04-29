@@ -62,7 +62,8 @@ const form = props => {
         isSubmitting,
         handleChange,
         handleBlur,
-        handleSubmit
+        handleSubmit,
+        menus
     } = props;
 
     return (
@@ -81,14 +82,14 @@ const form = props => {
                             onChange={handleChange}
                             helperText={touched.menu ? errors.menu : ""}
                             error={touched.menu && Boolean(errors.menu)}
-                            menu={menu}/>
+                            menu={menus}/>
                         
                         <TextField
                             id="comment"
                             name="comment"
                             label="Añada un comentario adicional"
                             value={values.comment}
-                            onChange={(e)=>handleChange}
+                            onChange={handleChange}
                             onBlur={handleBlur}
                             helperText={touched.comment ? errors.comment : ""}
                             error={touched.comment && Boolean(errors.comment)}
@@ -128,7 +129,6 @@ const Form = withStyles(useStyles)(withFormik({
     }),
 
     handleSubmit: (values, { setSubmitting, props }) => {
-        console.log(getJson(values))
         setTimeout(() => {
             // submit to the server
             var c = new Communication()
@@ -181,7 +181,11 @@ class MenuForm extends React.Component {
     }
     render() {
         return (<div>
-            <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)} login={this.props.login} />
+            <Form 
+                setSuccess={this.setSuccess.bind(this)} 
+                setError={this.setError.bind(this)} 
+                menus={menu(this.props.menu)}
+                login={this.props.login} />
             <DialogComponent
                 open={this.state.open}
                 title={this.state.title}

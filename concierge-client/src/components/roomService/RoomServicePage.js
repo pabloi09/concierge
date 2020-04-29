@@ -24,7 +24,7 @@ class RoomServicePage extends Component {
                         <IncidentsForm login={this.login.bind(this)}/>
                     </Route>
                     <Route path="/servicio-habitaciones/carta">
-                        <MenuForm login={this.login.bind(this)}/>
+                        <MenuForm login={this.login.bind(this)} menu={this.props.menu}/>
                     </Route>
                     <Route path="/servicio-habitaciones">
                         <GridComponent data={roomservices} logged={this.props.logged}/>

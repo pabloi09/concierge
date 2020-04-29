@@ -18,6 +18,7 @@ public class Mensaje implements Serializable {
 	
 	private boolean emisorCliente;
 	private Timestamp timestamp;
+	@Column(length = 4095)
 	private String cuerpo;
 
 	@JsonIgnore

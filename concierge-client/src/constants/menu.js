@@ -1,16 +1,20 @@
-import carta from "./carta.json"
 const header = "Como cliente solicito: \n"
-var array = []
-Object.keys(carta).forEach((key)=>{
-    array.push({title:key,meals:carta[key]})
-})
-export const menu = array.map(section=>{
-    section.meals = section.meals.map(meal=>{
-        meal.value = meal.descripcion
-        return meal
+
+export const menu = (carta)=>{
+    var array = []
+    Object.keys(carta).forEach((key)=>{
+        array.push({title:key,meals:carta[key]})
     })
-    return section
-})
+    array = array.map(section=>{
+            section.meals = section.meals.map(meal=>{
+                meal.value = meal.descripcion
+                return meal
+            })
+            return section
+    })
+    return array
+
+}
 
 
 export const getJson = (values)=>{
