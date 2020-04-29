@@ -87,8 +87,8 @@ public class PMS {
         for(int i=1;i<200;i++){
             Cliente c =  new Cliente();
             c.setAfiliado(true);
-            c.setHabitacion(hs.get(i));
-            c.setDni("0545"+String.format("%03d", i)+"9H");
+            c.setHabitacion(hs.get(i-1));
+            c.setDni("00000"+String.format("%03d", i)+"A");
             c.setNombre("Prueba"+i);
             Random random = new Random();
             int randomInt = random.nextInt(5000)+1;
