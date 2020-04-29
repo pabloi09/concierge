@@ -77,7 +77,7 @@ class MenuSection extends Component {
                         <TextField id={this.props.section.title}
                                    name = {this.props.section.title}
                                    select
-                                   value = {this.state.selected.length > 0 ? this.state.selected[this.state.selected.length-1].item.descripcion : ""}
+                                   value = ""
                                    label = "Añada un nuevo producto"
                                    onChange = {(e)=>{
                                         var already = false 
@@ -85,6 +85,7 @@ class MenuSection extends Component {
                                         if(newState.length > 0) newState.forEach((i)=>already = already || (i.item.value === e.target.value.value))
                                         if (already) return
                                         newState.push({number:1,item:e.target.value})
+                                        this.props.handleChanges("add",{number:1,item:e.target.value})
                                         this.setState({selected:newState})}}
                                    margin="dense"
                                    variant="outlined"
@@ -129,13 +130,18 @@ class MenuSection extends Component {
                                            key={"meal"+option.item.descripcion}
                                            inputProps={{style: {height:40}}}
                                            onChange={(e)=>{
+                                                var tmp = {}
                                                 var newState = this.state.selected.map(value=>{
                                                     if(value.item.value === option.item.value){
-                                                        value.number = e.target.value
+                                                        value.number = parseInt(e.target.value)
+                                                        tmp = value
                                                     } 
                                                     return value
                                                 })
+                                                var l = newState.length
                                                 newState = newState.filter((e)=>e.number>0)
+                                                if(l !== newState.length) this.props.handleChanges("rm",tmp)
+                                                else this.props.handleChanges("edit",tmp)
                                                 this.setState({selected:newState})
                                            }}
                                            value={option.number}

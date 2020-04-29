@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { menu, getJson } from "../../constants/menu";
@@ -12,11 +11,10 @@ import {
     CardActions,
     TextField,
     Button,
-    MenuItem,
     Typography,
     withStyles,
 } from '@material-ui/core';
-import MenuSection from "./MenuSection"
+import MenuSectionWrapper from "./MenuSectionWrapper"
 
 const useStyles = () => ({
     root: {
@@ -76,17 +74,21 @@ const form = props => {
                         Solicitud de comida
                         </Typography>
 
-                            {
-                                menu.map((section,i)=>{
-                                return(<MenuSection key={i} section = {section}/>)
-                                })
-                            }
+                        <MenuSectionWrapper
+                            id="menu"
+                            name="menu"
+                            value={values.menu}
+                            onChange={handleChange}
+                            helperText={touched.menu ? errors.menu : ""}
+                            error={touched.menu && Boolean(errors.menu)}
+                            menu={menu}/>
+                        
                         <TextField
                             id="comment"
                             name="comment"
                             label="Añada un comentario adicional"
                             value={values.comment}
-                            onChange={handleChange}
+                            onChange={(e)=>handleChange}
                             onBlur={handleBlur}
                             helperText={touched.comment ? errors.comment : ""}
                             error={touched.comment && Boolean(errors.comment)}
@@ -111,28 +113,22 @@ const form = props => {
 
 const Form = withStyles(useStyles)(withFormik({
     mapPropsToValues: ({
-        element,
+        menu,
         comment,
     }) => {
         return {
-            element: element || "",
+            menu: menu || [],
             comment: comment || "",
         };
     },
 
     validationSchema: Yup.object().shape({
-        element: Yup.string()
-            .test("isDefault", "Inyección de código detectada",
-                function (value) {
-                    if (value !== "") {
-                        return menu.reduce((acumulator = false, element) => acumulator = acumulator || (element["value"] === value))
-                    }
-                    return false
-                })
+        menu: Yup.array().required("Debe de seleccionar al menos 1 comida")
 
     }),
 
     handleSubmit: (values, { setSubmitting, props }) => {
+        console.log(getJson(values))
         setTimeout(() => {
             // submit to the server
             var c = new Communication()

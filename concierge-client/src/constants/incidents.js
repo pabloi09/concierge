@@ -9,7 +9,7 @@ export const incidents = [
         label: "Ducha"
     },
     {
-        value: header + "el grifo",
+        value: header + "arreglar el grifo",
         label: "Grifo"
     },
     {
