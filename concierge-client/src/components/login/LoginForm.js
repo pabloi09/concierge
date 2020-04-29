@@ -119,7 +119,7 @@ const Form = withStyles(styles)(withFormik({
              .then((json)=>{
                var response = {}
                response[e] = JSON.parse(json["data"])
-               response[e] = e=="meals"?response[e][0]:response[e]
+               response[e] = e==="meals"?response[e][0]:response[e]
                props.setResources(response)
              })
            })
