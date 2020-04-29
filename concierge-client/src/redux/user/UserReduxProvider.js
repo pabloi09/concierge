@@ -20,7 +20,10 @@ class UserReduxProvider extends Component {
                     num:-1
                 },
                 solicitudes:[]
-            }
+            },
+            tours:[],
+            hotels:[],
+            meals:{}
          };
         this.store = this.configureStore()
     }

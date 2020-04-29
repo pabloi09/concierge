@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom"
 class LoginUserPage extends Component {
     render() {
         return (
-                <LoginForm login={this.login.bind(this)} />
+                <LoginForm login={this.login.bind(this)} setResources={this.props.setResources} />
         );
 
     }
