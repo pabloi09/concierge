@@ -9,10 +9,10 @@ export const transports = [
         "alt": "Página de solicitud de taxi",
         "src": "assets/transport/taxi.jpg",
         "path": "/transporte/taxi"                         
-    }, {
+    }*/, {
         "title": "VTC",
         "alt": "Página de solicitud de VTC",
         "src": "assets/transport/vtc.jpg",
         "path": "/transporte/vtc"                         
-    }*/
+    }
 ]

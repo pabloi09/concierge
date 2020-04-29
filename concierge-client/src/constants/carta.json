@@ -1,0 +1,140 @@
+{
+    "entrantes":[
+        {
+            "descripcion":"Jamón ibérico D.O. con pan de cristal y tomate",
+            "precio":2550
+        },
+        {
+            "descripcion":"Tabla de quesos con D.O. (quesos nacionales e internacionales seleccionados en su punto)",
+            "precio":1790
+        },
+        {
+            "descripcion":"Selección de ahumados (con guarnición tipo centroeuropeo con encurtidos y rábanos)",
+            "precio":2090
+        }
+    ],
+    "sopas y cremas":[
+        {
+            "descripcion":"Sopa de cocido madrileño",
+            "precio":990
+        },
+        {
+            "descripcion":"Consomé clarificado",
+            "precio":990
+        },
+        {
+            "descripcion":"Crema de zanahoria y calabaza con crema frâiche",
+            "precio":990
+        },
+        {
+            "descripcion":"Gazpacho con su guarnición tradicional (en temporada) ",
+            "precio":990
+        },
+        {
+            "descripcion":"Salmorejo con huevas y jamón (en temporada)",
+            "precio":990
+        }
+    ],
+    "huevos":[
+        {
+            "descripcion":"Elaboraremos los huevos al gusto (tortilla francesa, española, revuelto, huevos fritos con patatas)",
+            "precio":1200
+        }
+    ],
+    "ensaladas":[
+        {
+            "descripcion":"Ensalada César (mézclum de brotes tiernos, salsa césar casera, pollo, crispy de beicon, croutons y parmesano)",
+            "precio":1250
+        },
+        {
+            "descripcion":"Ensalada VP Plaza España Design (mézclum de brotes, espárragos blancos, atún, mini mazorca de maíz, palmitos, gajos de tomate raf, etc…)",
+            "precio":1250
+        },
+        {
+            "descripcion":"Ensalada de tomate raf y ventresca de atún en aceite",
+            "precio":1150
+        }
+    ],
+    "pizzas":[
+        {
+            "descripcion":"Margarita: mozzarella fresca, tomate y albahaca",
+            "precio":1400
+        },
+        {
+            "descripcion":"Siciliana: anchoa, alcaparras y olivas negras",
+            "precio":1400
+        },
+        {
+            "descripcion":"Prosciutto dulce: jamón de york, mozzarella y tomate",
+            "precio":1400
+        },
+        {
+            "descripcion":"Pizza vegetariana: tomate, selección de vegetales y mozzarella",
+            "precio":1400
+        }
+    ],
+    "sandwiches":[
+        {
+            "descripcion":"Club (pan rústico con lechuga, tomate, pechuga de pollo al grill, beicon, con huevo a la plancha)",
+            "precio":1600
+        },
+        {
+            "descripcion":"Mixto tradicional (con jamón de york y queso cheddar)",
+            "precio":1050
+        },
+        {
+            "descripcion":"Mixto tradicional con huevo",
+            "precio":1200
+        },
+        {
+            "descripcion":"Vegetal (mezcla de brotes de lechuga acompañados de espárrago blanco, huevo cocido y tomate)",
+            "precio":1050
+        }
+    ],
+    "hamburguesas":[
+        {
+            "descripcion":"De ternera (una clásica LTB con pan rústico)",
+            "precio":1750
+        }
+    ],
+    "pescados":[
+        {
+            "descripcion":"Suprema de merluza al horno con verduras",
+            "precio":1950
+        }
+    ],
+    "carnes":[
+        {
+            "descripcion":"Tournedó de solomillo con guarnición",
+            "precio":2390
+        },
+        {
+            "descripcion":"Pechuga de pollo de corral confitada a baja temperatura (acompañada de verduras al grill o patatas fritas)",
+            "precio":1750
+        },
+        {
+            "descripcion":"Finger de pollo con patatas",
+            "precio":1450
+        }
+    ],
+    "postres":[
+        {
+            "descripcion":"Brownie de chocolate negro con helado de vainilla",
+            "precio":750
+        },
+        {
+            "descripcion":"Ensalada de frutas",
+            "precio":750
+        },
+        {
+            "descripcion":"New York Chessecake con mermelada de moras",
+            "precio":750
+        },
+        {
+            "descripcion":"Helados artesanos: chocolate, fresa, vainilla y yogur con arándanos",
+            "precio":750
+        }
+    ]
+
+
+}

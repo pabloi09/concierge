@@ -11,16 +11,17 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { ways, getJson } from "../constants/shuttle"
+import { ways, getJson } from "../../constants/shuttle"
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import esLocale from "date-fns/locale/es"
-import Communication from "../Communication"
+import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
-import DialogComponent from "./DialogComponent"
+import DialogComponent from "../common/DialogComponent"
+
 const styles = () => ({
   card: {
     minWidth: 746,
@@ -190,8 +191,10 @@ const Form = withStyles(styles)(withFormik({
       console.log(getJson(values))
       c.makePostRequest("/solicitud",getJson(values))
       .then((json)=>{
-        if(json["code"]==200){
+        if(json["code"]===200){
            props.setSuccess()
+           json["cliente"] = JSON.parse(json["cliente"])
+           props.login(json);
         }else{
           props.setError()
         }
@@ -231,7 +234,7 @@ class ShuttleForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}

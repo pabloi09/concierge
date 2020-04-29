@@ -3,7 +3,7 @@ export const stay = [
         "title": "Check-out",
         "alt": "Página de check-out",
         "src": "assets/stay/checkout.jpg",
-        "path": "/estancia/check-out"                         
+        "path": "/estancia/checkout"                         
     }/*, 
     {
         "title": "Nueva reserva",

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Empleado implements Serializable {
 	
@@ -15,7 +17,8 @@ public class Empleado implements Serializable {
 	private int num;
 	
 	private String name;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "empleado",fetch = FetchType.EAGER)
 	private List<Solicitud> solicitudes;
 	

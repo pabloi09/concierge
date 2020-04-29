@@ -5,14 +5,23 @@ To avoid issues from the beginning I sugest to use the same versions:
 * npm 6.13.4
 
 ## Installation and workflow
+
+### Client side
 ```
 git clone https://git-concierge.duckdns.org/pabloi09/concierge
 cd concierge
 git checkout -b <your_branch_name>
+cd concierge-client
 npm install
 npm start
 ```
+### Server side
+
+Follow instructions in concierge-server/README.md
+
 You will be ready to develop :tada:
+
+### Upload files
 
 **Wanna upload for the first time ?**
 *Use:*
@@ -65,5 +74,6 @@ ana.delucas.lopez@alumnos.upm.es
 * Material Icons: https://material-ui.com/components/icons/#font-icons
 * Formik docs: https://jaredpalmer.com/formik/docs/overview
 * Material-UI palette: https://material-ui.com/customization/palette/
+* Stripe API: https://stripe.com/docs/api/
 * [MySQL :: MySQL Connector/J 8.0 Developer Guide :: 6.2 Connection URL Syntax](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-jdbc-url-format.html)
 * [docker-node/README.md at master · nodejs/docker-node · GitHub](https://github.com/nodejs/docker-node/blob/master/README.md#how-to-use-this-image)

@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core";
-import { comfort, getJson } from "../constants/comfort";
+import { comfort, getJson } from "../../constants/comfort";
 import { withRouter } from "react-router-dom"
 import {
     Card,
@@ -13,8 +13,8 @@ import {
     MenuItem,
     Typography
 } from '@material-ui/core';
-import DialogComponent from "./DialogComponent"
-import Communication from "../Communication"
+import DialogComponent from "../common/DialogComponent"
+import Communication from "../../Communication"
 const styles = () => ({
     card: {
         minWidth: 600,
@@ -129,8 +129,10 @@ const Form = withStyles(styles)(withFormik({
             var c = new Communication()
             c.makePostRequest("/solicitud",getJson(values))
             .then((json)=>{
-              if(json["code"]==200){
+              if(json["code"]===200){
                  props.setSuccess()
+                 json["cliente"] = JSON.parse(json["cliente"])
+                 props.login(json)
               }else{
                 props.setError()
               }
@@ -170,7 +172,7 @@ class ComfortForm extends React.Component{
     }
     render(){
       return(<div>
-        <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+        <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
         <DialogComponent 
           open = {this.state.open}
           title={this.state.title}

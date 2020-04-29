@@ -10,10 +10,10 @@ import {
     Button,
     Typography,
     } from '@material-ui/core';
-import { getJson } from "../constants/customrequest"
-import Communication from "../Communication"
+import { getJson } from "../../constants/customrequest"
+import Communication from "../../Communication"
 import { withRouter } from "react-router-dom"
-import DialogComponent from "./DialogComponent"
+import DialogComponent from "../common/DialogComponent"
 const styles = () => ({
   card: {
     minWidth: 746,
@@ -101,9 +101,11 @@ const Form = withStyles(styles)(withFormik({
       c.makePostRequest("/solicitud",getJson(values))
       .then((json)=>{
         if(json["code"] === 200){
-           props.setSuccess()
+           props.setSuccess();
+           json["cliente"] = JSON.parse(json["cliente"]);
+           props.login(json);
         }else{
-          props.setError()
+          props.setError();
         }
         setSubmitting(false);
        });
@@ -141,7 +143,7 @@ class CustomRequestForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)}/>
+      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}

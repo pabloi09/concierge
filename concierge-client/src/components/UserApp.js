@@ -6,62 +6,52 @@ import {
   } from "react-router-dom";
 import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "../theme/theme"
-import LoginUserPage from "./LoginUserPage"
+import LoginUserPage from "./login/LoginUserPage"
 import NavigationBar from "./NavigationBar"
 import MainPage from "./MainPage"
-import TransportPage from "./TransportPage"
-import RoomServicePage from "./RoomServicePage"
-import LeisurePage from "./LeisurePage"
-import ProfilePage from "./ProfilePage"
-import StayPage from "./StayPage"
-import OrderStatusCard from "./OrderStatusCard"
+import TransportPage from "./transports/TransportPage"
+import RoomServicePage from "./roomService/RoomServicePage"
+import LeisurePage from "./leisure/LeisurePage"
+import ProfilePage from "./profile/ProfilePage"
+import StayPage from "./stay/StayPage"
 import {login, logout} from "../redux/user/actions"
 import { connect } from "react-redux"
-import DialogComponent from "./DialogComponent"
-import CustomRequestPage from "./CustomRequestPage"
-import CheckoutPage from "./CheckoutPage"
+import CustomRequestPage from "./custom/CustomRequestPage"
 
+import OrdersPage from './orders/OrdersPage';
 
 class UserApp extends Component {
+
     render() {
         return (
             <div>
                 <ThemeProvider theme={theme}>
                     <Router>
-                        <NavigationBar logged={this.props.loggedIn} logout = {this.props.logout}/>
+                        <NavigationBar logged={this.props.loggedIn} logout={this.props.logout}/>
                         <Switch>
                             <Route path="/login">
                                 <LoginUserPage login={this.props.login}/>
                             </Route>
                             <Route path="/perfil">
-                                <ProfilePage logged={this.props.loggedIn}/>
-                            </Route>
-                            <Route path="/estancia/check-out">
-                                <CheckoutPage logged={this.props.loggedIn}/>
+                                <ProfilePage logged={this.props.loggedIn} login={this.props.login} client={this.props.client}/>
                             </Route>
                             <Route path="/estancia">
                                 <StayPage logged={this.props.loggedIn}/>
                             </Route>
                             <Route path="/servicio-habitaciones">
-                                <RoomServicePage logged={this.props.loggedIn}/>
+                                <RoomServicePage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/ocio">
-                                <LeisurePage logged={this.props.loggedIn}/>
+                                <LeisurePage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/transporte">
-                                <TransportPage logged={this.props.loggedIn}/>
-                            </Route>
-                            <Route path="/solicitudes">
-                            {this.props.loggedIn?
-                                    <div>
-                                    <OrderStatusCard title="Taxi" card="enviada" info="Su solicitud ha sido enviada y nuestro personal procederá a tramitarla lo ants posible. Le agradecemos la espera."/>
-                                    <OrderStatusCard title="Compras" card="enproceso" info="Su solicitud está siendo procesada por nuestro personal. Si tiene algún problema, puede llamar a recepción en el 001 a través del teléfono de su habitación."/>
-                                    <OrderStatusCard title="Espectáculos" card="rechazada" info="Su solicitud ha sido rechazada. Puede deberse a falta de disponibilidad, para más información llame a recepción en el 001 a través del teléfono de su habitación."/>
-                                    </div>:
-                                    <div/>}
+                                <TransportPage logged={this.props.loggedIn} login={this.props.login}/>
                             </Route>
                             <Route path="/personalizada">
-                                <CustomRequestPage logged={this.props.loggedIn}/>
+                                <CustomRequestPage logged={this.props.loggedIn} login={this.props.login}/>
+                            </Route>
+                            <Route path="/solicitudes">
+                                <OrdersPage logged={this.props.loggedIn} client={this.props.client}/>
                             </Route>
                             <Route path="/">
                                 <MainPage logged={this.props.loggedIn}/>
@@ -71,10 +61,10 @@ class UserApp extends Component {
                 </ThemeProvider>
             </div>
         );
-    }
-
-    
+    }    
 }
+
+
 
 const mapStateToProps = function (state) {
     return {
@@ -89,6 +79,5 @@ const mapDispatchToProps = dispatch => {
       logout: () => dispatch(logout()),
     }
 }
-  
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserApp);
