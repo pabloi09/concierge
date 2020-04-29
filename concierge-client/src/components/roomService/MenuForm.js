@@ -30,7 +30,8 @@ const useStyles = () => ({
         width:635,
         minWidth: 546,
         minHeight:340,
-        marginTop: 50
+        marginTop: 50,
+        marginBottom: 50
       },
     container: {
       
@@ -69,13 +70,38 @@ const form = props => {
     return (
         <div className={classes.container}>
             <form onSubmit={handleSubmit}>
-            <Card className={classes.card}>
-                {
-                    menu.map((section,i)=>{
-                    return(<MenuSection key={i} section = {section}/>)
-                    })
-                }
-                
+                <Card className={classes.card}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textPrimary" gutterBottom>
+                        Solicitud de comida
+                        </Typography>
+
+                            {
+                                menu.map((section,i)=>{
+                                return(<MenuSection key={i} section = {section}/>)
+                                })
+                            }
+                        <TextField
+                            id="comment"
+                            name="comment"
+                            label="Añada un comentario adicional"
+                            value={values.comment}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={touched.comment ? errors.comment : ""}
+                            error={touched.comment && Boolean(errors.comment)}
+                            margin="dense"
+                            variant="outlined"
+                            multiline
+                            fullWidth
+                            rows="4"
+                            />
+                    </CardContent>
+                    <CardActions className={classes.actions}>
+                        <Button type="submit" color="primary" disabled={isSubmitting}>
+                        Submit
+                        </Button>
+                    </CardActions>
             
                 </Card>
             </form>

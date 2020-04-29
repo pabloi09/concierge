@@ -5,8 +5,6 @@ import {
     ExpansionPanel,
     withStyles,
     Typography,
-    ListItem,
-    ListItemText,
     TextField,
     MenuItem,
     Grid
@@ -16,6 +14,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = () => ({
     root: {
         width: '100%',
+        marginBottom:10
+        
     },
     list: {
         width: '100%',
@@ -48,7 +48,9 @@ const useStyles = () => ({
     },
     menuItem:{
         padding:10,
-        maxWidth:600
+        maxWidth:600,
+        flexGrow:1,
+        whiteSpace: 'normal'
     },
     
 });
@@ -62,23 +64,26 @@ class MenuSection extends Component {
     render() {
         let {classes} = this.props
         return (
-            <div>
+            <div className={classes.root}>
                 <ExpansionPanel>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header">
-                        <Typography className={classes.heading}>{this.props.section.title}</Typography>
+                        <Typography className={classes.heading} align="center">{this.props.section.title.replace(/^./, this.props.section.title[0].toUpperCase())}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className={classes.root}>
                         <TextField id={this.props.section.title}
                                    name = {this.props.section.title}
                                    select
-                                   value = ""
+                                   value = {this.state.selected.length > 0 ? this.state.selected[this.state.selected.length-1].item.descripcion : ""}
                                    label = "Añada un nuevo producto"
                                    onChange = {(e)=>{
+                                        var already = false 
                                         var newState = this.state.selected.map((item=>item))
+                                        if(newState.length > 0) newState.forEach((i)=>already = already || (i.item.value === e.target.value.value))
+                                        if (already) return
                                         newState.push({number:1,item:e.target.value})
                                         this.setState({selected:newState})}}
                                    margin="dense"
@@ -90,15 +95,16 @@ class MenuSection extends Component {
                                     <Grid 
                                         container
                                         wrap="nowrap"
-                                        spacing={1}>
-                                        <Grid item xs >
+                                        alignItems="center"
+                                        spacing={2}>
+                                        <Grid item xs>
                                             <Typography>
-                                                {option.descripcion}
-                                            </Typography>
+                                               {option.descripcion} 
+                                                </Typography>
                                         </Grid>
 
-                                        <Grid item >
-                                            <Grid container spacing={2}>
+                                        <Grid item xs={1} sm ={2}>
+                                            <Grid container>
                                                     <Grid item xs>
                                                         <MonetizationOnIcon/>
                                                     </Grid>
@@ -120,13 +126,16 @@ class MenuSection extends Component {
                                            name={"meal"+option.item.descripcion}
                                            label={option.item.descripcion}
                                            type="number"
+                                           key={"meal"+option.item.descripcion}
+                                           inputProps={{style: {height:40}}}
                                            onChange={(e)=>{
                                                 var newState = this.state.selected.map(value=>{
-                                                    if(value.item.title === option.item.title){
+                                                    if(value.item.value === option.item.value){
                                                         value.number = e.target.value
                                                     } 
                                                     return value
                                                 })
+                                                newState = newState.filter((e)=>e.number>0)
                                                 this.setState({selected:newState})
                                            }}
                                            value={option.number}
