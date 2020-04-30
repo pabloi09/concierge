@@ -7,6 +7,8 @@ import {
   } from "react-router-dom";
 import { withRouter } from "react-router-dom"
 import ComfortForm from "./ComfortForm"
+import MenuForm from "./MenuForm"
+import IncidentsForm from "./IncidentsForm"
 
 class RoomServicePage extends Component {
     render() {
@@ -17,6 +19,12 @@ class RoomServicePage extends Component {
                 <Switch>
                     <Route path="/servicio-habitaciones/confort">
                         <ComfortForm login={this.login.bind(this)}/>
+                    </Route>
+                    <Route path="/servicio-habitaciones/incidencia">
+                        <IncidentsForm login={this.login.bind(this)}/>
+                    </Route>
+                    <Route path="/servicio-habitaciones/carta">
+                        <MenuForm login={this.login.bind(this)} menu={this.props.menu}/>
                     </Route>
                     <Route path="/servicio-habitaciones">
                         <GridComponent data={roomservices} logged={this.props.logged}/>
