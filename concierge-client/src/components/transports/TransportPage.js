@@ -6,7 +6,7 @@ import {
     Route,
   } from "react-router-dom";
 import ShuttleForm from "./ShuttleForm"
-import VTCComponent from "./VTCComponent"
+import VTCTaxiComponent from "./VTCTaxiComponent"
 import { withRouter } from "react-router-dom"
 class TransportPage extends Component {
 
@@ -19,8 +19,8 @@ class TransportPage extends Component {
                     <Route path="/transporte/shuttle">
                         <ShuttleForm login={this.login.bind(this)}/>
                     </Route>
-                    <Route path="/transporte/vtc">
-                        <VTCComponent login={this.login.bind(this)}/>
+                    <Route path="/transporte/vtctaxi">
+                        <VTCTaxiComponent login={this.login.bind(this)}/>
                     </Route>
                     <Route path ="/transporte">
                         <GridComponent data={transports} logged={this.props.logged}/>

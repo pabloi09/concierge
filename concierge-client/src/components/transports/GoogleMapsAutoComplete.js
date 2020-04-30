@@ -72,7 +72,7 @@ export default function GoogleMaps(props) {
         event.target.value = content ? content.description: "" 
         props.onChange(event, content ? content.description: "" )
       }}
-      style={{ width: 300 }}
+      
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}
