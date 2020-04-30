@@ -9,3 +9,7 @@ export function login(json){
 export function logout(){
     return {type: "LOGOUT"}
 }
+
+export function setResources(json){
+    return {type: "RESOURCES",json}
+}

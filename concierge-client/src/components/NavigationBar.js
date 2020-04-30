@@ -17,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withRouter } from "react-router-dom"
 import {navbar} from "../constants/navbar"
+import Communication from "../Communication"
 
 
 const drawerWidth = 240;
@@ -107,9 +108,15 @@ class NavigationBar extends Component {
   handleClick(path){
     this.setOpen(false)
     if (path === "/login"){
-      this.props.logout()
+      var c = new Communication()
+      c.makeGetRequest("/logout",{})
+      .then((json)=>{
+        if(json["code"]===200)
+          this.props.logout()
+      })
+    }else{
+      this.props.history.push(path)
     }
-    this.props.history.push(path)
   }
 
 

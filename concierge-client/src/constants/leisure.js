@@ -2,25 +2,26 @@ export const leisure = [
     {
         "title": "Restaurantes",
         "alt": "Página de restaurantes",
-        "src": "assets/ocio/restaurantes.jpg",
+        "src": "assets/leisure/restaurantes.jpg",
         "path": "/ocio/restaurantes"                         
     }, 
     {
-        "title": "Compras",
-        "alt": "Página de compras",
-        "src": "assets/ocio/compras.jpg",
-        "path": "/ocio/compras"                         
-    }
-    /*{
-        "title": "Entradas",
-        "alt": "Página de entradas",
-        "src": "assets/ocio/entradas.jpg",
-        "path": "/ocio/entradas"                         
-    },
+        "title": "Eventos",
+        "alt": "Página de eventos",
+        "src": "assets/leisure/eventos.jpg",
+        "path": "/ocio/eventos"                         
+    },/*
     {
         "title": "Turismo",
         "alt": "Página de turismo",
-        "src": "assets/ocio/turismo.jpg",
+        "src": "assets/leisure/turismo.jpg",
         "path": "/ocio/turismo"                         
-    }*/
+
+    },*/
+    {
+        "title": "Compras",
+        "alt": "Página de compras",
+        "src": "assets/leisure/compras.jpg",
+        "path": "/ocio/compras"                         
+    }
 ]

@@ -2,7 +2,14 @@ package es.upm.dit.isst.concierge.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.upm.dit.isst.concierge.dao.ClienteDAOImplementation;
+import es.upm.dit.isst.concierge.dao.EmpleadoDAOImplementation;
+import es.upm.dit.isst.concierge.dao.HabitacionDAOImplementation;
+import es.upm.dit.isst.concierge.dao.HotelDAOImplementation;
 import es.upm.dit.isst.concierge.model.Cliente;
+import es.upm.dit.isst.concierge.model.Empleado;
+import es.upm.dit.isst.concierge.model.Habitacion;
+import es.upm.dit.isst.concierge.pms.PMS;
+
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -33,6 +40,7 @@ public class LoginServlet extends HttpServlet {
         String data = buffer.toString();
         JsonReader jsonReader = Json.createReader(new StringReader(data));
         JsonObject jsonObject = jsonReader.readObject();
+        syncPMS();
         Cliente c = ClienteDAOImplementation.getInstance().login(jsonObject.getString("dni"));
         
         PrintWriter out = resp.getWriter();
@@ -55,5 +63,17 @@ public class LoginServlet extends HttpServlet {
             out.print(jsonObject.toString());
         }
         out.flush();
+    }
+
+    private void syncPMS() {
+        if (HotelDAOImplementation.getInstance().readAll().size() > 0)
+            return;
+        HotelDAOImplementation.getInstance().create(PMS.getInstance().getHotel());
+        for (Habitacion h: PMS.getInstance().getHabitaciones())
+            HabitacionDAOImplementation.getInstance().create(h);
+        for (Cliente c: PMS.getInstance().getClientes())
+            ClienteDAOImplementation.getInstance().create(c);
+        for (Empleado e: PMS.getInstance().getEmpleados())
+            EmpleadoDAOImplementation.getInstance().create(e);
     }
 }
