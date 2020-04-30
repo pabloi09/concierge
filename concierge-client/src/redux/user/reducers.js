@@ -21,6 +21,8 @@ const client = (state = [],action) =>{
     switch(action.type){
         case "LOGIN":
             return action.json["cliente"]
+        case "LOGOUT":
+            return {}
         default:
             return state
     }
@@ -30,6 +32,8 @@ const tours = (state = [],action) =>{
     switch(action.type){
         case "RESOURCES":
             return action.json["tours"] ?  action.json["tours"]:state
+        case "LOGOUT":
+            return []
         default:
             return state
     }
@@ -39,6 +43,8 @@ const hotels = (state = [],action) =>{
     switch(action.type){
         case "RESOURCES":
             return action.json["hotels"] ? action.json["hotels"]:state
+        case "LOGOUT":
+            return []
         default:
             return state
     }
@@ -47,6 +53,8 @@ const meals = (state = [],action) =>{
     switch(action.type){
         case "RESOURCES":
             return action.json["meals"] ?  action.json["meals"]:state
+        case "LOGOUT":
+            return {}
         default:
             return state
     }

@@ -75,6 +75,5 @@ public class LoginServlet extends HttpServlet {
             ClienteDAOImplementation.getInstance().create(c);
         for (Empleado e: PMS.getInstance().getEmpleados())
             EmpleadoDAOImplementation.getInstance().create(e);
-
     }
 }
