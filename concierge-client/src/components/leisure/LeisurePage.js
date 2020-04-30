@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
   import MapRestaurantComponent from "./MapRestaurantComponent"
   import { withRouter } from "react-router-dom"
-import EventsPage from './EventsPage';
+import EventsForm from './EventsForm';
 
 class LeisurePage extends Component {
     render() {
@@ -20,7 +20,7 @@ class LeisurePage extends Component {
                     <MapRestaurantComponent login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio/eventos">
-                    <EventsPage />
+                    <EventsForm login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>

@@ -37,10 +37,12 @@ public class ChangesLoyaltyServlet extends HttpServlet {
                 if (c.isAfiliado()) {
                 	// Dar de baja
                 	c.setAfiliado(false);
+                	c.setPuntos(0);
                 	ClienteDAOImplementation.getInstance().update(c);
                 } else {
                 	//Dar de alta
                 	c.setAfiliado(true);
+                	c.setPuntos(0);
                 	ClienteDAOImplementation.getInstance().update(c);
                 }
                 
