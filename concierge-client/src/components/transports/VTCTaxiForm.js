@@ -12,7 +12,8 @@ import {
   ListItemIcon,
   Switch,
   Typography,
-  FormControlLabel
+  FormControlLabel,
+  Radio
 } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
@@ -31,7 +32,7 @@ const styles = () => ({
   card: {
     width:635,
     minWidth: 546,
-    minHeight:340,
+    
     marginTop: 50
   },
   container: {
@@ -91,7 +92,7 @@ const form = props => {
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textPrimary" gutterBottom>
-              Solicitud de transporte en VTC
+              Solicitud de transporte
             </Typography>
             
             <GoogleMapsAutoComplete
@@ -126,6 +127,25 @@ const form = props => {
                 margin="dense"
                 variant="outlined"
                 fullWidth/>
+            <div>
+              <FormControlLabel 
+                  control={
+                    <Radio  checked={values.type==="taxi"}
+                            id="type"
+                            name="type"
+                            value="taxi"
+                            onChange={handleChange}/>} 
+                  label = "Taxi"/>
+              <FormControlLabel 
+                  control={
+                    <Radio checked={values.type==="VTC"}
+                            id="type"
+                            name="type"
+                            value="VTC"
+                            onChange={handleChange}/>} 
+                  label = "VTC"/>
+            </div>
+            
             <FormControlLabel
               label="Lo antes posible"
               control={
@@ -135,7 +155,6 @@ const form = props => {
                 checked={values.now}
                 onChange={handleChange}
                 color="primary"
-                
                 />
               }/>
             
@@ -169,6 +188,9 @@ const form = props => {
                 helperText={touched.people ? errors.people : ""}
                 error={touched.people && Boolean(errors.people)}
                 InputLabelProps={{shrink: true}}
+                margin="dense"
+                variant="outlined"
+                fullWidth
             />
 
             <TextField
@@ -213,6 +235,7 @@ const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
     origin,
     destiny,
+    type,
     now,
     hour,
     people,
@@ -221,6 +244,7 @@ const Form = withStyles(styles)(withFormik({
     return {
       origin: origin || "",
       destiny: destiny || "",
+      type: type || "taxi",
       now: now || false,
       hour: hour || new Date(),
       people: people || 1,
@@ -241,6 +265,7 @@ const Form = withStyles(styles)(withFormik({
             return props.distance ? props.distance.value < 100000:true
           })
         .trim(),
+      type:Yup.string().required(),
       now: Yup.bool(),
       hour: Yup.date()
             .when("now", {
@@ -282,12 +307,12 @@ const transformDate = (date) =>{
 }
 const getJson = (values)=>{
   return {
-    titulo: "Reserva de VTC",
-    mensaje: "Como cliente solicito un viaje de [" + values.origin + "] a [" + values.destiny + "] para " + values.people + " persona/s " + (values.now ? "lo antes posible":"el "+ transformDate(values.hour)) + ".\n" + values.comment
+    titulo: "Reserva de transporte",
+    mensaje: "Como cliente solicito un viaje en "+ values.type +" de [" + values.origin + "] a [" + values.destiny + "] para " + values.people + " persona/s " + (values.now ? "lo antes posible":"el "+ transformDate(values.hour)) + ".\n" + values.comment
   }
 }
 
-class VTCForm extends React.Component{
+class VTCTaxiForm extends React.Component{
   constructor(props){
     super(props)
     this.state = {open:false,restaurants:[]}
@@ -371,4 +396,4 @@ class VTCForm extends React.Component{
 }
 
 
-export default withStyles(styles)(VTCForm);
+export default withStyles(styles)(VTCTaxiForm);

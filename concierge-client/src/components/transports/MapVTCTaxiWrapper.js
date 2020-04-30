@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map,  GoogleApiWrapper, Polyline } from 'google-maps-react';
 import {api_key, location} from "../../constants/conf"
-class MapVTCWrapper extends Component {
+class MapVTCTaxiWrapper extends Component {
     
     constructor(props){
         super(props)
@@ -70,4 +70,4 @@ class MapVTCWrapper extends Component {
     }
 }
 
-export default  GoogleApiWrapper({apiKey :api_key})(MapVTCWrapper);
+export default  GoogleApiWrapper({apiKey :api_key})(MapVTCTaxiWrapper);

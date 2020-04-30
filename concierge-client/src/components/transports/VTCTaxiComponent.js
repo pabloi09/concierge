@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import VTCForm from "./VTCForm"
+import VTCTaxiForm from "./VTCTaxiForm"
 import { withRouter } from "react-router-dom"
-import MapVTCWrapper from "./MapVTCWrapper"
+import MapVTCTaxiWrapper from "./MapVTCTaxiWrapper"
 
 
 
-class VTCComponent extends Component {
+class VTCTaxiComponent extends Component {
     constructor(props){
         super(props)
         this.state = {origin:"", destiny:""}
@@ -32,7 +32,7 @@ class VTCComponent extends Component {
 
         return (
             <div style ={{display:"Flex",flexDirection:"row", justifyContent:"space-around", height:"80vh",width:"100vh"}}>
-                <VTCForm 
+                <VTCTaxiForm 
                     restaurants={this.state.restaurants} 
                     onMarkerClick={this.onMarkerClick}
                     login={this.props.login} 
@@ -41,7 +41,7 @@ class VTCComponent extends Component {
                     duration={this.state.duration}
                     update = {this.update}/>
                 <div>
-                    <MapVTCWrapper 
+                    <MapVTCTaxiWrapper 
                         setTravelData={this.setTravelData.bind(this)}
                         origin={this.state.origin}
                         destiny={this.state.destiny}/>
@@ -51,4 +51,4 @@ class VTCComponent extends Component {
     }
 }
 
-export default  (withRouter(VTCComponent));
+export default  (withRouter(VTCTaxiComponent));
