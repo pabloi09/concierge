@@ -12,9 +12,6 @@ import {
   ListItemIcon,
   Switch,
   Typography,
-  FormLabel,
-  RadioGroup,
-  FormControl,
   FormControlLabel,
   Radio
 } from '@material-ui/core';
