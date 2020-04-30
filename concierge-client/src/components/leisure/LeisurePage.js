@@ -7,6 +7,8 @@ import {
   } from "react-router-dom";
   import MapRestaurantComponent from "./MapRestaurantComponent"
   import { withRouter } from "react-router-dom"
+import EventsForm from './EventsForm';
+
 class LeisurePage extends Component {
     render() {
         if(! this.props.logged){
@@ -16,6 +18,9 @@ class LeisurePage extends Component {
             <Switch>
                 <Route path="/ocio/restaurantes">
                     <MapRestaurantComponent login={this.login.bind(this)}/>
+                </Route>
+                <Route path="/ocio/eventos">
+                    <EventsForm login={this.login.bind(this)}/>
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>
