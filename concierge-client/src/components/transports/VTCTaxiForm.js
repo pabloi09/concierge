@@ -276,9 +276,9 @@ const Form = withStyles(styles)(withFormik({
             }),
           
       people: Yup.number()
-          .required("Debe seleccionar el número de comensales")
+          .required("Debe seleccionar el número de personas")
           .min(1, "Debes seleccionar al menos una persona")
-          .max(10, "Contacta directamente con recepción para reservas de más de 10 comensales")
+          .max(10, "Contacta directamente con recepción para reservas de más de 10 personas")
   })
       return schema
 },

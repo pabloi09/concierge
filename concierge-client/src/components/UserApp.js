@@ -42,7 +42,7 @@ class UserApp extends Component {
                                 <RoomServicePage logged={this.props.loggedIn} login={this.props.login} menu = {this.props.meals}/>
                             </Route>
                             <Route path="/ocio">
-                                <LeisurePage logged={this.props.loggedIn} login={this.props.login}/>
+                                <LeisurePage logged={this.props.loggedIn} login={this.props.login} tours={this.props.tours}/>
                             </Route>
                             <Route path="/transporte">
                                 <TransportPage logged={this.props.loggedIn} login={this.props.login}/>
