@@ -9,7 +9,8 @@ import {
   TextField,
   Button,
   MenuItem,
-  Typography
+  Typography,
+  Grid
 } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
@@ -20,10 +21,12 @@ import esLocale from "date-fns/locale/es";
 import DialogComponent from "../common/DialogComponent";
 import Communication from "../../Communication";
 import { withRouter } from "react-router-dom";
-
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 const styles = () => ({
   card: {
-    Width: 746,
+    maxWidth: 746,
     minHeight:340,
     marginTop: 50
   },
@@ -44,7 +47,12 @@ const styles = () => ({
   map: {
     width: '100%',
     height: '100%',
-  }
+  },
+  menuItem:{
+    padding:10,
+    maxWidth:700,
+    whiteSpace: 'normal'
+}
 });
 
 export const DatePickerField = ({ ...props }) => {
@@ -99,8 +107,59 @@ const form = props => {
               fullWidth
             >
               {tours? tours.map((tour,i) => (
-                <MenuItem key={tour.title} value={tour}>
-                  {tour.title+", "+(tour.price !== "¡Gratis!"?tour.price+"/persona": tour.price)+" por "+tour.hours+" (Guía: "+tour.guide+")"}
+                <MenuItem key={i} value={tour} className={classes.menuItem}>
+                <Grid 
+                    container
+                    wrap="nowrap"
+                    justifyContent="center"
+                    spacing={2}
+                    alignItems="center">
+                    <Grid item xs>
+                        <Typography>
+                           {tour.title} 
+                            </Typography>
+                    </Grid>
+                    <Grid item xs>
+                      <Grid container>
+                        <Grid item xs>
+                            <Grid container>
+                                    <Grid item >
+                                        <MonetizationOnIcon/>
+                                    </Grid>
+                                    <Grid item >
+                                        <Typography color="textSecondary">
+                                            {tour.price !== "¡Gratis!"?tour.price.split("?")[0]+" €/p":tour.price}
+                                        </Typography>
+                                    </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs>
+                            <Grid container>
+                                    <Grid item>
+                                        <ScheduleIcon/>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography color="textSecondary">
+                                            {tour.hours}
+                                        </Typography>
+                                    </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs>
+                            <Grid container>
+                                    <Grid item>
+                                        <EmojiPeopleIcon/>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography color="textSecondary">
+                                            {tour.guide}
+                                        </Typography>
+                                    </Grid>
+                            </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                </Grid>
                 </MenuItem>
               )) : <></>}
             </TextField>
@@ -227,7 +286,7 @@ const transformDate = (date) =>{
 const getJson = (values)=>{
   return {
     titulo: "Reserva de tour",
-    mensaje: "Como cliente solicito el tour "+values.tour.title+" para "+values.people+" persona/s, que dura "+values.tour.hours+". Precio: " + values.tour.price + ". El tour comenzará el " + transformDate(values.hour) + "h.\n" + values.comment
+    mensaje: "Como cliente solicito el tour "+values.tour.title+" para "+values.people+" persona/s, que dura "+values.tour.hours+". Precio: " + (values.tour.price !== "¡Gratis!"?values.tour.price.split("?")[0]+" euros/p":values.tour.price) + ". El tour comenzará el " + transformDate(values.hour) + "h.\n" + values.comment
   }
 }
 
