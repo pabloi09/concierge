@@ -34,6 +34,9 @@ const styles = () => ({
   actions: {
     float: "right"
   },
+  block: {
+    display: "block"
+  },
   title: {
     fontSize: 21,
   },
@@ -125,6 +128,7 @@ const form = props => {
             />
 
             <TextField
+                className={classes.block}
                 id="nights"
                 name="nights"
                 label="Número de noches"
