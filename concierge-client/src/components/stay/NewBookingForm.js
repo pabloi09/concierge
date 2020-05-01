@@ -11,32 +11,39 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { ways, getJson } from "../../constants/shuttle"
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import esLocale from "date-fns/locale/es"
-import Communication from "../../Communication"
-import { withRouter } from "react-router-dom"
 import DialogComponent from "../common/DialogComponent"
+import Communication from "../../Communication"
 
 const styles = () => ({
   card: {
-    minWidth: 746,
+    minWidth: 546,
+    minHeight:340,
     marginTop: 50
   },
   container: {
     display: "Flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexGrow:1
   },
   actions: {
     float: "right"
   },
+  block: {
+    display: "block"
+  },
   title: {
     fontSize: 21,
   },
+  map: {
+    width: '100%',
+    height: '100%',
+  }
 });
 
 export const DatePickerField = ({ ...props }) => {
@@ -55,6 +62,7 @@ export const DatePickerField = ({ ...props }) => {
   );
 };
 
+
 const form = props => {
   const {
     classes,
@@ -65,51 +73,86 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    hotels,
+    onHotelClick
   } = props;
+
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
         <Card className={classes.card}>
           <CardContent>
             <Typography className={classes.title} color="textPrimary" gutterBottom>
-              Solicitud de transporte al aeropuerto
+              Solicitud de reserva en hotel
             </Typography>
             <TextField
-              id="way"
-              name="way"
-              label="Seleccione el sentido del trayecto"
+              id="hotel"
+              name="hotel"
+              label="Seleccione un hotel"
               select
-              value={values.way}
-              onChange={handleChange}
+              value={values.hotel.value}
+              onChange={(e=>{
+                onHotelClick(e.target.value.ref.props,e.target.value.ref.marker)
+                handleChange(e)
+                
+              })}
               onBlur={handleBlur}
-              helperText={touched.way ? errors.way : ""}
-              error={touched.way && Boolean(errors.way)}
+              helperText={touched.hotel ? errors.hotel : ""}
+              error={touched.hotel && Boolean(errors.hotel)}
               margin="dense"
               variant="outlined"
               fullWidth
             >
-              {ways.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+              {hotels? hotels.map((option) => (
+                <MenuItem key={option.value} value={option}>
                   {option.label}
                 </MenuItem>
-              ))}
+              )) : <></>}
             </TextField>
               <DatePickerField
                id="hour"
                name="hour"
-               label="Seleccione el momento de partida"
+               label="Seleccione el día y hora de entrada"
                value={values.hour}
                onChange={handleChange}
                onBlur={handleBlur}
-               helperText={touched.hour ? errors.hour : ""}
-               error={touched.hour && Boolean(errors.hour)}
+               helperText={touched.hour || touched.hotel  ? errors.hour : ""}
+               error={(touched.hour || touched.hotel) && Boolean(errors.hour)}
                margin="dense"
                minDate={getDateMin()}
                maxDate={getDateMax()}
                variant="inline"
                format ="dd/MM/yyyy HH:mm"
                allowKeyboardControl
-               fullWidth/>
+               fullWidth
+            />
+
+            <TextField
+                className={classes.block}
+                id="nights"
+                name="nights"
+                label="Número de noches"
+                type="number"
+                value={values.nights}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={touched.nights ? errors.nights : ""}
+                error={touched.nights && Boolean(errors.nights)}
+                InputLabelProps={{shrink: true}}
+            />
+
+            <TextField
+                id="people"
+                name="people"
+                label="Número de personas"
+                type="number"
+                value={values.people}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={touched.people ? errors.people : ""}
+                error={touched.people && Boolean(errors.people)}
+                InputLabelProps={{shrink: true}}
+            />
 
             <TextField
               id="comment"
@@ -140,60 +183,60 @@ const form = props => {
 };
 const getDateMin = () =>{
   var date = new Date()
-  date.setTime(date.getTime() +  3 * 3600 * 1000)
+  date.setTime(date.getTime() +  1 * 3600 * 1000)
   return date
 }
 const getDateMax = () =>{
   var date = new Date()
-  date.setTime(date.getTime() + 1 * 31 * 24 * 3600 * 1000)
+  date.setTime(date.getTime() + 3 * 31 * 24 * 3600 * 1000)
   return date
 }
 
 const Form = withStyles(styles)(withFormik({
   mapPropsToValues: ({
-    way,
+    hotel,
     hour,
+    nights,
+    people,
     comment
   }) => {
     return {
-      way: way || "",
+      hotel: hotel || "",
       hour: hour || new Date(),
+      nights: nights || "",
+      people: people || 1,
       comment: comment || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    way: Yup.string()
-      .required("Seleccione el tipo de trayecto")
-      .trim()
-      .test("isDefault", "Inyección de código detectada",
-        function (value) {
-          if (value !== "") {
-            return ways.reduce((acumulator = false, element) => acumulator = acumulator || (element["value"] === value))
-          }
-          return false
-        })
-    ,
+    hotel: Yup.string()
+        .required("Seleccione el hotel")
+        .trim(),
     hour: Yup.date()
-      .required("Seleccione una día y una hora para continuar")
-      .test("isDefault", "Los buses solo salen a en punto. Por ejemplo: 9:00",
-        function (value) {
-          return value.getMinutes() === 0
-        })
-      .min(getDateMin(),"Se debe de reservar con al menos 3 horas de antelación")
-      .max(getDateMax(), "No se puede reservar con mas de un mes de antelación")
+        .required("Seleccione una día y una hora para continuar")
+        .min(getDateMin(),"Se debe de reservar con al menos 3 horas de antelación")
+        .max(getDateMax(), "No se puede reservar con mas de tres meses de antelación"),
+    nights: Yup.number()
+        .required("Debe seleccionar el número de noches de su estancia")
+        .min(1, "Debes seleccionar al menos una noche")
+        .max(15, "Contacta directamente con recepción para reservas de más de 15 noches"),
+    people: Yup.number()
+        .required("Debe seleccionar el número de comensales")
+        .min(1, "Debes seleccionar al menos una persona")
+        .max(10, "Contacta directamente con recepción para reservas de más de 10 comensales")
   }),
 
   handleSubmit: (values, { setSubmitting, props })  => {
+
     setTimeout(() => {
       // submit to the server
       var c = new Communication()
-      console.log(getJson(values))
       c.makePostRequest("/solicitud",getJson(values))
       .then((json)=>{
         if(json["code"]===200){
            props.setSuccess()
-           json["cliente"] = JSON.parse(json["cliente"])
+           json["cliente"] = JSON.parse(json["cliente"]);
            props.login(json);
         }else{
           props.setError()
@@ -203,11 +246,21 @@ const Form = withStyles(styles)(withFormik({
     }, 1000);
   }
 })(form));
+const transformDate = (date) =>{
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' , hour:"numeric", minute:"numeric"};
+  return date.toLocaleDateString("es-ES",options)
+}
+const getJson = (values)=>{
+  return {
+    titulo: "Reserva en hotel",
+    mensaje: "Como cliente solicito una reserva en " + values.hotel.value + " (" + values.hotel.object.formatted_address + ") para " + values.people + " persona/s. La entrada será el " + transformDate(values.hour) + " y me alojaré en él durante "+values.nights+" noches.\n" + values.comment
+  }
+}
 
-class ShuttleForm extends React.Component{
+class NewBookingForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = {open:false}
+    this.state = {open:false,hotels:[]}
     this.setOpen.bind(this)
   }
   setOpen(o){
@@ -220,7 +273,7 @@ class ShuttleForm extends React.Component{
       action1name:"OK",
       action1:()=>{
         this.setOpen(false)
-        this.props.history.goBack()
+        this.props.goBack();
     }})
   }
   setError(){
@@ -234,7 +287,12 @@ class ShuttleForm extends React.Component{
   }
   render(){
     return(<div>
-      <Form setSuccess ={this.setSuccess.bind(this)} setError = {this.setError.bind(this)} login={this.props.login}/>
+      <Form 
+        setSuccess ={this.setSuccess.bind(this)} 
+        setError = {this.setError.bind(this)} 
+        onHotelClick = {this.props.onMarkerClick}
+        hotels={this.props.hotels}
+        login={this.props.login}/>
       <DialogComponent 
         open = {this.state.open}
         title={this.state.title}
@@ -243,9 +301,7 @@ class ShuttleForm extends React.Component{
         action1={this.state.action1}/>
     </div>)
   }
-
-
 }
 
 
-export default withRouter(ShuttleForm);
+export default NewBookingForm;

@@ -271,7 +271,7 @@ const Form = withStyles(styles)(withFormik({
             .when("now", {
               is: false,
               then: Yup.date().required("Seleccione la fecha y hora de la reserva")
-                              .min(getDateMin(),"Se debe de reservar con almenos 3 horas de antelación")
+                              .min(getDateMin(),"Se debe de reservar con al menos 3 horas de antelación")
                               .max(getDateMax(), "No se puede reservar con mas de dos meses de antelación"),
             }),
           
