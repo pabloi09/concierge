@@ -44,10 +44,9 @@ const styles = () => ({
   }
 });
 
-const items = [];
 
 const getItems = (events) => {
-
+    var items = []
     var categories = [];
     var result = [];
     //organizao los eventos
@@ -90,6 +89,7 @@ const getItems = (events) => {
             items.push(<MenuItem value={e.id} key={i+j+1}>{e.name+", "+e.date+" a las "+e.time.substring(0, 5)+"h ("+e.address+")"}</MenuItem>);
         }
     }
+    return items
 }
 
 const form = props => {
@@ -102,6 +102,7 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    items
   } = props;
 
   return (
@@ -272,14 +273,14 @@ class EventsForm extends React.Component{
     }
 
     componentDidMount () {
-        if (this.state.events === null) {
+        if (this.state.items ? this.state.items.length == 0:true) {
             var c = new Communication();
             c.makeGetRequest("/events", {"request": "events"})
             .then((json)=>{
                 if(json["code"]===200){
                     json["data"] = JSON.parse(json["data"]);
-                    this.setState({open: this.state.open, events: json["data"]});
-                    getItems(json["data"]["_embedded"]["events"]);
+                    this.setState({open: this.state.open, events: json["data"] ,items:  getItems(json["data"]["_embedded"]["events"])});
+                   
                 } else {
                     console.log("Error");
                 }
@@ -294,7 +295,8 @@ class EventsForm extends React.Component{
                 setSuccess ={this.setSuccess.bind(this)} 
                 setError = {this.setError.bind(this)} 
                 events={this.state.events}
-                login={this.props.login}/>
+                login={this.props.login}
+                items={this.state.items}/>
             <DialogComponent 
                 open = {this.state.open}
                 title={this.state.title}
