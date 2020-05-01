@@ -180,7 +180,7 @@ const Form = withStyles(styles)(withFormik({
         function (value) {
           return value.getMinutes() === 0
         })
-      .min(getDateMin(),"Se debe de reservar con almenos 3 horas de antelación")
+      .min(getDateMin(),"Se debe de reservar con al menos 3 horas de antelación")
       .max(getDateMax(), "No se puede reservar con mas de un mes de antelación")
   }),
 
