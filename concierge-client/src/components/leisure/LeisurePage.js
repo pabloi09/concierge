@@ -10,6 +10,7 @@ import MapRestaurantComponent from "./MapRestaurantComponent";
 import RequestBuyItemPage from "./RequestBuyItemPage";
 import { withRouter } from "react-router-dom";
 import EventsForm from './EventsForm';
+import TourismForm from './TourismForm'
 
 
 class LeisurePage extends Component {
@@ -33,6 +34,9 @@ class LeisurePage extends Component {
                         login={this.login.bind(this)} 
                         logged={this.props.logged}
                     />
+                </Route>
+                <Route path="/ocio/turismo">
+                    <TourismForm login={this.login.bind(this)} tours={this.props.tours}/>
                 </Route>
                 <Route path="/ocio">
                     <GridComponent data={leisure} logged={this.props.logged}/>
