@@ -23,7 +23,10 @@ class UserReduxProvider extends Component {
             },
             tours:[],
             hotels:[],
-            meals:{}
+            meals:{},
+            bill: {
+                total: ""
+            }
          };
         this.store = this.configureStore()
     }

@@ -133,7 +133,18 @@ public class PMS {
         }
         return result;
     }
+    
+    public String getBill(){
+    	// Precio sin IVA
+    	Double bill = 129.0;
+    	JsonArray value = Json.createArrayBuilder()
+    		     .add(Json.createObjectBuilder()
+    		         .add("total", bill.toString()))
+    		     .build();
+
+        return value.toString();
     }
+}
 
 
 

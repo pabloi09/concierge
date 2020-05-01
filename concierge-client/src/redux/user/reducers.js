@@ -1,11 +1,5 @@
 import { combineReducers } from "redux"
- //TODO
-//  const reducerName = (state = [], action) => {
-//     switch (action.type) {
-//         case "TYPE":
-//             return action.data ......
-//         default:
-//             return state
+
 const loggedIn = (state = [], action) => {
     switch (action.type) {
         case "LOGIN":
@@ -49,6 +43,7 @@ const hotels = (state = [],action) =>{
             return state
     }
 }
+
 const meals = (state = [],action) =>{
     switch(action.type){
         case "RESOURCES":
@@ -60,14 +55,23 @@ const meals = (state = [],action) =>{
     }
 }
 
-// const appData = combineReducers({
-//     reducerName,
-//     otherReducer,
-// })
+const bill = (state = [],action) =>{
+    switch(action.type){
+        case "RESOURCES":
+            return action.json["bill"] ?  action.json["bill"]:state
+        case "LOGOUT":
+            return {}
+        default:
+            return state
+    }
+}
+
 const appData = combineReducers({
     loggedIn,
     client,
     tours,
-    hotels,meals
+    hotels,
+    meals,
+    bill
 })
 export default appData

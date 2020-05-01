@@ -18,7 +18,7 @@ class StayPage extends Component {
         return (
             <Switch>
                 <Route path="/estancia/checkout">
-                    <CheckoutForm/>
+                    <CheckoutForm bill={this.props.bill}/>
                 </Route>
                 <Route path="/estancia/nueva-reserva">
                     <NewBookingPage login={this.login.bind(this)} hotels={this.props.hotels}/>
