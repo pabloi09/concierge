@@ -205,7 +205,7 @@ const Form = withStyles(styles)(withFormik({
     setTimeout(() => {
       // submit to the server
       var c = new Communication()
-      c.makePostRequest("/solicitud",getJson(values, props.events))
+      c.makePostRequestUTF8("/solicitud",getJson(values, props.events))
       .then((json)=>{
         if(json["code"]===200){
            props.setSuccess()
@@ -275,7 +275,7 @@ class EventsForm extends React.Component{
     componentDidMount () {
         if (this.state.items ? this.state.items.length === 0:true) {
             var c = new Communication();
-            c.makeGetRequest("/events", {"request": "events"})
+            c.makeGetRequestISO("/events", {"request": "events"})
             .then((json)=>{
                 if(json["code"]===200){
                     json["data"] = JSON.parse(json["data"]);

@@ -29,7 +29,7 @@ class MapRestaurantComponent extends Component {
   };
     componentDidMount(){
         var c = new Communication()
-        c.makeGetRequest("/restaurants",{location:location, radius:radius})
+        c.makeGetRequestISO("/restaurants",{location:location, radius:radius})
         .then((json => {
           var restaurants = []
           if(json["code"]===200){

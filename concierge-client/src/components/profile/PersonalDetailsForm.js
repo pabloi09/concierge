@@ -89,7 +89,7 @@ const Form = withStyles(styles)(withFormik({
     setTimeout(() => {
         // submit to the server
         var c = new Communication()
-        c.makePostRequest("/updateProfile", getJson(values))
+        c.makePostRequestUTF8("/updateProfile", getJson(values))
         .then((json)=>{
           if(json["code"]===200){
             props.setSuccess()
