@@ -21,7 +21,9 @@ class OrderStatusCard extends Component {
 
         for(const [i, m] of this.props.info.entries()) {
             if (m.emisorCliente+'' === 'true') {
-            items.push(<Typography key={i}><b>{getDate(m.timestamp)} Cliente: </b>{m.cuerpo}</Typography>);
+                var lineas = [];
+                m.cuerpo.split("\n").map((linea, j)=>{lineas.push(<p key={i+j+1}>{linea}</p>)});
+                items.push(<Typography key={i}><b>{getDate(m.timestamp)} Cliente: </b>{lineas}</Typography>);
             } else {
                 items.push(<Typography key={i}><b>{getDate(m.timestamp)} Empleado: </b>{m.cuerpo}</Typography>);
             }
