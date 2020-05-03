@@ -39,6 +39,9 @@ public class PMSServlet extends HttpServlet {
             case "meals":
                 data = PMS.getInstance().getMeals(path);
                 break;
+            case "bill":
+                data = PMS.getInstance().getBill();
+                break;
             default:
                 data = null;
                 break;

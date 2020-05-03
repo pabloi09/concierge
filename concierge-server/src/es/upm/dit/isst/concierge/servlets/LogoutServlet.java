@@ -1,8 +1,6 @@
 package es.upm.dit.isst.concierge.servlets;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import es.upm.dit.isst.concierge.model.Cliente;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
@@ -15,7 +13,10 @@ import java.io.PrintWriter;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
-    @Override
+    
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean loggedin = req.getSession().getAttribute("loggedin") != null &&
                 (boolean) req.getSession().getAttribute("loggedin");

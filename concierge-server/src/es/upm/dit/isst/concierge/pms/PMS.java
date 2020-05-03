@@ -133,7 +133,18 @@ public class PMS {
         }
         return result;
     }
+    
+    public String getBill(){
+    	// Precio sin IVA
+    	Double bill = (double)Math.round((Math.random() * (200 - 100 + 1) + 100)*100) / 100;
+    	JsonArray value = Json.createArrayBuilder()
+    		     .add(Json.createObjectBuilder()
+    		         .add("total", bill.toString()))
+    		     .build();
+
+        return value.toString();
     }
+}
 
 
 

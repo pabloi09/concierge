@@ -273,7 +273,7 @@ class EventsForm extends React.Component{
     }
 
     componentDidMount () {
-        if (this.state.items ? this.state.items.length == 0:true) {
+        if (this.state.items ? this.state.items.length === 0:true) {
             var c = new Communication();
             c.makeGetRequest("/events", {"request": "events"})
             .then((json)=>{

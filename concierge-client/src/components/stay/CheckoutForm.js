@@ -60,7 +60,9 @@ const form = props => {
     handleChange,
     handleBlur,
     handleSubmit,
+    total
   } = props;
+  console.log(total)
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
@@ -69,7 +71,12 @@ const form = props => {
             <Typography className={classes.title} color="textPrimary" gutterBottom>
               Página de check-out
             </Typography>
-            <Typography className={classes.text} color="textPrimary">El importe a pagar es de <b>141,90 €</b>. Si desea obtener una factura, rellene el siguiente formulario y podrá recibirla por correo electrónico. Una vez generada, podrá verla y proceder al pago.</Typography>                
+            <Typography className={classes.text} color="textPrimary">
+                {"Muchas gracias por su estancia en el Hotel Riu Plaza de España. Antes de realizar el checkout, puede solicitar un servicio de transporte en el apartado de transportes. "+
+                "El importe a pagar es de "+total+" €. Si desea obtener una factura, rellene el siguiente formulario y podrá recibirla por correo electrónico. "+
+                "Una vez generada, podrá verla y proceder al pago. "+
+                "Un empleado del hotel irá a ayudarle con su equipaje tan pronto como realice el check-out. Su llave de nuestras instalaciones se mantendrá activa durante los siguientes 60 minutos."}
+            </Typography>                
             <div style={{display: "block", paddingTop: "10px"}}>
                 <TextField
                 id="companyName"
@@ -247,21 +254,25 @@ const Form = withStyles(styles)(withFormik({
 class CheckoutForm extends React.Component{
     constructor(props){
       super(props)
-      this.state = {open:false}
+      this.state = {open:false, bill: props.bill}
       this.setOpen.bind(this)
     }
     setOpen(o){
       this.setState({open:o})
     }
     setSuccess(invoiceURL){
-      console.log(invoiceURL)
       this.setState({open:true,
         title: "Factura generada correctamente",
         text:"Usted ha realizado el check-out correctamente. Le hemos enviado la factura al correo electrónico proporcionado y puede encontrarla a continuación.",
-        action1name:"Cerrar",
+        action1name:"Salir",
         action1:()=>{
-          this.setOpen(false)
-          this.props.history.goBack()
+            this.setOpen(false)
+            var c = new Communication()
+            c.makeGetRequest("/logout",{})
+            .then((json)=>{
+                if(json["code"]===200)
+                this.props.logout()
+            })
         },
         action2name:"Ver factura",
         action2:()=>{
@@ -281,7 +292,8 @@ class CheckoutForm extends React.Component{
     }
     render(){
       return(<div>
-        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)}/>
+        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)}
+          total={this.props.bill? (this.props.bill.length > 0 ? parseFloat(parseInt(parseFloat(this.props.bill[0].total) * 1.1 * 100)/100).toString():""):""}/>
         <DialogComponent 
           open = {this.state.open}
           title={this.state.title}
