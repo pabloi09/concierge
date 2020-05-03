@@ -232,7 +232,7 @@ const Form = withStyles(styles)(withFormik({
     setTimeout(() => {
       // submit to the server
       var c = new Communication()
-      c.makePostRequest("/solicitud",getJson(values))
+      c.makePostRequestUTF8("/solicitud",getJson(values))
       .then((json)=>{
         if(json["code"]===200){
            props.setSuccess()

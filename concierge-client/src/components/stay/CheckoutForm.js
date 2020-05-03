@@ -234,7 +234,7 @@ const Form = withStyles(styles)(withFormik({
     setTimeout(() => {
         // submit to the server
         var c = new Communication()
-        c.makePostRequest("/checkout", getJson(values))
+        c.makePostRequestUTF8("/checkout", getJson(values))
         .then((json)=>{
           if(json["code"]===200){
              invoiceURL = json["url"];
@@ -268,7 +268,7 @@ class CheckoutForm extends React.Component{
         action1:()=>{
             this.setOpen(false)
             var c = new Communication()
-            c.makeGetRequest("/logout",{})
+            c.makeGetRequestUTF8("/logout",{})
             .then((json)=>{
                 if(json["code"]===200)
                 this.props.logout()

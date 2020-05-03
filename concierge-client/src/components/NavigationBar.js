@@ -109,7 +109,7 @@ class NavigationBar extends Component {
     this.setOpen(false)
     if (path === "/login"){
       var c = new Communication()
-      c.makeGetRequest("/logout",{})
+      c.makeGetRequestUTF8("/logout",{})
       .then((json)=>{
         if(json["code"]===200)
           this.props.logout()

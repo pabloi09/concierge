@@ -22,7 +22,7 @@ public class OrdersNextStep  extends HttpServlet{
     	// Elegir el ID de la solicitud que queremos modificar y asignarlo a id
     	// Si queremos cancelar la solicitud, asignamos true a cancel
     	
-    	int id = 128;
+    	int id = 13;
     	boolean cancel = false;
     	
     	// No tocar a partir de aquí
@@ -58,7 +58,7 @@ public class OrdersNextStep  extends HttpServlet{
     		Mensaje m = new Mensaje();
             m.setEmisorCliente(false);
             m.setSolicitud(s);
-            m.setCuerpo("Lo sentimos. Su solicitud ha sido rechazada. Para más información, llame a recepción marcando 1 en el teléfono de la habitación para hablar con "+s.getEmpleado().getName()+".");
+            m.setCuerpo("Lo sentimos. Su solicitud ha sido rechazada. Puede consultar el motivo llamando a recepcion. Marque 1 en el telefono de su mesilla para hablar con "+s.getEmpleado().getName()+".");
             m.setTimestamp( new Timestamp(System.currentTimeMillis()));
             MensajeDAOImplementation.getInstance().create(m);
     		
