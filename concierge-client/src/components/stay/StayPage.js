@@ -18,7 +18,7 @@ class StayPage extends Component {
         return (
             <Switch>
                 <Route path="/estancia/checkout">
-                    <CheckoutForm bill={this.props.bill}/>
+                    <CheckoutForm logout={this.logout.bind(this)} bill={this.props.bill}/>
                 </Route>
                 <Route path="/estancia/nueva-reserva">
                     <NewBookingPage login={this.login.bind(this)} hotels={this.props.hotels}/>
@@ -28,6 +28,11 @@ class StayPage extends Component {
                 </Route>
             </Switch>
         );
+    }
+
+
+    logout(){
+        this.props.logout()
     }
 
     login(json){

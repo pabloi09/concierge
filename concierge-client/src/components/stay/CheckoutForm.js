@@ -71,7 +71,7 @@ const form = props => {
               Página de check-out
             </Typography>
             <Typography className={classes.text} color="textPrimary">
-                {"Muchas gracias por su estancia en el Hotel Riu Plaza de España. Antes de realizar el checkout, puede solicitar un servicio de transporte en el apartado de transportes."+
+                {"Muchas gracias por su estancia en el Hotel Riu Plaza de España. Antes de realizar el checkout, puede solicitar un servicio de transporte en el apartado de transportes. "+
                 "El importe a pagar es de "+parseFloat(total)*1.1+"0 €. Si desea obtener una factura, rellene el siguiente formulario y podrá recibirla por correo electrónico. "+
                 "Una vez generada, podrá verla y proceder al pago. "+
                 "Un empleado del hotel irá a ayudarle con su equipaje tan pronto como realice el check-out. Su llave de nuestras instalaciones se mantendrá activa durante los siguientes 60 minutos."}
@@ -260,14 +260,18 @@ class CheckoutForm extends React.Component{
       this.setState({open:o})
     }
     setSuccess(invoiceURL){
-      console.log(invoiceURL)
       this.setState({open:true,
         title: "Factura generada correctamente",
         text:"Usted ha realizado el check-out correctamente. Le hemos enviado la factura al correo electrónico proporcionado y puede encontrarla a continuación.",
-        action1name:"Cerrar",
+        action1name:"Salir",
         action1:()=>{
-          this.setOpen(false)
-          this.props.history.goBack()
+            this.setOpen(false)
+            var c = new Communication()
+            c.makeGetRequest("/logout",{})
+            .then((json)=>{
+                if(json["code"]===200)
+                this.props.logout()
+            })
         },
         action2name:"Ver factura",
         action2:()=>{
