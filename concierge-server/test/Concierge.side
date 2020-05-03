@@ -2596,7 +2596,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/form/div/div/div/div/textarea", "xpath:idRelative"],
         ["xpath=//textarea", "xpath:position"]
       ],
-      "value": "Quiero una AK-47"
+      "value": "Que un empleado le lleve flores a mi mi hermana"
     }, {
       "id": "df298090-22be-493d-9863-f98fe6d8a6e9",
       "comment": "",
