@@ -50,7 +50,6 @@ const styles = () => ({
       fontSize: 15
   }
 });
-var total = "";
 const form = props => {
   const {
     classes,
@@ -60,8 +59,10 @@ const form = props => {
     isSubmitting,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
+    total
   } = props;
+  console.log(total)
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
@@ -72,7 +73,7 @@ const form = props => {
             </Typography>
             <Typography className={classes.text} color="textPrimary">
                 {"Muchas gracias por su estancia en el Hotel Riu Plaza de España. Antes de realizar el checkout, puede solicitar un servicio de transporte en el apartado de transportes. "+
-                "El importe a pagar es de "+parseFloat(total)*1.1+"0 €. Si desea obtener una factura, rellene el siguiente formulario y podrá recibirla por correo electrónico. "+
+                "El importe a pagar es de "+total+" €. Si desea obtener una factura, rellene el siguiente formulario y podrá recibirla por correo electrónico. "+
                 "Una vez generada, podrá verla y proceder al pago. "+
                 "Un empleado del hotel irá a ayudarle con su equipaje tan pronto como realice el check-out. Su llave de nuestras instalaciones se mantendrá activa durante los siguientes 60 minutos."}
             </Typography>                
@@ -290,9 +291,9 @@ class CheckoutForm extends React.Component{
       }})
     }
     render(){
-      total = this.state.bill[0].total;
       return(<div>
-        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)}/>
+        <Form setSuccess={this.setSuccess.bind(this)} setError={this.setError.bind(this)}
+          total={this.props.bill? (this.props.bill.length > 0 ? parseFloat(parseInt(parseFloat(this.props.bill[0].total) * 1.1 * 100)/100).toString():""):""}/>
         <DialogComponent 
           open = {this.state.open}
           title={this.state.title}
