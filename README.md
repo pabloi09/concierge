@@ -1,7 +1,8 @@
 # Concierge
 This repo is a migration of a private GitLab repository. It is conceived as the 
 development of an app using Scrum methodology and control version for the
-course Systems and Telematic Services Engineering given at Universidad Politécnica de Madrid.
+course Systems and Telematic Services Engineering given at Universidad 
+Politécnica de Madrid (ETSIT).
 It includes:
 * The frontend developed in React
 * The backend developed with Java EE
