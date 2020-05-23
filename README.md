@@ -1,4 +1,14 @@
 # Concierge
+This repo is a migration of a private GitLab repository. It is conceived as the 
+development of an app using Scrum methodology and control version for the
+course Systems and Telematic Services Engineering given at Universidad Politécnica de Madrid.
+It includes:
+* The frontend developed in React
+* The backend developed with Java EE
+* H2 database
+* Very cool API use: Google Maps, Stripe, TicketMaster
+* Deployment using containers
+
 ## Versions
 To avoid issues from the beginning I sugest to use the same versions:
 * node v12.15.0
@@ -51,17 +61,17 @@ The drive shared directory is:
 https://drive.google.com/drive/folders/13pPnWUftbtiQ1ur7unSofkWJ_Q8ztDBP?usp=sharing
 ## Contact
 ### Product owner
-alvaro.gomezm@alumnos.upm.es
+Álvaro Gómez
 ### Scrum master
-ana.delucas.lopez@alumnos.upm.es
+Ana de Lucas López
 ### Developers
-* p.centenera@alumnos.upm.es
-* diego.devegaf@alumnos.upm.es
-* c.garcia-maurino@alumnos.upm.es
-* pablo.martin.redondo@alumnos.upm.es
+* Patricia Centenera
+* Diego de Vega
+* Carlos García
+* Pablo Martín 
 
 ## Supervisor
-* juancarlos.yelmo@upm.es
+* Juan Carlos Yelmo
 
 ## Helpful docs in not a specific order
 * Restful API with spring: https://spring.io/guides/gs/rest-service/
