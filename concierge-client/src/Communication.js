@@ -1,6 +1,6 @@
 export default class Communication {
     constructor(){
-        this.base_url = "http://localhost:8080"
+        this.base_url = "http://concierge.duckdns.org:8080"
     }
 
     createGetUrl(servlet,params){

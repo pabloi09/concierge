@@ -28,5 +28,5 @@ services:
     volumes:
       - "./concierge-client/:/home/node/app:ro"
     ports:
-      - 3000:3000
+      - 80:3000
     command: "npm start"
